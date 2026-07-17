@@ -14,7 +14,7 @@ export function Faq({ title, items }: { title: string; items: FaqItem[] }) {
               {item.q}
               <span
                 aria-hidden
-                className="text-2xl leading-none text-accent transition-transform group-open:rotate-45"
+                className="text-2xl leading-none text-fawn transition-transform group-open:rotate-45"
               >
                 +
               </span>

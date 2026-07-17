@@ -25,7 +25,7 @@ export function MobileNav() {
         />
       </button>
       {open && (
-        <nav className="absolute inset-x-0 top-full max-h-[calc(100vh-4.5rem)] overflow-y-auto border-b border-line bg-paper shadow-lg">
+        <nav className="absolute inset-x-0 top-full max-h-[calc(100vh-4.5rem)] overflow-y-auto border-b border-line bg-twilight-deep shadow-2xl shadow-black/40">
           <div className="px-6 py-5">
             <p className="text-xs font-semibold tracking-[0.2em] text-ink-faint uppercase">
               Leistungen
@@ -67,7 +67,7 @@ export function MobileNav() {
             <Link
               href="/kontakt"
               onClick={close}
-              className="mt-3 block rounded-full bg-accent py-3 text-center font-medium text-white"
+              className="mt-3 block rounded-full bg-fawn py-3 text-center font-semibold text-twilight-deep"
             >
               Erstgespräch buchen
             </Link>

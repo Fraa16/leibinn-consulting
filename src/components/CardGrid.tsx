@@ -16,7 +16,7 @@ export function CardGrid({
       {cards.map((card) => (
         <div
           key={card.title}
-          className="rounded-xl border border-line bg-paper p-7"
+          className="rounded-2xl border border-line bg-gradient-to-b from-cobalt to-cobalt/60 p-7 transition-colors hover:border-line-strong"
         >
           <h3 className="text-lg leading-snug font-bold">{card.title}</h3>
           <p className="mt-3 text-[0.95rem] leading-relaxed text-ink-soft">

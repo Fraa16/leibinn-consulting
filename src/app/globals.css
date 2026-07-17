@@ -1,27 +1,55 @@
 @import "tailwindcss";
 
+/*
+ * Dunkles Markentheme (Kunden-Palette):
+ *   Deep Twilight #01005D  — Grundfläche (~70 %)
+ *   True Cobalt   #1E207F  — Karten & Flächen (~20 %)
+ *   Royal Azure   #2452D8  — Interaktion & Akzente
+ *   Soft Fawn     #E4BF70  — Conversion (CTAs, Sterne), sparsam
+ *
+ * Die Legacy-Token (ink/paper/accent/line) sind Aliase auf das neue System,
+ * damit alle bestehenden Utility-Klassen weiter funktionieren:
+ *   ink*  = Textfarben (hell), paper* = Hintergründe (dunkelblau),
+ *   accent* = Azure-Interaktion, accent-tint = Cobalt-Fläche.
+ */
 @theme {
-  /* Brand */
-  --color-accent: #2652e9;
-  --color-accent-dark: #1c40bd;
-  --color-accent-tint: #eef2fd;
+  --color-twilight: #01005d;
+  --color-twilight-deep: #02003c;
+  --color-twilight-soft: #0a0970;
+  --color-cobalt: #1e207f;
+  --color-cobalt-soft: #2b2d97;
+  --color-azure: #2452d8;
+  --color-azure-light: #7d97ee;
+  --color-fawn: #e4bf70;
+  --color-fawn-light: #eed295;
 
-  --color-ink: #1f1d1a;
-  --color-ink-soft: #57534e;
-  --color-ink-faint: #a8a29e;
+  --color-frost: #f4f5ff;
 
-  --color-paper: #ffffff;
-  --color-paper-warm: #faf9f7;
-  --color-line: #e7e5e4;
+  /* Legacy-Aliase */
+  --color-ink: #f4f5ff;
+  --color-ink-soft: rgba(244, 245, 255, 0.7);
+  --color-ink-faint: rgba(244, 245, 255, 0.48);
+  --color-paper: #01005d;
+  --color-paper-warm: #060468;
+  --color-line: rgba(244, 245, 255, 0.14);
+  --color-line-strong: rgba(244, 245, 255, 0.26);
+  --color-accent: #7d97ee;
+  --color-accent-dark: #2452d8;
+  --color-accent-tint: rgba(36, 82, 216, 0.16);
 
   /* Typography */
   --font-heading: var(--font-playfair), Georgia, serif;
   --font-body: var(--font-lora), Georgia, serif;
 }
 
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--color-paper);
-  color: var(--color-ink);
+  background: var(--color-twilight);
+  color: var(--color-frost);
   font-family: var(--font-body);
   text-rendering: optimizeLegibility;
 }
@@ -33,6 +61,44 @@ h3 {
 }
 
 ::selection {
-  background: var(--color-accent);
-  color: #fff;
+  background: var(--color-fawn);
+  color: var(--color-twilight);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-azure-light);
+  outline-offset: 3px;
+}
+
+/* Logo-Frames sind dunkel-auf-hell gezeichnet; auf Navy aufhellen */
+.frame-on-dark {
+  filter: brightness(3.4) saturate(0.6);
+}
+
+/* Scroll-Reveal (JS setzt .is-visible; ohne JS/reduced-motion bleibt alles sichtbar) */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  @keyframes logo-drift {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  .logo-drift {
+    animation: logo-drift 7s ease-in-out infinite;
+  }
 }

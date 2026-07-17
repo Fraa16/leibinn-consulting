@@ -144,7 +144,7 @@ export default function UeberUnsPage() {
           {fakten.map((fakt, i) => {
             const Icon = [IconCertificate, IconCertificate, IconPin, IconCertificate, IconUsers, IconPin][i];
             return (
-              <div key={fakt.label} className="bg-paper p-7">
+              <div key={fakt.label} className="bg-twilight-soft p-7">
                 <Icon className="h-6 w-6 text-accent" />
                 <dt className="mt-4 text-sm font-semibold tracking-wide text-ink-faint uppercase">
                   {fakt.label}
@@ -176,7 +176,7 @@ export default function UeberUnsPage() {
           {prinzipien.map((prinzip, i) => (
             <li
               key={prinzip.title}
-              className="rounded-2xl border border-line bg-paper p-8"
+              className="rounded-2xl border border-line bg-gradient-to-b from-cobalt to-cobalt/60 p-8"
             >
               <span className="font-heading text-4xl font-bold text-accent/30">
                 {String(i + 1).padStart(2, "0")}

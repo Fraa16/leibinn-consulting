@@ -84,7 +84,7 @@ export default function KontaktPage() {
               >
                 <IconPhone className="h-6 w-6 text-accent" />
                 <p className="mt-2 text-sm text-ink-faint">Telefon</p>
-                <p className="font-medium group-hover:text-accent">
+                <p className="font-medium group-hover:text-fawn">
                   {site.phone}
                 </p>
               </a>
@@ -93,7 +93,7 @@ export default function KontaktPage() {
               <a href={`mailto:${site.email}`} className="group block">
                 <IconMail className="h-6 w-6 text-accent" />
                 <p className="mt-2 text-sm text-ink-faint">E-Mail</p>
-                <p className="font-medium break-all group-hover:text-accent">
+                <p className="font-medium break-all group-hover:text-fawn">
                   {site.email}
                 </p>
               </a>

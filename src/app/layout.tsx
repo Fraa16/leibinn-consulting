@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Playfair_Display, Lora } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -15,6 +15,10 @@ const lora = Lora({
   variable: "--font-lora",
   subsets: ["latin"],
 });
+
+export const viewport: Viewport = {
+  themeColor: "#01005d",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

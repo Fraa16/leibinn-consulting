@@ -70,14 +70,14 @@ export function HeroPanel({
 }) {
   const Icon = fachbereichIcons[slug];
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-line bg-gradient-to-br from-accent-tint via-paper to-paper-warm">
-      <DotGrid className="absolute inset-0 h-full w-full text-accent/15" />
-      <Icon className="absolute -top-8 -right-8 h-48 w-48 text-accent/12" />
+    <div className="relative overflow-hidden rounded-2xl border border-line bg-gradient-to-br from-cobalt via-twilight-soft to-twilight">
+      <DotGrid className="absolute inset-0 h-full w-full text-azure/25" />
+      <Icon className="absolute -top-8 -right-8 h-48 w-48 text-azure/20" />
       <div className="relative flex aspect-[4/3] items-end md:aspect-[5/4]">
-        <SkylineArt className="w-full text-ink/25" />
+        <SkylineArt className="w-full text-azure-light/40" />
       </div>
-      <div className="absolute top-6 left-6 max-w-[15rem] rounded-xl border border-line bg-paper/95 p-4 shadow-lg shadow-ink/5 backdrop-blur">
-        <p className="font-heading text-2xl font-bold text-accent">{fact}</p>
+      <div className="absolute top-6 left-6 max-w-[15rem] rounded-xl border border-line-strong bg-twilight-deep/90 p-4 shadow-lg shadow-black/30 backdrop-blur">
+        <p className="font-heading text-2xl font-bold text-fawn">{fact}</p>
         <p className="mt-1 text-sm leading-snug text-ink-soft">{factLabel}</p>
       </div>
     </div>
@@ -91,10 +91,10 @@ export function PortraitPanel({ name, role }: { name: string; role: string }) {
     .map((n) => n[0])
     .join("");
   return (
-    <figure className="relative overflow-hidden rounded-2xl border border-line bg-gradient-to-b from-paper-warm to-accent-tint">
-      <DotGrid className="absolute inset-0 h-full w-full text-accent/15" />
+    <figure className="relative overflow-hidden rounded-2xl border border-line bg-gradient-to-b from-cobalt to-twilight-soft">
+      <DotGrid className="absolute inset-0 h-full w-full text-azure/25" />
       <div className="relative flex aspect-[4/5] flex-col items-center justify-center gap-6">
-        <span className="flex h-36 w-36 items-center justify-center rounded-full border-2 border-accent/30 bg-paper font-heading text-5xl font-bold text-accent">
+        <span className="flex h-36 w-36 items-center justify-center rounded-full border-2 border-azure-light/50 bg-twilight-deep font-heading text-5xl font-bold text-azure-light">
           {initials}
         </span>
         {/* [PLATZHALTER] Professionelles Porträtfoto einsetzen (Copy-Doc /ueber-uns) */}
@@ -102,7 +102,7 @@ export function PortraitPanel({ name, role }: { name: string; role: string }) {
           Porträtfoto folgt
         </p>
       </div>
-      <figcaption className="relative border-t border-line bg-paper/90 px-6 py-4">
+      <figcaption className="relative border-t border-line bg-twilight-deep/80 px-6 py-4">
         <p className="font-heading text-lg font-bold">{name}</p>
         <p className="text-sm text-ink-soft">{role}</p>
       </figcaption>

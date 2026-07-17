@@ -31,7 +31,7 @@ export function SectionHeading({
   return (
     <div className={center ? "text-center" : ""}>
       {kicker && (
-        <p className="mb-4 text-sm font-semibold tracking-[0.2em] text-accent uppercase">
+        <p className="mb-4 text-sm font-semibold tracking-[0.2em] text-fawn uppercase">
           {kicker}
         </p>
       )}

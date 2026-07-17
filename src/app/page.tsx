@@ -10,7 +10,9 @@ import { StepList, type Step } from "@/components/StepList";
 import { Faq, type FaqItem } from "@/components/Faq";
 import { FinalCta } from "@/components/FinalCta";
 import { JsonLd, howToJsonLd } from "@/components/JsonLd";
-import { SkylineArt, DotGrid, PortraitPanel } from "@/components/VisualPanel";
+import { SkylineArt, PortraitPanel } from "@/components/VisualPanel";
+import { LogoFrameDecor, LogoMark } from "@/components/Brand";
+import { Reveal } from "@/components/Reveal";
 import { fachbereichIcons, IconArrowRight } from "@/components/icons";
 import { site } from "@/lib/site";
 
@@ -140,30 +142,57 @@ export default function HomePage() {
   return (
     <>
       {/* Hero — Copy-Doc Startseite v3 */}
-      <section className="relative overflow-hidden border-b border-line">
-        <DotGrid className="absolute inset-0 h-full w-full text-accent/10" />
-        <div className="relative mx-auto max-w-5xl px-6 pt-24 pb-10 text-center md:pt-32">
-          <h1 className="text-4xl leading-tight font-bold tracking-tight text-balance md:text-6xl">
-            <Scribble>Vermögensaufbau</Scribble> mit System:
-            <br />
-            Investments, Immobilien, Holding.
-          </h1>
-          <p className="mx-auto mt-9 max-w-3xl text-lg leading-relaxed text-ink-soft md:text-xl">
-            Leibinn Consulting entwickelt Strategien für Vermögensaufbau,
-            Immobilien-Investments und Holding-Strukturen für Unternehmer und
-            Privatpersonen in der Region Stuttgart. Als eingetragener
-            Immobilienmakler mit direktem Zugang zu Off-Market-Objekten.
-          </p>
-          <div className="mt-11">
-            <CtaButton href="/kontakt">
-              Kostenloses Erstgespräch buchen
-            </CtaButton>
-            <p className="mt-4 text-sm text-ink-faint">
-              60 Minuten, unverbindlich, mit konkreter erster Einschätzung
+      <section className="relative -mt-18 overflow-hidden border-b border-line">
+        <LogoFrameDecor variant="top" opacity={0.45} />
+        <div className="relative mx-auto max-w-5xl px-6 pt-40 pb-10 text-center md:pt-48">
+          <Reveal>
+            <LogoMark className="logo-drift mx-auto mb-8 h-16 w-auto md:h-20" />
+            <h1 className="text-4xl leading-tight font-bold tracking-tight text-balance md:text-6xl">
+              <Scribble>Vermögensaufbau</Scribble> mit System:
+              <br />
+              Investments, Immobilien, Holding.
+            </h1>
+          </Reveal>
+          <Reveal delay={120}>
+            <p className="mx-auto mt-9 max-w-3xl text-lg leading-relaxed text-ink-soft md:text-xl">
+              Leibinn Consulting entwickelt Strategien für Vermögensaufbau,
+              Immobilien-Investments und Holding-Strukturen für Unternehmer und
+              Privatpersonen in der Region Stuttgart. Als eingetragener
+              Immobilienmakler mit direktem Zugang zu Off-Market-Objekten.
             </p>
-          </div>
+          </Reveal>
+          <Reveal delay={240}>
+            <div className="mt-11">
+              <CtaButton href="/kontakt">
+                Kostenloses Erstgespräch buchen
+              </CtaButton>
+              <p className="mt-4 text-sm text-ink-faint">
+                60 Minuten, unverbindlich, mit konkreter erster Einschätzung
+              </p>
+            </div>
+          </Reveal>
         </div>
-        <SkylineArt className="relative mx-auto -mb-px block w-full max-w-6xl px-6 text-ink/15" />
+        <SkylineArt className="relative mx-auto -mb-px block w-full max-w-6xl px-6 text-azure-light/25" />
+      </section>
+
+      {/* Trust-Strip (Design-Mockup) — [PLATZHALTER] Partner/Auszeichnungen bestätigen */}
+      <section className="border-b border-line">
+        <div className="mx-auto max-w-6xl px-6 py-8 text-center">
+          <p className="text-xs font-semibold tracking-[0.25em] text-ink-faint uppercase">
+            Ausgezeichnet und vernetzt
+          </p>
+          <ul className="mt-5 flex flex-wrap items-center justify-center gap-x-12 gap-y-3 text-ink-faint">
+            <li className="font-heading text-lg font-bold tracking-wide">
+              Dimensional
+            </li>
+            <li className="font-heading text-lg font-bold tracking-wide">
+              fondsfinanz
+            </li>
+            <li className="font-heading text-lg font-bold tracking-wide">
+              Deutsche Makler Akademie
+            </li>
+          </ul>
+        </div>
       </section>
 
       <StatStrip
@@ -206,18 +235,18 @@ export default function HomePage() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="group flex flex-col rounded-2xl border border-line bg-paper p-8 transition-all hover:-translate-y-0.5 hover:border-accent hover:shadow-lg hover:shadow-accent/5"
+                className="group flex flex-col rounded-2xl border border-line bg-gradient-to-b from-cobalt to-cobalt/60 p-8 transition-all hover:-translate-y-1 hover:border-azure-light/60 hover:shadow-xl hover:shadow-black/30"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-tint text-accent">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-azure/25 text-azure-light">
                   <Icon className="h-6 w-6" />
                 </span>
-                <h3 className="mt-5 text-xl leading-snug font-bold group-hover:text-accent">
+                <h3 className="mt-5 text-xl leading-snug font-bold group-hover:text-fawn">
                   {l.title}
                 </h3>
                 <p className="mt-3 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">
                   {l.text}
                 </p>
-                <IconArrowRight className="mt-5 h-5 w-5 text-accent transition-transform group-hover:translate-x-1" />
+                <IconArrowRight className="mt-5 h-5 w-5 text-fawn transition-transform group-hover:translate-x-1" />
               </Link>
             );
           })}
@@ -225,7 +254,7 @@ export default function HomePage() {
         <div className="mt-10 text-center">
           <Link
             href="/leistungen"
-            className="font-medium text-accent underline-offset-4 hover:underline"
+            className="font-medium text-fawn underline-offset-4 hover:underline"
           >
             Alle Leistungen ansehen →
           </Link>
@@ -298,9 +327,34 @@ export default function HomePage() {
                 Zuständigkeiten.
               </p>
             </div>
+            <ul className="mt-7 space-y-2.5">
+              {[
+                "Fester Ansprechpartner, vom Erstgespräch bis zur laufenden Betreuung",
+                "Eingetragener Immobilien- und Versicherungsmakler (§ 34d GewO)",
+                "Über 50 laufend betreute Mandanten",
+              ].map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <svg
+                    viewBox="0 0 20 20"
+                    aria-hidden
+                    className="mt-1 h-4 w-4 shrink-0 text-fawn"
+                  >
+                    <path
+                      d="M3 10.5l4.5 4.5L17 5.5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  <span className="text-[0.95rem] leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
             <Link
               href="/ueber-uns"
-              className="mt-8 inline-block font-medium text-accent underline-offset-4 hover:underline"
+              className="mt-8 inline-block font-medium text-fawn underline-offset-4 hover:underline"
             >
               Mehr über Leibinn Consulting →
             </Link>

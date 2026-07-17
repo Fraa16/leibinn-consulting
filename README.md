@@ -2,7 +2,11 @@
 
 Marketing-Website für Leibinn Consulting: Vermögensaufbau, Off-Market-Immobilien, Holding-Strukturen, Absicherung und Finanzierung (Region Stuttgart).
 
-**Stack:** Next.js (App Router) · Tailwind CSS 4 · TypeScript · Fonts: Playfair Display + Lora (lokal via `next/font`, DSGVO-freundlich) · Akzentfarbe `#2652E9`
+**Stack:** Next.js (App Router) · Tailwind CSS 4 · TypeScript · Fonts: Playfair Display + Lora (lokal via `next/font`, DSGVO-freundlich)
+
+**Design-System (dunkles Markentheme):** Deep Twilight `#01005D` (Grundfläche) · True Cobalt `#1E207F` (Karten) · Royal Azure `#2452D8` (Interaktion) · Soft Fawn `#E4BF70` (CTAs, sparsam). Token-Definitionen in `src/app/globals.css`.
+
+**Marken-Assets** (`public/brand/`, aus den gelieferten Logo-Frames): `logo-mark-white.png` (Bildmarke, Header/Hero), `logo-lockup-white.png` (Wort-Bild-Marke, Footer), `frame-01/02.png` (Linien-Ornamente für Sektionshintergründe). Achtung: `frame-21.png` enthält Wortmarke + Platzhalter-URL als Wasserzeichen — nicht als Dekor verwenden.
 
 ## Entwicklung
 
@@ -40,7 +44,7 @@ Copy stammt wortgetreu aus den Copy-Dokumenten (Startseite v3, übrige v1). Wied
 
 ## Bilder
 
-Stock-Downloads (Unsplash etc.) sind in der Build-Umgebung durch die Netzwerk-Policy blockiert. Deshalb tragen eigene SVG-Illustrationen im Markenstil die Gestaltung (`src/components/VisualPanel.tsx`). Echte Fotos später einfach einsetzen:
+Stock-Downloads (Unsplash etc.) sind in der Build-Umgebung durch die Netzwerk-Policy blockiert. Deshalb tragen die Logo-Frames und eigene SVG-Illustrationen im Markenstil die Gestaltung (`src/components/Brand.tsx`, `src/components/VisualPanel.tsx`). Echte Fotos später einfach einsetzen:
 
 - Porträt Cedrik → `public/images/cedrik-leibinn.jpg`, dann `PortraitPanel` durch `next/image` ersetzen
 - Fachseiten-Motive → `HeroPanel` in `src/components/SplitHero.tsx` austauschen

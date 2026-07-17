@@ -12,7 +12,7 @@ import {
 type Status = "idle" | "sending" | "sent" | "error" | "not-configured";
 
 const inputStyles =
-  "w-full rounded-lg border border-line bg-paper px-4 py-3 outline-none transition-colors focus:border-accent";
+  "w-full rounded-lg border border-line bg-cobalt/50 px-4 py-3 outline-none transition-colors focus:border-azure-light";
 
 function PillGroup({
   name,
@@ -35,7 +35,7 @@ function PillGroup({
             defaultChecked={option.value === defaultValue}
             className="peer sr-only"
           />
-          <span className="inline-block rounded-full border border-line px-4 py-2 text-sm transition-colors peer-checked:border-accent peer-checked:bg-accent peer-checked:text-white hover:border-accent">
+          <span className="inline-block rounded-full border border-line px-4 py-2 text-sm transition-colors peer-checked:border-azure peer-checked:bg-azure peer-checked:text-white hover:border-azure-light">
             {option.label}
           </span>
         </label>
@@ -179,7 +179,7 @@ export function KontaktForm() {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="rounded-full bg-accent px-8 py-3.5 font-medium text-white transition-colors hover:bg-accent-dark disabled:opacity-60"
+          className="rounded-full bg-fawn px-8 py-3.5 font-semibold text-twilight-deep shadow-lg shadow-black/25 transition-all hover:-translate-y-0.5 hover:bg-fawn-light disabled:opacity-60"
         >
           {status === "sending" ? "Wird gesendet …" : "Termin anfragen"}
         </button>
@@ -189,13 +189,13 @@ export function KontaktForm() {
         </p>
       </div>
       {status === "error" && (
-        <p className="text-sm text-red-600">
+        <p className="text-sm text-red-300">
           Das hat leider nicht geklappt. Bitte versuchen Sie es erneut oder
           schreiben Sie uns direkt per E-Mail an {site.email}.
         </p>
       )}
       {status === "not-configured" && (
-        <p className="text-sm text-red-600">
+        <p className="text-sm text-red-300">
           Das Formular ist noch nicht aktiv. Bitte kontaktieren Sie uns direkt
           per E-Mail ({site.email}) oder Telefon.
         </p>

@@ -93,18 +93,18 @@ export default function LeistungenPage() {
               <Link
                 key={card.href}
                 href={card.href}
-                className="group flex flex-col rounded-2xl border border-line bg-paper p-8 transition-all hover:-translate-y-0.5 hover:border-accent hover:shadow-lg hover:shadow-accent/5"
+                className="group flex flex-col rounded-2xl border border-line bg-gradient-to-b from-cobalt to-cobalt/60 p-8 transition-all hover:-translate-y-1 hover:border-azure-light/60 hover:shadow-xl hover:shadow-black/30"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-tint text-accent">
+                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-azure/25 text-azure-light">
                   <Icon className="h-6 w-6" />
                 </span>
-                <h2 className="mt-5 font-heading text-xl leading-snug font-bold group-hover:text-accent">
+                <h2 className="mt-5 font-heading text-xl leading-snug font-bold group-hover:text-fawn">
                   {card.title}
                 </h2>
                 <p className="mt-3 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">
                   {card.text}
                 </p>
-                <IconArrowRight className="mt-5 h-5 w-5 text-accent transition-transform group-hover:translate-x-1" />
+                <IconArrowRight className="mt-5 h-5 w-5 text-fawn transition-transform group-hover:translate-x-1" />
               </Link>
             );
           })}

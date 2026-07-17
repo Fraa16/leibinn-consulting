@@ -1,27 +1,29 @@
 import Link from "next/link";
 import { entitySentence, leistungenItems, legalNav, site } from "@/lib/site";
+import { LogoFrameDecor, LogoLockup } from "./Brand";
 
 export function SiteFooter() {
   return (
-    <footer className="bg-ink text-white">
-      <div className="mx-auto max-w-6xl px-6 py-16">
+    <footer className="relative overflow-hidden border-t border-line bg-twilight-deep">
+      <LogoFrameDecor variant="corner" opacity={0.25} />
+      <div className="relative mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <p className="font-heading text-xl font-bold">{site.name}</p>
+            <LogoLockup className="h-28 w-auto" />
             {/* Footer-Entity-Satz (GEO, sitewide) — Copy-Doc Startseite v3 */}
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-white/60">
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-ink-faint">
               {entitySentence}
             </p>
           </div>
           <nav aria-label="Leistungen">
-            <p className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase">
+            <p className="text-xs font-semibold tracking-[0.2em] text-fawn uppercase">
               Leistungen
             </p>
             <ul className="mt-4 space-y-2 text-sm">
               <li>
                 <Link
                   href="/leistungen"
-                  className="text-white/70 transition-colors hover:text-white"
+                  className="text-ink-soft transition-colors hover:text-fawn"
                 >
                   Alle Leistungen
                 </Link>
@@ -30,7 +32,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-white/70 transition-colors hover:text-white"
+                    className="text-ink-soft transition-colors hover:text-fawn"
                   >
                     {item.label}
                   </Link>
@@ -39,14 +41,14 @@ export function SiteFooter() {
             </ul>
           </nav>
           <nav aria-label="Unternehmen">
-            <p className="text-xs font-semibold tracking-[0.2em] text-white/40 uppercase">
+            <p className="text-xs font-semibold tracking-[0.2em] text-fawn uppercase">
               Unternehmen
             </p>
             <ul className="mt-4 space-y-2 text-sm">
               <li>
                 <Link
                   href="/ueber-uns"
-                  className="text-white/70 transition-colors hover:text-white"
+                  className="text-ink-soft transition-colors hover:text-fawn"
                 >
                   Über uns
                 </Link>
@@ -54,21 +56,21 @@ export function SiteFooter() {
               <li>
                 <Link
                   href="/kontakt"
-                  className="text-white/70 transition-colors hover:text-white"
+                  className="text-ink-soft transition-colors hover:text-fawn"
                 >
                   Kontakt & Erstgespräch
                 </Link>
               </li>
             </ul>
-            <p className="mt-6 text-xs font-semibold tracking-[0.2em] text-white/40 uppercase">
+            <p className="mt-6 text-xs font-semibold tracking-[0.2em] text-fawn uppercase">
               Kontakt
             </p>
-            <ul className="mt-4 space-y-2 text-sm text-white/70">
+            <ul className="mt-4 space-y-2 text-sm text-ink-soft">
               {/* [PLATZHALTER] Echte Kontaktdaten einsetzen */}
               <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-fawn"
                 >
                   {site.email}
                 </a>
@@ -76,7 +78,7 @@ export function SiteFooter() {
               <li>
                 <a
                   href={`tel:${site.phone.replace(/\s/g, "")}`}
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-fawn"
                 >
                   {site.phone}
                 </a>
@@ -85,7 +87,7 @@ export function SiteFooter() {
             </ul>
           </nav>
         </div>
-        <div className="mt-14 flex flex-col gap-4 border-t border-white/15 pt-6 text-xs text-white/50 md:flex-row md:items-center md:justify-between">
+        <div className="mt-14 flex flex-col gap-4 border-t border-line pt-6 text-xs text-ink-faint md:flex-row md:items-center md:justify-between">
           <p>
             © {new Date().getFullYear()} {site.name}. Alle Rechte vorbehalten.
           </p>
@@ -94,7 +96,7 @@ export function SiteFooter() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="transition-colors hover:text-white"
+                  className="transition-colors hover:text-fawn"
                 >
                   {item.label}
                 </Link>
