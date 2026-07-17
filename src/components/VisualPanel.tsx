@@ -90,21 +90,22 @@ export function PortraitPanel({ name, role }: { name: string; role: string }) {
     .split(" ")
     .map((n) => n[0])
     .join("");
+  // Feste helle Textfarben: die Karte bleibt auch in .theme-light dunkel
   return (
-    <figure className="relative overflow-hidden rounded-2xl border border-line bg-gradient-to-b from-cobalt to-twilight-soft">
+    <figure className="relative overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-b from-cobalt to-twilight-soft text-[#f4f5ff]">
       <DotGrid className="absolute inset-0 h-full w-full text-azure/25" />
       <div className="relative flex aspect-[4/5] flex-col items-center justify-center gap-6">
         <span className="flex h-36 w-36 items-center justify-center rounded-full border-2 border-azure-light/50 bg-twilight-deep font-heading text-5xl font-bold text-azure-light">
           {initials}
         </span>
         {/* [PLATZHALTER] Professionelles Porträtfoto einsetzen (Copy-Doc /ueber-uns) */}
-        <p className="px-8 text-center text-sm text-ink-faint">
+        <p className="px-8 text-center text-sm text-[#f4f5ff]/50">
           Porträtfoto folgt
         </p>
       </div>
-      <figcaption className="relative border-t border-line bg-twilight-deep/80 px-6 py-4">
+      <figcaption className="relative border-t border-white/15 bg-twilight-deep/80 px-6 py-4">
         <p className="font-heading text-lg font-bold">{name}</p>
-        <p className="text-sm text-ink-soft">{role}</p>
+        <p className="text-sm text-[#f4f5ff]/70">{role}</p>
       </figcaption>
     </figure>
   );

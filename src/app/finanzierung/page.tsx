@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { SplitHero } from "@/components/SplitHero";
-import { QuestionSection } from "@/components/QuestionSection";
-import { Section, SectionHeading } from "@/components/Section";
-import { StepList, type Step } from "@/components/StepList";
+import { CtaButton } from "@/components/CtaButton";
+import { LightSection } from "@/components/Theme";
+import { EditorialHeader } from "@/components/Editorial";
+import { BigSteps } from "@/components/BigSteps";
 import { Faq, type FaqItem } from "@/components/Faq";
-import { FinalCta } from "@/components/FinalCta";
+import { CtaBanner } from "@/components/CtaBanner";
 import { Disclaimer } from "@/components/Disclaimer";
 import { JsonLd, breadcrumbJsonLd } from "@/components/JsonLd";
 import { kontaktHref } from "@/lib/site";
+import type { Step } from "@/components/StepList";
 
 export const metadata: Metadata = {
   title: {
@@ -68,50 +69,104 @@ const faqItems: FaqItem[] = [
 export default function FinanzierungPage() {
   return (
     <>
-      <SplitHero
-        kicker="Finanzierung"
-        slug="finanzierung"
-        fact="1 Prozess"
-        factLabel="Konditionen mehrerer Banken, ein Ansprechpartner"
-        title={
-          <>
-            Finanzierung:
-            <br />
-            Die Hausbank ist ein Angebot. Nicht der Markt.
-          </>
-        }
-        sub="Leibinn Consulting koordiniert Immobilien- und Anschlussfinanzierungen über unabhängige Finanzierungsexperten aus dem Partnernetzwerk: Konditionen mehrerer Banken im Vergleich, ein Ansprechpartner, ein Prozess. Der Konditions-Check ist kostenlos."
-        ctaLabel="Konditions-Check anfragen"
-        ctaHref={kontaktHref("konditions-check")}
-        // [PLATZHALTER] Schufa-Aussage prüfen, ob zusagbar (Copy-Doc-Hinweis)
-        microTrust="Kostenlos, unverbindlich, ohne Auswirkung auf Ihre Schufa"
-      />
+      {/* Hero — dunkler Streifen, Aussage im Zentrum */}
+      <section className="border-b border-line">
+        <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+          <div className="md:max-w-4xl">
+            <p className="text-sm font-semibold tracking-[0.25em] text-fawn uppercase">
+              Finanzierung
+            </p>
+            <h1 className="mt-5 text-4xl leading-[1.08] font-bold tracking-tight text-balance md:text-6xl">
+              Die Hausbank ist ein Angebot.
+              <br />
+              <span className="text-azure-light">Nicht der Markt.</span>
+            </h1>
+            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft">
+              Leibinn Consulting koordiniert Immobilien- und
+              Anschlussfinanzierungen über unabhängige Finanzierungsexperten
+              aus dem Partnernetzwerk: Konditionen mehrerer Banken im
+              Vergleich, ein Ansprechpartner, ein Prozess. Der Konditions-Check
+              ist kostenlos.
+            </p>
+            <div className="mt-9">
+              <CtaButton href={kontaktHref("konditions-check")}>
+                Konditions-Check anfragen
+              </CtaButton>
+              {/* [PLATZHALTER] Schufa-Aussage prüfen, ob zusagbar (Copy-Doc-Hinweis) */}
+              <p className="mt-4 text-sm text-ink-faint">
+                Kostenlos, unverbindlich, ohne Auswirkung auf Ihre Schufa
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <QuestionSection
-        title="Warum nicht einfach zur Hausbank?"
-        answer="Die Hausbank bietet ihre eigenen Konditionen an, nicht die des Marktes. Schon wenige Zehntelprozent Zinsunterschied summieren sich über die Laufzeit einer Immobilienfinanzierung zu fünfstelligen Beträgen. Ein unabhängiger Vergleich mehrerer Banken zeigt, was Ihre Finanzierung tatsächlich kosten muss, bevor Sie unterschreiben."
-      >
-        <p>
-          Dazu kommt der Prozess: Unterlagen aufbereiten, Banken anfragen,
-          Rückfragen beantworten, Fristen halten. Wer das neben Beruf und
-          Objektsuche selbst koordiniert, verliert Zeit, und bei
-          Off-Market-Objekten ist Zeit das knappste Gut. Deshalb gehören bei
-          uns{" "}
-          <Link href="/immobilien" className="text-accent underline underline-offset-2">
-            Objekt und Finanzierung in einen Prozess
-          </Link>
-          .
-        </p>
-      </QuestionSection>
+      {/* 01 · Ablauf zuerst — weißer Breaker mit BigSteps */}
+      <LightSection className="border-b border-line">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <EditorialHeader
+            no="01"
+            kicker="Der Prozess"
+            title="So läuft die Finanzierung ab."
+          />
+          <div className="mt-6">
+            <BigSteps steps={steps} />
+          </div>
+        </div>
+      </LightSection>
 
-      <Section tone="warm">
-        <SectionHeading>So läuft die Finanzierung ab</SectionHeading>
-        <StepList steps={steps} />
-      </Section>
+      {/* 02 · Warum — dunkles Band, versetzt */}
+      <section className="border-b border-line">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-20 md:grid-cols-12 md:py-28">
+          <div className="md:col-span-5">
+            <p className="flex items-baseline gap-3 text-sm font-semibold tracking-[0.2em] uppercase">
+              <span className="font-heading text-fawn">02</span>
+              <span className="text-ink-faint">Der Vergleich</span>
+            </p>
+            <h2 className="mt-5 text-3xl leading-[1.12] font-bold tracking-tight md:text-5xl">
+              Warum nicht einfach zur Hausbank?
+            </h2>
+          </div>
+          <div className="md:col-span-6 md:col-start-7">
+            <p className="border-l-4 border-azure pl-6 text-lg leading-relaxed font-medium">
+              Die Hausbank bietet ihre eigenen Konditionen an, nicht die des
+              Marktes. Schon wenige Zehntelprozent Zinsunterschied summieren
+              sich über die Laufzeit einer Immobilienfinanzierung zu
+              fünfstelligen Beträgen. Ein unabhängiger Vergleich mehrerer
+              Banken zeigt, was Ihre Finanzierung tatsächlich kosten muss,
+              bevor Sie unterschreiben.
+            </p>
+            <p className="mt-8 leading-relaxed text-ink-soft">
+              Dazu kommt der Prozess: Unterlagen aufbereiten, Banken anfragen,
+              Rückfragen beantworten, Fristen halten. Wer das neben Beruf und
+              Objektsuche selbst koordiniert, verliert Zeit, und bei
+              Off-Market-Objekten ist Zeit das knappste Gut. Deshalb gehören
+              bei uns{" "}
+              <Link
+                href="/immobilien"
+                className="text-accent underline underline-offset-2"
+              >
+                Objekt und Finanzierung in einen Prozess
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <Faq title="Häufige Fragen zur Finanzierung" items={faqItems} />
+      {/* 03 · FAQ — weiß */}
+      <LightSection>
+        <div className="mx-auto grid max-w-6xl gap-8 px-6 py-20 md:grid-cols-12 md:py-24">
+          <p className="font-heading text-sm font-semibold tracking-[0.2em] text-azure uppercase md:col-span-3">
+            03 · FAQ
+          </p>
+          <div className="md:col-span-9">
+            <Faq title="Häufige Fragen zur Finanzierung" items={faqItems} />
+          </div>
+        </div>
+      </LightSection>
 
-      <FinalCta
+      <CtaBanner
         title={
           <>
             Erst der Marktvergleich.

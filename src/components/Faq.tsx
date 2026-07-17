@@ -1,12 +1,17 @@
-import { Section, SectionHeading } from "./Section";
 import { JsonLd, faqJsonLd } from "./JsonLd";
 
 export type FaqItem = { q: string; a: string };
 
+/**
+ * Akkordeon ohne eigenen Sektions-Rahmen — die Seite bestimmt Fläche
+ * (dunkel oder .theme-light) und Layout. Token-Klassen flippen mit.
+ */
 export function Faq({ title, items }: { title: string; items: FaqItem[] }) {
   return (
-    <Section tone="warm">
-      <SectionHeading>{title}</SectionHeading>
+    <div>
+      <h2 className="text-3xl leading-snug font-bold tracking-tight md:text-4xl">
+        {title}
+      </h2>
       <div className="mt-10 divide-y divide-line border-y border-line">
         {items.map((item) => (
           <details key={item.q} className="group py-5">
@@ -14,7 +19,7 @@ export function Faq({ title, items }: { title: string; items: FaqItem[] }) {
               {item.q}
               <span
                 aria-hidden
-                className="text-2xl leading-none text-fawn transition-transform group-open:rotate-45"
+                className="text-2xl leading-none text-fawn transition-transform group-open:rotate-45 [.theme-light_&]:text-azure"
               >
                 +
               </span>
@@ -26,6 +31,6 @@ export function Faq({ title, items }: { title: string; items: FaqItem[] }) {
         ))}
       </div>
       <JsonLd data={faqJsonLd(items)} />
-    </Section>
+    </div>
   );
 }

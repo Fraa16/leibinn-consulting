@@ -42,6 +42,43 @@
   --font-body: var(--font-lora), Georgia, serif;
 }
 
+/*
+ * Weiße Breaker-Sektionen: .theme-light überschreibt die Token im Teilbaum,
+ * dadurch flippen alle Utility-Klassen und gemeinsamen Komponenten
+ * automatisch auf die helle Palette (ein Mechanismus, beide Welten).
+ */
+.theme-light {
+  --color-ink: #191838;
+  --color-ink-soft: rgba(25, 24, 56, 0.74);
+  --color-ink-faint: rgba(25, 24, 56, 0.5);
+  --color-paper: #ffffff;
+  --color-paper-warm: #f5f6fb;
+  --color-line: rgba(25, 24, 56, 0.12);
+  --color-line-strong: rgba(25, 24, 56, 0.28);
+  --color-accent: #2452d8;
+  --color-accent-tint: rgba(36, 82, 216, 0.08);
+  --color-frost: #191838;
+  background: #ffffff;
+  color: var(--color-ink);
+}
+
+/*
+ * Immer-dunkle Flächen (Bento-Zellen cobalt/deep, Porträtkarte): stellt die
+ * dunklen Token innerhalb von .theme-light wieder her, damit Textfarben
+ * unabhängig von der umgebenden Sektion stimmen.
+ */
+.surface-dark {
+  --color-ink: #f4f5ff;
+  --color-ink-soft: rgba(244, 245, 255, 0.7);
+  --color-ink-faint: rgba(244, 245, 255, 0.48);
+  --color-line: rgba(244, 245, 255, 0.14);
+  --color-line-strong: rgba(244, 245, 255, 0.26);
+  --color-accent: #7d97ee;
+  --color-accent-tint: rgba(36, 82, 216, 0.16);
+  --color-frost: #f4f5ff;
+  color: var(--color-ink);
+}
+
 html {
   color-scheme: dark;
   scroll-behavior: smooth;

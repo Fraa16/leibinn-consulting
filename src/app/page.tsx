@@ -2,19 +2,20 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CtaButton } from "@/components/CtaButton";
 import { Scribble } from "@/components/Scribble";
-import { Section, SectionHeading } from "@/components/Section";
-import { StatStrip } from "@/components/StatStrip";
-import { CardGrid } from "@/components/CardGrid";
+import { LightSection } from "@/components/Theme";
+import { Bento, BentoCell } from "@/components/Bento";
+import { EditorialHeader } from "@/components/Editorial";
+import { BigSteps } from "@/components/BigSteps";
 import { Testimonial } from "@/components/Testimonial";
-import { StepList, type Step } from "@/components/StepList";
 import { Faq, type FaqItem } from "@/components/Faq";
-import { FinalCta } from "@/components/FinalCta";
+import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd, howToJsonLd } from "@/components/JsonLd";
-import { SkylineArt, PortraitPanel } from "@/components/VisualPanel";
+import { PortraitPanel } from "@/components/VisualPanel";
 import { LogoFrameDecor, LogoMark } from "@/components/Brand";
 import { Reveal } from "@/components/Reveal";
 import { fachbereichIcons, IconArrowRight } from "@/components/icons";
 import { site } from "@/lib/site";
+import type { Step } from "@/components/StepList";
 
 export const metadata: Metadata = {
   title: {
@@ -24,60 +25,6 @@ export const metadata: Metadata = {
     "Vermögensaufbau mit Investments, Off-Market-Immobilien und Holding-Strukturen. Leibinn Consulting berät Unternehmer und Privatpersonen bei Stuttgart. Erstgespräch kostenlos.",
   alternates: { canonical: "/" },
 };
-
-const painCards = [
-  {
-    title: "Geld liegt auf dem Konto und verliert real an Wert.",
-    text: "Inflation kostet jedes Jahr Kaufkraft. Die Entscheidung, nichts zu tun, ist auch eine Entscheidung.",
-  },
-  {
-    title: "Gute Immobilien tauchen nie auf Portalen auf.",
-    text: "Die rentabelsten Objekte wechseln den Besitzer, bevor sie öffentlich werden. Wer nur auf Portalen sucht, sieht den Rest.",
-  },
-  {
-    title: "Als Unternehmer verschenken Sie Struktur.",
-    text: "Gewinne in der GmbH, Vermögen privat, keine Verbindung dazwischen: Ohne passende Struktur zahlen Sie mehr Steuern und tragen mehr Risiko als nötig.",
-  },
-];
-
-const leistungen = [
-  {
-    slug: "investments" as const,
-    href: "/investments",
-    title: "Investments",
-    text: "Strategien für den Vermögensaufbau: breite Streuung, klare Risikoverteilung, transparente Kosten. Die Anlageberatung übernehmen spezialisierte Partner, Leibinn Consulting entwickelt die Strategie und behält das Gesamtbild.",
-  },
-  {
-    slug: "immobilien" as const,
-    href: "/immobilien",
-    title: "Off-Market-Immobilien",
-    text: "Als eingetragener Immobilienmakler vermitteln wir Objekte, die nie auf Portalen erscheinen, in Regionen mit stabiler Mietnachfrage. Auf Wunsch mit Miet- und Hausverwaltung.",
-  },
-  {
-    slug: "holding" as const,
-    href: "/holding",
-    title: "Holding-Strukturen & Unternehmensberatung",
-    text: "Von der Frage, ob sich eine Holding für Sie lohnt, bis zur Gründung: Beratung, Begleitung und Umsetzung in einem durchgehenden Prozess.",
-  },
-  {
-    slug: "finanzierung" as const,
-    href: "/finanzierung",
-    title: "Finanzierung",
-    text: "Unabhängige Finanzierungsexperten aus dem Partnernetzwerk vergleichen die Konditionen mehrerer Banken. Für Sie heißt das: weniger Termine, ein koordinierter Prozess, verhandelte Zinsen.",
-  },
-  {
-    slug: "steuern-recht" as const,
-    href: "/steuern-recht",
-    title: "Steuern & Recht",
-    text: "Hier beraten wir nicht selbst. Wir vermitteln geprüfte Steuerberater und Anwälte aus unserem Netzwerk, passend zu Ihrer Struktur.",
-  },
-  {
-    slug: "absicherung" as const,
-    href: "/absicherung",
-    title: "Absicherung",
-    text: "Was aufgebaut wird, muss geschützt sein. Als Makler nach § 34d GewO sichern wir Vermögen, Immobilien und Betrieb ab, mit freier Auswahl aus dem Markt.",
-  },
-];
 
 const steps: Step[] = [
   {
@@ -141,185 +88,331 @@ const personJsonLd = {
 export default function HomePage() {
   return (
     <>
-      {/* Hero — Copy-Doc Startseite v3 */}
+      {/* 00 · Hero — asymmetrisch: XL-Headline links, Fakten-Stack rechts */}
       <section className="relative -mt-18 overflow-hidden border-b border-line">
-        <LogoFrameDecor variant="top" opacity={0.45} />
-        <div className="relative mx-auto max-w-5xl px-6 pt-40 pb-10 text-center md:pt-48">
-          <Reveal>
-            <LogoMark className="logo-drift mx-auto mb-8 h-16 w-auto md:h-20" />
-            <h1 className="text-4xl leading-tight font-bold tracking-tight text-balance md:text-6xl">
-              <Scribble>Vermögensaufbau</Scribble> mit System:
-              <br />
-              Investments, Immobilien, Holding.
-            </h1>
-          </Reveal>
-          <Reveal delay={120}>
-            <p className="mx-auto mt-9 max-w-3xl text-lg leading-relaxed text-ink-soft md:text-xl">
-              Leibinn Consulting entwickelt Strategien für Vermögensaufbau,
-              Immobilien-Investments und Holding-Strukturen für Unternehmer und
-              Privatpersonen in der Region Stuttgart. Als eingetragener
-              Immobilienmakler mit direktem Zugang zu Off-Market-Objekten.
-            </p>
-          </Reveal>
-          <Reveal delay={240}>
-            <div className="mt-11">
-              <CtaButton href="/kontakt">
-                Kostenloses Erstgespräch buchen
-              </CtaButton>
+        <LogoFrameDecor variant="top" opacity={0.4} />
+        <div className="relative mx-auto grid max-w-6xl gap-12 px-6 pt-36 pb-16 md:grid-cols-12 md:pt-44 md:pb-24">
+          <div className="md:col-span-8">
+            <Reveal>
+              <p className="text-sm font-semibold tracking-[0.25em] text-fawn uppercase">
+                Vermögensaufbau · Region Stuttgart
+              </p>
+              <h1 className="mt-6 text-4xl leading-[1.08] font-bold tracking-tight text-balance md:text-6xl lg:text-7xl">
+                <Scribble>Vermögensaufbau</Scribble> mit System: Investments,
+                Immobilien, Holding.
+              </h1>
+            </Reveal>
+            <Reveal delay={120}>
+              <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl">
+                Leibinn Consulting entwickelt Strategien für Vermögensaufbau,
+                Immobilien-Investments und Holding-Strukturen für Unternehmer
+                und Privatpersonen in der Region Stuttgart. Als eingetragener
+                Immobilienmakler mit direktem Zugang zu Off-Market-Objekten.
+              </p>
+            </Reveal>
+            <Reveal delay={220}>
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <CtaButton href="/kontakt">
+                  Kostenloses Erstgespräch buchen
+                </CtaButton>
+                <CtaButton href="/leistungen" variant="secondary">
+                  Leistungen ansehen
+                </CtaButton>
+              </div>
               <p className="mt-4 text-sm text-ink-faint">
                 60 Minuten, unverbindlich, mit konkreter erster Einschätzung
               </p>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
+          <div className="hidden md:col-span-3 md:col-start-10 md:flex md:flex-col md:justify-center md:gap-4">
+            <Reveal delay={300}>
+              <LogoMark className="logo-drift mb-6 h-20 w-auto" />
+            </Reveal>
+            {[
+              ["60 Min", "kostenloses Erstgespräch"],
+              ["50+", "laufend betreute Mandanten"],
+              ["24 h", "Antwortzeit auf Anfragen"],
+            ].map(([value, label], i) => (
+              <Reveal key={value} delay={360 + i * 90}>
+                <div className="rounded-xl border border-line bg-twilight-deep/70 px-5 py-4">
+                  <p className="font-heading text-2xl font-bold text-fawn">
+                    {value}
+                  </p>
+                  <p className="mt-0.5 text-sm text-ink-soft">{label}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
-        <SkylineArt className="relative mx-auto -mb-px block w-full max-w-6xl px-6 text-azure-light/25" />
-      </section>
-
-      {/* Trust-Strip (Design-Mockup) — [PLATZHALTER] Partner/Auszeichnungen bestätigen */}
-      <section className="border-b border-line">
-        <div className="mx-auto max-w-6xl px-6 py-8 text-center">
-          <p className="text-xs font-semibold tracking-[0.25em] text-ink-faint uppercase">
-            Ausgezeichnet und vernetzt
-          </p>
-          <ul className="mt-5 flex flex-wrap items-center justify-center gap-x-12 gap-y-3 text-ink-faint">
-            <li className="font-heading text-lg font-bold tracking-wide">
-              Dimensional
-            </li>
-            <li className="font-heading text-lg font-bold tracking-wide">
-              fondsfinanz
-            </li>
-            <li className="font-heading text-lg font-bold tracking-wide">
+        {/* Trust-Strip — [PLATZHALTER] Partner/Auszeichnungen bestätigen */}
+        <div className="relative border-t border-line">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-10 gap-y-2 px-6 py-5 text-ink-faint">
+            <span className="text-xs font-semibold tracking-[0.25em] uppercase">
+              Ausgezeichnet und vernetzt
+            </span>
+            <span className="font-heading text-base font-bold">Dimensional</span>
+            <span className="font-heading text-base font-bold">fondsfinanz</span>
+            <span className="font-heading text-base font-bold">
               Deutsche Makler Akademie
-            </li>
-          </ul>
+            </span>
+          </div>
         </div>
       </section>
 
-      <StatStrip
-        stats={[
-          { value: "60 Min", label: "kostenloses Erstgespräch, online oder vor Ort" },
-          { value: "50+", label: "laufend betreute Mandanten" },
-          { value: "§ 34d", label: "Versicherungsmakler-Erlaubnis, GewO" },
-          { value: "24 h", label: "Antwortzeit auf Ihre Anfrage" },
-        ]}
-      />
+      {/* 01 · Problem — weißer Breaker, versetzte Karten */}
+      <LightSection className="border-b border-line">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <EditorialHeader
+            no="01"
+            kicker="Woran Vermögensaufbau scheitert"
+            title={
+              <>
+                Nicht am Einkommen.
+                <br />
+                An der fehlenden Struktur.
+              </>
+            }
+          />
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {[
+              [
+                "Geld liegt auf dem Konto und verliert real an Wert.",
+                "Inflation kostet jedes Jahr Kaufkraft. Die Entscheidung, nichts zu tun, ist auch eine Entscheidung.",
+                "",
+              ],
+              [
+                "Gute Immobilien tauchen nie auf Portalen auf.",
+                "Die rentabelsten Objekte wechseln den Besitzer, bevor sie öffentlich werden. Wer nur auf Portalen sucht, sieht den Rest.",
+                "md:-translate-y-6",
+              ],
+              [
+                "Als Unternehmer verschenken Sie Struktur.",
+                "Gewinne in der GmbH, Vermögen privat, keine Verbindung dazwischen: Ohne passende Struktur zahlen Sie mehr Steuern und tragen mehr Risiko als nötig.",
+                "md:translate-y-6",
+              ],
+            ].map(([title, text, offset]) => (
+              <Reveal key={title} className={offset}>
+                <div className="h-full rounded-2xl border border-line bg-paper-warm p-8">
+                  <h3 className="text-xl leading-snug font-bold">{title}</h3>
+                  <p className="mt-4 leading-relaxed text-ink-soft">{text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </LightSection>
 
-      {/* Problem-Sektion */}
-      <Section wide>
-        <SectionHeading kicker="Woran Vermögensaufbau scheitert" center>
-          Nicht am Einkommen.
-          <br />
-          An der fehlenden Struktur.
-        </SectionHeading>
-        <CardGrid cards={painCards} />
-      </Section>
-
-      {/* Leistungsüberblick */}
-      <Section tone="warm" wide>
-        <SectionHeading kicker="Leistungen">
-          Sechs Fachbereiche.
-          <br />
-          Ein Ansprechpartner.
-        </SectionHeading>
-        <p className="mt-8 max-w-3xl border-l-4 border-accent pl-6 text-lg leading-relaxed font-medium md:text-xl">
-          Leibinn Consulting deckt sechs Bereiche ab: Investments,
-          Off-Market-Immobilien, Holding-Strukturen, Finanzierung, die
-          Vermittlung von Steuer- und Rechtsexperten sowie Absicherung. Die
-          Bereiche greifen ineinander. Genau darin liegt der Unterschied zur
-          Einzelberatung.
-        </p>
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {leistungen.map((l) => {
-            const Icon = fachbereichIcons[l.slug];
-            return (
+      {/* 02 · Leistungen — asymmetrisches Bento */}
+      <section className="relative overflow-hidden">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <EditorialHeader
+            no="02"
+            kicker="Leistungen"
+            title={
+              <>
+                Sechs Fachbereiche.
+                <br />
+                Ein Ansprechpartner.
+              </>
+            }
+            intro="Leibinn Consulting deckt sechs Bereiche ab: Investments, Off-Market-Immobilien, Holding-Strukturen, Finanzierung, die Vermittlung von Steuer- und Rechtsexperten sowie Absicherung. Die Bereiche greifen ineinander. Genau darin liegt der Unterschied zur Einzelberatung."
+          />
+          <Bento className="mt-14">
+            <BentoCell
+              href="/investments"
+              surface="cobalt"
+              className="md:col-span-7 md:min-h-72"
+            >
+              <CellIcon slug="investments" />
+              <h3 className="mt-auto pt-10 font-heading text-2xl font-bold group-hover:text-fawn">
+                Investments
+              </h3>
+              <p className="mt-3 max-w-md leading-relaxed text-ink-soft">
+                Strategien für den Vermögensaufbau: breite Streuung, klare
+                Risikoverteilung, transparente Kosten. Die Anlageberatung
+                übernehmen spezialisierte Partner, Leibinn Consulting
+                entwickelt die Strategie und behält das Gesamtbild.
+              </p>
+              <CellArrow />
+            </BentoCell>
+            <BentoCell
+              href="/immobilien"
+              surface="azure"
+              className="md:col-span-5 md:min-h-72"
+            >
+              <CellIcon slug="immobilien" light />
+              <h3 className="mt-auto pt-10 font-heading text-2xl font-bold">
+                Off-Market-Immobilien
+              </h3>
+              <p className="mt-3 leading-relaxed text-white/80">
+                Als eingetragener Immobilienmakler vermitteln wir Objekte, die
+                nie auf Portalen erscheinen, in Regionen mit stabiler
+                Mietnachfrage. Auf Wunsch mit Miet- und Hausverwaltung.
+              </p>
+              <CellArrow light />
+            </BentoCell>
+            <BentoCell
+              href="/holding"
+              surface="white"
+              className="md:col-span-5"
+            >
+              <CellIcon slug="holding" azure />
+              <h3 className="mt-6 font-heading text-xl font-bold">
+                Holding-Strukturen & Unternehmensberatung
+              </h3>
+              <p className="mt-3 flex-1 text-[0.95rem] leading-relaxed text-[#191838]/70">
+                Von der Frage, ob sich eine Holding für Sie lohnt, bis zur
+                Gründung: Beratung, Begleitung und Umsetzung in einem
+                durchgehenden Prozess.
+              </p>
+              <CellArrow azure />
+            </BentoCell>
+            <BentoCell
+              href="/finanzierung"
+              surface="cobalt"
+              className="md:col-span-4"
+            >
+              <CellIcon slug="finanzierung" />
+              <h3 className="mt-6 font-heading text-xl font-bold group-hover:text-fawn">
+                Finanzierung
+              </h3>
+              <p className="mt-3 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">
+                Unabhängige Finanzierungsexperten aus dem Partnernetzwerk
+                vergleichen die Konditionen mehrerer Banken: weniger Termine,
+                ein koordinierter Prozess, verhandelte Zinsen.
+              </p>
+              <CellArrow />
+            </BentoCell>
+            <BentoCell
+              href="/steuern-recht"
+              surface="outline"
+              className="md:col-span-3"
+            >
+              <CellIcon slug="steuern-recht" />
+              <h3 className="mt-6 font-heading text-xl font-bold group-hover:text-fawn">
+                Steuern & Recht
+              </h3>
+              <p className="mt-3 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">
+                Hier beraten wir nicht selbst. Wir vermitteln geprüfte
+                Steuerberater und Anwälte aus unserem Netzwerk, passend zu
+                Ihrer Struktur.
+              </p>
+              <CellArrow />
+            </BentoCell>
+            <BentoCell
+              href="/absicherung"
+              surface="fawn"
+              className="md:col-span-8"
+            >
+              <div className="flex items-start justify-between gap-6">
+                <div>
+                  <h3 className="font-heading text-xl font-bold">
+                    Absicherung
+                  </h3>
+                  <p className="mt-3 max-w-xl text-[0.95rem] leading-relaxed text-twilight-deep/75">
+                    Was aufgebaut wird, muss geschützt sein. Als Makler nach
+                    § 34d GewO sichern wir Vermögen, Immobilien und Betrieb ab,
+                    mit freier Auswahl aus dem Markt.
+                  </p>
+                </div>
+                <IconArrowRight className="mt-1 h-6 w-6 shrink-0 transition-transform group-hover:translate-x-1" />
+              </div>
+            </BentoCell>
+            <BentoCell surface="outline" className="items-center justify-center md:col-span-4">
               <Link
-                key={l.href}
-                href={l.href}
-                className="group flex flex-col rounded-2xl border border-line bg-gradient-to-b from-cobalt to-cobalt/60 p-8 transition-all hover:-translate-y-1 hover:border-azure-light/60 hover:shadow-xl hover:shadow-black/30"
+                href="/leistungen"
+                className="font-medium text-fawn underline-offset-4 hover:underline"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-azure/25 text-azure-light">
-                  <Icon className="h-6 w-6" />
-                </span>
-                <h3 className="mt-5 text-xl leading-snug font-bold group-hover:text-fawn">
-                  {l.title}
-                </h3>
-                <p className="mt-3 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">
-                  {l.text}
-                </p>
-                <IconArrowRight className="mt-5 h-5 w-5 text-fawn transition-transform group-hover:translate-x-1" />
+                Alle Leistungen ansehen →
               </Link>
-            );
-          })}
+            </BentoCell>
+          </Bento>
         </div>
-        <div className="mt-10 text-center">
-          <Link
-            href="/leistungen"
-            className="font-medium text-fawn underline-offset-4 hover:underline"
-          >
-            Alle Leistungen ansehen →
-          </Link>
+      </section>
+
+      {/* 03 · Ablauf — weißer Breaker mit BigSteps */}
+      <LightSection className="border-y border-line">
+        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <EditorialHeader
+            no="03"
+            kicker="So läuft die Zusammenarbeit"
+            title="Wie läuft die Beratung bei Leibinn Consulting ab?"
+            intro="Die Beratung folgt vier Schritten: kostenloses Erstgespräch mit Bedarfsanalyse, Entwicklung einer Strategie, gemeinsame Umsetzung und regelmäßige Überprüfung. Das Erstgespräch dauert 60 Minuten und findet online oder vor Ort in Böblingen statt. Sie entscheiden nach jedem Schritt selbst, ob es weitergeht."
+          />
+          <div className="mt-10">
+            <BigSteps steps={steps} />
+          </div>
         </div>
-      </Section>
+      </LightSection>
 
-      {/* Social Proof — [PLATZHALTER] Google-Bewertungs-Widget ergänzt/ersetzt die Zitate (Copy-Doc) */}
-      <Section wide>
-        <SectionHeading kicker="Kundenstimmen" center>
-          Was Mandanten über die
-          <br />
-          Zusammenarbeit sagen.
-        </SectionHeading>
-        <div className="grid gap-6 md:grid-cols-3">
-          <Testimonial
-            quote="Als Anwalt bin ich es gewohnt, komplexe Sachverhalte zu durchdringen. Bei Investments verlasse ich mich auf Herrn Leibinn, weil er transparent kommuniziert und jede Empfehlung nachvollziehbar begründet."
-            name="Luka Šilić"
-            role="Anwalt"
+      {/* 04 · Kundenstimmen — Feature + Stack */}
+      <section>
+        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+          <EditorialHeader
+            no="04"
+            kicker="Kundenstimmen"
+            title={
+              <>
+                Was Mandanten über die
+                <br />
+                Zusammenarbeit sagen.
+              </>
+            }
           />
-          <Testimonial
-            quote="Zeit ist als Selbstständiger mein wertvollstes Gut. Durch die klaren Strategien läuft mein Vermögensaufbau, ohne dass ich mich darum kümmern muss. Ich kann mich voll auf mein Geschäft konzentrieren."
-            name="Tom Müller"
-            role="selbstständiger Tätowierer"
-          />
-          <Testimonial
-            quote="Kleine Extras wie die regelmäßige Überprüfung meiner bestehenden Verträge zeigen, dass Herr Leibinn langfristig interessiert ist, nicht am schnellen Abschluss."
-            name="Winsome Okafor"
-            role="Lehrerin"
-          />
+          {/* [PLATZHALTER] Google-Bewertungs-Widget ergänzt/ersetzt die Zitate (Copy-Doc) */}
+          <div className="mt-14 grid gap-6 md:grid-cols-12">
+            <Testimonial
+              featured
+              className="md:col-span-7"
+              quote="Als Anwalt bin ich es gewohnt, komplexe Sachverhalte zu durchdringen. Bei Investments verlasse ich mich auf Herrn Leibinn, weil er transparent kommuniziert und jede Empfehlung nachvollziehbar begründet."
+              name="Luka Šilić"
+              role="Anwalt"
+            />
+            <div className="flex flex-col gap-6 md:col-span-5">
+              <Testimonial
+                quote="Zeit ist als Selbstständiger mein wertvollstes Gut. Durch die klaren Strategien läuft mein Vermögensaufbau, ohne dass ich mich darum kümmern muss. Ich kann mich voll auf mein Geschäft konzentrieren."
+                name="Tom Müller"
+                role="selbstständiger Tätowierer"
+              />
+              <Testimonial
+                quote="Kleine Extras wie die regelmäßige Überprüfung meiner bestehenden Verträge zeigen, dass Herr Leibinn langfristig interessiert ist, nicht am schnellen Abschluss."
+                name="Winsome Okafor"
+                role="Lehrerin"
+              />
+            </div>
+          </div>
         </div>
-      </Section>
+      </section>
 
-      {/* Beratungsablauf */}
-      <Section tone="warm">
-        <SectionHeading kicker="So läuft die Zusammenarbeit">
-          Wie läuft die Beratung bei Leibinn Consulting ab?
-        </SectionHeading>
-        <p className="mt-8 border-l-4 border-accent pl-6 text-lg leading-relaxed font-medium md:text-xl">
-          Die Beratung folgt vier Schritten: kostenloses Erstgespräch mit
-          Bedarfsanalyse, Entwicklung einer Strategie, gemeinsame Umsetzung und
-          regelmäßige Überprüfung. Das Erstgespräch dauert 60 Minuten und
-          findet online oder vor Ort in Böblingen statt. Sie entscheiden nach
-          jedem Schritt selbst, ob es weitergeht.
-        </p>
-        <StepList steps={steps} />
-      </Section>
-
-      {/* Über Cedrik (Kurzversion) */}
-      <Section wide>
-        <div className="grid items-center gap-12 md:grid-cols-[1fr_1.4fr]">
-          <PortraitPanel name="Cedrik Leibinn" role={`Gründer, ${site.name}`} />
-          <div>
-            <SectionHeading kicker="Ihr Ansprechpartner">
-              Ein Name. Eine Verantwortung.
-              <br />
-              Cedrik Leibinn.
-            </SectionHeading>
-            <div className="mt-8 space-y-6 leading-relaxed text-ink-soft">
+      {/* 05 · Über Cedrik — weißer Breaker, Porträt versetzt */}
+      <LightSection className="border-y border-line">
+        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-12 md:py-28">
+          <div className="md:col-span-4 md:-translate-y-4">
+            <PortraitPanel
+              name="Cedrik Leibinn"
+              role={`Gründer, ${site.name}`}
+            />
+          </div>
+          <div className="md:col-span-7 md:col-start-6">
+            <EditorialHeader
+              no="05"
+              kicker="Ihr Ansprechpartner"
+              title={
+                <>
+                  Ein Name. Eine Verantwortung.
+                  <br />
+                  Cedrik Leibinn.
+                </>
+              }
+            />
+            <div className="mt-8 space-y-5 leading-relaxed text-ink-soft">
               <p>
                 Leibinn Consulting wird von Cedrik Leibinn geführt:
                 eingetragener Immobilienmakler
                 {/* [PLATZHALTER] § 34c GewO, Nr. bestätigen (Copy-Doc) */} und
                 Versicherungsmakler mit Erlaubnis nach § 34d Abs. 1 GewO
-                (Vermittlerregister Nr. D-LLF9-5XQCE-01, IHK Region
-                Stuttgart). Über 50 Mandanten setzen auf diese Betreuung.
+                (Vermittlerregister Nr. D-LLF9-5XQCE-01, IHK Region Stuttgart).
+                Über 50 Mandanten setzen auf diese Betreuung.
               </p>
               <p>
                 Sie sprechen vom Erstgespräch bis zur laufenden Betreuung mit
@@ -337,7 +430,7 @@ export default function HomePage() {
                   <svg
                     viewBox="0 0 20 20"
                     aria-hidden
-                    className="mt-1 h-4 w-4 shrink-0 text-fawn"
+                    className="mt-1 h-4 w-4 shrink-0 text-azure"
                   >
                     <path
                       d="M3 10.5l4.5 4.5L17 5.5"
@@ -354,17 +447,27 @@ export default function HomePage() {
             </ul>
             <Link
               href="/ueber-uns"
-              className="mt-8 inline-block font-medium text-fawn underline-offset-4 hover:underline"
+              className="mt-8 inline-block font-medium text-azure underline-offset-4 hover:underline"
             >
               Mehr über Leibinn Consulting →
             </Link>
           </div>
         </div>
-      </Section>
+      </LightSection>
 
-      <Faq title="Häufige Fragen" items={faqItems} />
+      {/* 06 · FAQ — dunkel, asymmetrisch platziert */}
+      <section>
+        <div className="mx-auto grid max-w-6xl gap-8 px-6 py-20 md:grid-cols-12 md:py-28">
+          <p className="font-heading text-sm font-semibold tracking-[0.2em] text-fawn uppercase md:col-span-3">
+            06 · FAQ
+          </p>
+          <div className="md:col-span-9">
+            <Faq title="Häufige Fragen" items={faqItems} />
+          </div>
+        </div>
+      </section>
 
-      <FinalCta
+      <CtaBanner
         title={
           <>
             Der erste Schritt kostet nichts.
@@ -381,5 +484,38 @@ export default function HomePage() {
       <JsonLd data={personJsonLd} />
       <JsonLd data={howToJsonLd("Beratungsablauf bei Leibinn Consulting", steps)} />
     </>
+  );
+}
+
+function CellIcon({
+  slug,
+  light,
+  azure,
+}: {
+  slug: keyof typeof fachbereichIcons;
+  light?: boolean;
+  azure?: boolean;
+}) {
+  const Icon = fachbereichIcons[slug];
+  const tone = light
+    ? "bg-white/15 text-white"
+    : azure
+      ? "bg-azure/10 text-azure"
+      : "bg-azure/25 text-azure-light";
+  return (
+    <span
+      className={`flex h-12 w-12 items-center justify-center rounded-xl ${tone}`}
+    >
+      <Icon className="h-6 w-6" />
+    </span>
+  );
+}
+
+function CellArrow({ light, azure }: { light?: boolean; azure?: boolean }) {
+  const tone = light ? "text-white" : azure ? "text-azure" : "text-fawn";
+  return (
+    <IconArrowRight
+      className={`mt-5 h-5 w-5 ${tone} transition-transform group-hover:translate-x-1`}
+    />
   );
 }

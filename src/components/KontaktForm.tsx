@@ -12,7 +12,7 @@ import {
 type Status = "idle" | "sending" | "sent" | "error" | "not-configured";
 
 const inputStyles =
-  "w-full rounded-lg border border-line bg-cobalt/50 px-4 py-3 outline-none transition-colors focus:border-azure-light";
+  "w-full rounded-lg border border-line bg-paper-warm px-4 py-3 outline-none transition-colors focus:border-azure";
 
 function PillGroup({
   name,

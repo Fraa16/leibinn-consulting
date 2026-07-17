@@ -7,12 +7,14 @@ export function CtaButton({
 }: {
   href: string;
   children: React.ReactNode;
-  variant?: "primary" | "secondary";
+  variant?: "primary" | "secondary" | "dark";
 }) {
   const styles =
     variant === "primary"
       ? "bg-fawn text-twilight-deep shadow-lg shadow-black/25 hover:bg-fawn-light hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/30"
-      : "border border-line-strong text-frost hover:border-azure-light hover:text-azure-light";
+      : variant === "dark"
+        ? "bg-twilight-deep text-white shadow-lg shadow-twilight-deep/20 hover:bg-twilight hover:-translate-y-0.5"
+        : "border border-line-strong text-frost hover:border-azure-light hover:text-azure-light";
   return (
     <Link
       href={href}
