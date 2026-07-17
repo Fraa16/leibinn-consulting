@@ -1,3 +1,10 @@
+function initials(name: string) {
+  return name
+    .split(" ")
+    .map((n) => n[0])
+    .join("");
+}
+
 export function Testimonial({
   quote,
   name,
@@ -8,12 +15,24 @@ export function Testimonial({
   role: string;
 }) {
   return (
-    <figure className="mt-12 rounded-xl bg-accent-tint p-8 md:p-10">
-      <blockquote className="font-heading text-xl leading-relaxed font-medium text-balance md:text-2xl">
-        „{quote}“
+    <figure className="relative mt-10 rounded-2xl border border-line bg-paper p-8 md:p-10">
+      <span
+        aria-hidden
+        className="font-heading absolute -top-5 left-8 text-7xl leading-none text-accent select-none"
+      >
+        &bdquo;
+      </span>
+      <blockquote className="font-heading pt-4 text-xl leading-relaxed font-medium text-balance md:text-2xl">
+        {quote}
       </blockquote>
-      <figcaption className="mt-5 text-sm text-ink-soft">
-        <span className="font-semibold text-ink">{name}</span> · {role}
+      <figcaption className="mt-6 flex items-center gap-4">
+        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-accent-tint font-heading font-bold text-accent">
+          {initials(name)}
+        </span>
+        <div className="text-sm">
+          <p className="font-semibold">{name}</p>
+          <p className="text-ink-soft">{role}</p>
+        </div>
       </figcaption>
     </figure>
   );

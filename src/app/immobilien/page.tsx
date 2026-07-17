@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Hero } from "@/components/Hero";
+import { SplitHero } from "@/components/SplitHero";
 import { QuestionSection } from "@/components/QuestionSection";
 import { Section, SectionHeading } from "@/components/Section";
 import { StepList, type Step } from "@/components/StepList";
@@ -91,7 +91,11 @@ const realEstateAgentJsonLd = {
 export default function ImmobilienPage() {
   return (
     <>
-      <Hero
+      <SplitHero
+        kicker="Off-Market-Immobilien"
+        slug="immobilien"
+        fact="0 Inserate"
+        factLabel="Off-Market-Objekte erscheinen nie auf Portalen"
         title={
           <>
             Off-Market-Immobilien:

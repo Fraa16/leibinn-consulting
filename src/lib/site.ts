@@ -2,26 +2,43 @@ export const site = {
   name: "Leibinn Consulting",
   // [PLATZHALTER] Domain bestätigen, bevor die Seite live geht (Canonical-URLs, Sitemap, OG)
   url: "https://www.leibinn-consulting.de",
-  region: "Region Stuttgart",
-  // [PLATZHALTER] Echte Kontaktdaten einsetzen
+  city: "Böblingen",
+  region: "Böblingen bei Stuttgart",
+  // [PLATZHALTER] Echte Kontaktdaten einsetzen (aus Impressum übernehmen)
   email: "kontakt@leibinn-consulting.de",
   phone: "+49 711 000000",
+  // [PLATZHALTER] Straße ergänzen (Copy-Doc /kontakt)
+  address: "[Straße ergänzen], Böblingen",
+  // [PLATZHALTER] Calendly-URL eintragen, dann erscheint die Einbettung auf /kontakt
+  calendlyUrl: "",
+  owner: "Cedrik Leibinn",
 } as const;
+
+/** Footer-Entity-Satz (GEO, sitewide, identisch auf /ueber-uns) — Copy-Doc Startseite v3 */
+export const entitySentence =
+  "Leibinn Consulting ist ein Beratungsunternehmen für Investments, Off-Market-Immobilien, Holding-Strukturen, Finanzierung und Absicherung mit Sitz in Böblingen bei Stuttgart, geführt von Cedrik Leibinn (eingetragener Immobilienmakler und Versicherungsmakler nach § 34d Abs. 1 GewO, Vermittlerregister Nr. D-LLF9-5XQCE-01).";
 
 export type NavItem = { label: string; href: string };
 
-export const navItems: NavItem[] = [
+/** Die 6 Fachbereiche, Reihenfolge = Gewichtung laut Copy-Doc Leistungen-Hub */
+export const leistungenItems: NavItem[] = [
   { label: "Investments", href: "/investments" },
-  { label: "Immobilien", href: "/immobilien" },
-  { label: "Holding", href: "/holding" },
-  { label: "Absicherung", href: "/absicherung" },
+  { label: "Off-Market-Immobilien", href: "/immobilien" },
+  { label: "Holding-Strukturen", href: "/holding" },
   { label: "Finanzierung", href: "/finanzierung" },
+  { label: "Steuern & Recht", href: "/steuern-recht" },
+  { label: "Absicherung", href: "/absicherung" },
+];
+
+export const navItems: NavItem[] = [
+  { label: "Leistungen", href: "/leistungen" },
   { label: "Über uns", href: "/ueber-uns" },
 ];
 
 export const footerNav: NavItem[] = [
-  ...navItems,
-  { label: "Steuern & Recht", href: "/steuern-recht" },
+  { label: "Leistungen", href: "/leistungen" },
+  ...leistungenItems,
+  { label: "Über uns", href: "/ueber-uns" },
   { label: "Kontakt", href: "/kontakt" },
 ];
 
@@ -30,15 +47,22 @@ export const legalNav: NavItem[] = [
   { label: "Datenschutz", href: "/datenschutz" },
 ];
 
-/** Anliegen-Optionen für das Kontaktformular; CTA-Buttons verweisen per ?anliegen=<key> */
+/**
+ * Vorqualifizierungs-Frage 1 („Worum geht es hauptsächlich?“, Copy-Doc /kontakt).
+ * CTA-Buttons der Fachseiten verweisen per ?anliegen=<key>.
+ */
 export const anliegenOptions = [
-  { key: "strategie-gespraech", label: "Strategie-Gespräch (Investments)" },
-  { key: "objekt-zugang", label: "Objekt-Zugang (Off-Market-Immobilien)" },
-  { key: "struktur-check", label: "Struktur-Check (Holding)" },
-  { key: "vertragscheck", label: "Vertragscheck (Absicherung)" },
-  { key: "konditions-check", label: "Konditions-Check (Finanzierung)" },
-  { key: "sonstiges", label: "Sonstiges" },
+  { key: "strategie-gespraech", label: "Investments" },
+  { key: "objekt-zugang", label: "Immobilien" },
+  { key: "struktur-check", label: "Holding & Unternehmen" },
+  { key: "konditions-check", label: "Finanzierung" },
+  { key: "vertragscheck", label: "Absicherung" },
+  { key: "experten-vermittlung", label: "Steuern & Recht" },
+  { key: "unklar", label: "Weiß ich noch nicht" },
 ] as const;
+
+export const statusOptions = ["Angestellt", "Selbstständig", "Unternehmer"] as const;
+export const gespraechOptions = ["Online", "Vor Ort in Böblingen"] as const;
 
 export type AnliegenKey = (typeof anliegenOptions)[number]["key"];
 

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Hero } from "@/components/Hero";
+import { SplitHero } from "@/components/SplitHero";
 import { QuestionSection } from "@/components/QuestionSection";
 import { Section, SectionHeading } from "@/components/Section";
 import { Testimonial } from "@/components/Testimonial";
@@ -38,7 +38,11 @@ const faqItems: FaqItem[] = [
 export default function AbsicherungPage() {
   return (
     <>
-      <Hero
+      <SplitHero
+        kicker="Absicherung"
+        slug="absicherung"
+        fact="§ 34d"
+        factLabel="Versicherungsmakler mit freier Auswahl aus dem Markt"
         title={
           <>
             Was Sie aufbauen,

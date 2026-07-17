@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Hero } from "@/components/Hero";
+import { SplitHero } from "@/components/SplitHero";
 import { QuestionSection } from "@/components/QuestionSection";
 import { Section, SectionHeading } from "@/components/Section";
 import { CardGrid } from "@/components/CardGrid";
@@ -101,7 +101,11 @@ const faqItems: FaqItem[] = [
 export default function InvestmentsPage() {
   return (
     <>
-      <Hero
+      <SplitHero
+        kicker="Investments"
+        slug="investments"
+        fact="60 Min"
+        factLabel="kostenloses Strategie-Gespräch mit erster Einschätzung"
         title={
           <>
             Vermögensaufbau:

@@ -23,11 +23,11 @@ export default function ImpressumPage() {
           <p className="mt-3">
             {site.name}
             <br />
-            [PLATZHALTER: Rechtsform, Inhaber]
+            Inhaber: Cedrik Leibinn [PLATZHALTER: Rechtsform bestätigen]
             <br />
             [PLATZHALTER: Straße und Hausnummer]
             <br />
-            [PLATZHALTER: PLZ und Ort]
+            [PLATZHALTER: PLZ] Böblingen
           </p>
         </div>
         <div>
@@ -43,18 +43,18 @@ export default function ImpressumPage() {
           <p className="mt-3">
             Versicherungsmakler mit Erlaubnis nach § 34d Abs. 1 GewO
             <br />
-            [PLATZHALTER: Registrierungsnummer im Vermittlerregister,
-            www.vermittlerregister.info]
+            Vermittlerregister Nr. D-LLF9-5XQCE-01 (prüfbar unter
+            www.vermittlerregister.info)
             <br />
             <br />
             Immobilienmakler mit Erlaubnis nach § 34c GewO
             <br />
-            [PLATZHALTER: § 34c-Eintragung ergänzen, bevor die Seite live geht
-            – siehe Hinweis im Copy-Dokument /immobilien]
+            [PLATZHALTER: § 34c-Eintragung/Nachweis ergänzen, bevor die Seite
+            live geht – siehe Hinweis in den Copy-Dokumenten]
             <br />
             <br />
-            Zuständige Aufsichtsbehörde: [PLATZHALTER: IHK / Behörde mit
-            Anschrift]
+            Zuständige Aufsichtsbehörde: IHK Region Stuttgart [PLATZHALTER:
+            Anschrift ergänzen]
           </p>
         </div>
         <div>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Hero } from "@/components/Hero";
+import { SplitHero } from "@/components/SplitHero";
 import { QuestionSection } from "@/components/QuestionSection";
 import { Section, SectionHeading } from "@/components/Section";
 import { CardGrid } from "@/components/CardGrid";
@@ -99,7 +99,11 @@ const faqItems: FaqItem[] = [
 export default function HoldingPage() {
   return (
     <>
-      <Hero
+      <SplitHero
+        kicker="Holding-Strukturen & Unternehmensberatung"
+        slug="holding"
+        fact="95 %"
+        factLabel="körperschaftsteuerfrei: Anteilsverkauf aus der Holding (§ 8b KStG)"
         title={
           <>
             Holding gründen:

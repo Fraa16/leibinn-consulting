@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Hero } from "@/components/Hero";
+import { SplitHero } from "@/components/SplitHero";
 import { QuestionSection } from "@/components/QuestionSection";
 import { Section, SectionHeading } from "@/components/Section";
 import { StepList, type Step } from "@/components/StepList";
@@ -68,7 +68,11 @@ const faqItems: FaqItem[] = [
 export default function FinanzierungPage() {
   return (
     <>
-      <Hero
+      <SplitHero
+        kicker="Finanzierung"
+        slug="finanzierung"
+        fact="1 Prozess"
+        factLabel="Konditionen mehrerer Banken, ein Ansprechpartner"
         title={
           <>
             Finanzierung:

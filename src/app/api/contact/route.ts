@@ -1,8 +1,13 @@
 import { NextResponse } from "next/server";
-import { anliegenOptions, site } from "@/lib/site";
+import {
+  anliegenOptions,
+  gespraechOptions,
+  site,
+  statusOptions,
+} from "@/lib/site";
 
 /**
- * Kontaktformular-Endpunkt.
+ * Kontaktformular-Endpunkt (3-Fragen-Vorqualifizierung + Kontaktdaten).
  * Versand über Resend (https://resend.com), sobald RESEND_API_KEY gesetzt ist.
  * Ohne Key antwortet der Endpunkt mit { reason: "not-configured" }, und das
  * Formular zeigt die direkten Kontaktdaten als Fallback.
@@ -19,16 +24,18 @@ export async function POST(request: Request) {
   const email = String(body.email ?? "").trim();
   const phone = String(body.phone ?? "").trim();
   const message = String(body.message ?? "").trim();
-  const anliegenKey = String(body.anliegen ?? "");
-  const anliegen = anliegenOptions.find((o) => o.key === anliegenKey);
+  const anliegen = anliegenOptions.find((o) => o.key === String(body.anliegen ?? ""));
+  const status = statusOptions.find((s) => s === String(body.status ?? ""));
+  const gespraech = gespraechOptions.find((g) => g === String(body.gespraech ?? ""));
 
-  if (!name || !email || !anliegen) {
+  if (!name || !email || !anliegen || !status || !gespraech) {
     return NextResponse.json({ ok: false, reason: "bad-request" }, { status: 400 });
   }
 
   const apiKey = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL ?? site.email;
-  const from = process.env.CONTACT_FROM_EMAIL ?? `formular@${new URL(site.url).hostname}`;
+  const from =
+    process.env.CONTACT_FROM_EMAIL ?? `formular@${new URL(site.url).hostname}`;
 
   if (!apiKey) {
     return NextResponse.json(
@@ -47,14 +54,16 @@ export async function POST(request: Request) {
       from,
       to: [to],
       reply_to: email,
-      subject: `Website-Anfrage: ${anliegen.label} – ${name}`,
+      subject: `Erstgespräch-Anfrage: ${anliegen.label} – ${name}`,
       text: [
-        `Anliegen: ${anliegen.label}`,
+        `Thema: ${anliegen.label}`,
+        `Beruflicher Status: ${status}`,
+        `Gespräch: ${gespraech}`,
+        "",
         `Name: ${name}`,
         `E-Mail: ${email}`,
         phone && `Telefon: ${phone}`,
-        "",
-        message || "(keine Nachricht)",
+        message && `\nNachricht:\n${message}`,
       ]
         .filter(Boolean)
         .join("\n"),

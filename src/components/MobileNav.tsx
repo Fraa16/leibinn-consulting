@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { navItems } from "@/lib/site";
+import { leistungenItems } from "@/lib/site";
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
+  const close = () => setOpen(false);
   return (
     <div className="lg:hidden">
       <button
@@ -24,29 +25,53 @@ export function MobileNav() {
         />
       </button>
       {open && (
-        <nav className="absolute inset-x-0 top-full border-b border-line bg-paper shadow-lg">
-          <ul className="px-6 py-4">
-            {navItems.map((item) => (
-              <li key={item.href}>
+        <nav className="absolute inset-x-0 top-full max-h-[calc(100vh-4.5rem)] overflow-y-auto border-b border-line bg-paper shadow-lg">
+          <div className="px-6 py-5">
+            <p className="text-xs font-semibold tracking-[0.2em] text-ink-faint uppercase">
+              Leistungen
+            </p>
+            <ul className="mt-2">
+              <li>
                 <Link
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="block border-b border-line py-3 text-lg last:border-0"
+                  href="/leistungen"
+                  onClick={close}
+                  className="block border-b border-line py-3 font-medium"
                 >
-                  {item.label}
+                  Alle Leistungen im Überblick
                 </Link>
               </li>
-            ))}
-            <li className="pt-4">
-              <Link
-                href="/kontakt"
-                onClick={() => setOpen(false)}
-                className="block rounded-full bg-accent py-3 text-center font-medium text-white"
-              >
-                Kontakt
-              </Link>
-            </li>
-          </ul>
+              {leistungenItems.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={close}
+                    className="block border-b border-line py-3 text-ink-soft"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <ul className="mt-4">
+              <li>
+                <Link href="/ueber-uns" onClick={close} className="block py-3">
+                  Über uns
+                </Link>
+              </li>
+              <li>
+                <Link href="/kontakt" onClick={close} className="block py-3">
+                  Kontakt
+                </Link>
+              </li>
+            </ul>
+            <Link
+              href="/kontakt"
+              onClick={close}
+              className="mt-3 block rounded-full bg-accent py-3 text-center font-medium text-white"
+            >
+              Erstgespräch buchen
+            </Link>
+          </div>
         </nav>
       )}
     </div>

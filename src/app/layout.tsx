@@ -33,12 +33,20 @@ export const metadata: Metadata = {
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
+  "@type": ["Organization", "FinancialService", "RealEstateAgent"],
   name: site.name,
   url: site.url,
   areaServed: site.region,
   email: site.email,
   telephone: site.phone,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: site.city,
+    addressCountry: "DE",
+  },
+  founder: { "@type": "Person", name: site.owner },
+  description:
+    "Beratungsunternehmen für Investments, Off-Market-Immobilien, Holding-Strukturen, Finanzierung und Absicherung mit Sitz in Böblingen bei Stuttgart.",
 };
 
 export default function RootLayout({
