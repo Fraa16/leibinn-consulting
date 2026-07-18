@@ -11,7 +11,8 @@ import { Faq, type FaqItem } from "@/components/Faq";
 import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd, howToJsonLd } from "@/components/JsonLd";
 import { PortraitPanel } from "@/components/VisualPanel";
-import { LogoFrameDecor, LogoMark } from "@/components/Brand";
+import { LogoMark } from "@/components/Brand";
+import { HeroVideo } from "@/components/HeroVideo";
 import { Reveal } from "@/components/Reveal";
 import { fachbereichIcons, IconArrowRight } from "@/components/icons";
 import { site } from "@/lib/site";
@@ -88,10 +89,23 @@ const personJsonLd = {
 export default function HomePage() {
   return (
     <>
-      {/* 00 · Hero — asymmetrisch: XL-Headline links, Fakten-Stack rechts */}
-      <section className="relative -mt-18 overflow-hidden border-b border-line">
-        <LogoFrameDecor variant="top" opacity={0.4} />
-        <div className="relative mx-auto grid max-w-6xl gap-12 px-6 pt-36 pb-16 md:grid-cols-12 md:pt-44 md:pb-24">
+      {/* 00 · Hero — Skyline-Video (spielt einmal, friert ein), Text asymmetrisch darüber */}
+      <section className="relative -mt-18 flex min-h-[92vh] flex-col overflow-hidden border-b border-line">
+        <HeroVideo />
+        {/* Navy-Overlays: Tint über der ganzen Fläche + dunkler hinter der Headline links + Verlauf nach unten */}
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-twilight/55"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-0 bg-gradient-to-r from-twilight via-twilight/75 to-transparent"
+        />
+        <div
+          aria-hidden
+          className="absolute inset-x-0 bottom-0 h-72 bg-gradient-to-t from-twilight to-transparent"
+        />
+        <div className="relative mx-auto grid w-full max-w-6xl flex-1 grid-cols-1 items-end gap-12 px-6 pt-40 pb-16 md:grid-cols-12 md:pb-20">
           <div className="md:col-span-8">
             <Reveal>
               <p className="text-sm font-semibold tracking-[0.25em] text-fawn uppercase">
