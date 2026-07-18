@@ -3,6 +3,7 @@ import Link from "next/link";
 import { LightSection } from "@/components/Theme";
 import { Bento, BentoCell } from "@/components/Bento";
 import { CtaBanner } from "@/components/CtaBanner";
+import { PhotoBand } from "@/components/PhotoBand";
 import { JsonLd, breadcrumbJsonLd } from "@/components/JsonLd";
 import { fachbereichIcons, IconArrowRight } from "@/components/icons";
 import { site } from "@/lib/site";
@@ -165,6 +166,18 @@ export default function LeistungenPage() {
           </Bento>
         </div>
       </section>
+
+      {/* Foto-Band — Cedrik in der Präsentation */}
+      <PhotoBand
+        src="/images/cedrik-praesentation.webp"
+        alt="Cedrik Leibinn präsentiert Rahmenbedingungen und Umsetzung im Besprechungsraum"
+        focus="center"
+        height="md"
+      >
+        <p className="max-w-lg font-heading text-2xl leading-snug font-medium text-white text-balance md:text-3xl">
+          Ein Ansprechpartner, der alle Bausteine zusammendenkt.
+        </p>
+      </PhotoBand>
 
       {/* System-Sektion — weiß, nummerierte Kette */}
       <LightSection>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import Image from "next/image";
 import { KontaktForm } from "@/components/KontaktForm";
 import { LightSection } from "@/components/Theme";
 import { Faq, type FaqItem } from "@/components/Faq";
@@ -82,6 +83,17 @@ export default function KontaktPage() {
                   {site.address}
                 </p>
               </div>
+
+              <figure className="mt-10 overflow-hidden rounded-2xl border border-line">
+                <Image
+                  src="/images/cedrik-buero.webp"
+                  alt="Beratungsgespräch in den Räumen von Leibinn Consulting"
+                  width={2400}
+                  height={1600}
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  className="h-auto w-full object-cover"
+                />
+              </figure>
 
               <div className="mt-10 border-t border-line pt-8">
                 <h2 className="font-heading text-xl font-bold">

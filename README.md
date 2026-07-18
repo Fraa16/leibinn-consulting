@@ -44,10 +44,19 @@ Copy stammt wortgetreu aus den Copy-Dokumenten (Startseite v3, übrige v1). Wied
 
 ## Bilder
 
-Stock-Downloads (Unsplash etc.) sind in der Build-Umgebung durch die Netzwerk-Policy blockiert. Deshalb tragen die Logo-Frames und eigene SVG-Illustrationen im Markenstil die Gestaltung (`src/components/Brand.tsx`, `src/components/VisualPanel.tsx`). Echte Fotos später einfach einsetzen:
+**Hero-Video:** Frankfurter Skyline (`public/media/hero.webm`) — spielt einmal pro Laden und friert auf dem letzten Frame ein (`HeroVideo.tsx`); Standbild-Fallback für Mobil/iOS/reduced-motion via `hero-last.jpg`.
 
-- Porträt Cedrik → `public/images/cedrik-leibinn.jpg`, dann `PortraitPanel` durch `next/image` ersetzen
-- Fachseiten-Motive → `HeroPanel` in `src/components/SplitHero.tsx` austauschen
+**Fotos** (Shooting Cedrik Leibinn): optimiert in `public/images/` (Original-Uploads liegen in `images/`). Verwendung:
+
+| Datei | Einsatz |
+| --- | --- |
+| `cedrik-portrait.webp` | Über-uns-Hero + Startseite „Über Cedrik“ (`PortraitPanel src=…`) |
+| `cedrik-window.webp` | Editorial-Band auf `/ueber-uns` (`PhotoBand`) |
+| `cedrik-kundengespraech.webp` | Story-Sektion `/ueber-uns` |
+| `cedrik-buero.webp` | `/kontakt` (Info-Spalte) |
+| `cedrik-praesentation.webp` | Foto-Band auf `/leistungen` |
+
+Austausch: Datei in `public/images/` ersetzen (gleiche Maße/Ausschnitt beachten). Die Fachseiten (Investments, Holding etc.) bleiben bewusst grafisch (Editorial-Stil) — dort später bei Bedarf `PhotoBand`/`HeroPanel` mit passenden Motiven ergänzen.
 
 ## Offene PLATZHALTER (vor Go-live)
 
@@ -62,5 +71,4 @@ Alle Stellen sind im Code mit `[PLATZHALTER]` markiert (`grep -r PLATZHALTER src
 7. **Regionen** in FAQ auf `/immobilien` (Vorgabe „von Cedrik“ aus Copy-Doc)
 8. **Schufa-Aussage** auf `/finanzierung` prüfen, ob zusagbar (Copy-Doc-Hinweis)
 9. **Impressum & Datenschutz** vollständig befüllen und prüfen lassen
-10. **Porträtfoto** → `public/images/cedrik-leibinn.jpg`
-11. **Google-Bewertungs-Widget** einrichten (ersetzt/ergänzt Zitate laut Copy-Doc Startseite)
+10. **Google-Bewertungs-Widget** einrichten (ersetzt/ergänzt Zitate laut Copy-Doc Startseite)

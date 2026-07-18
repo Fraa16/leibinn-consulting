@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { LightSection } from "@/components/Theme";
 import { Bento, BentoCell } from "@/components/Bento";
 import { EditorialHeader } from "@/components/Editorial";
 import { Faq, type FaqItem } from "@/components/Faq";
 import { CtaBanner } from "@/components/CtaBanner";
+import { PhotoBand } from "@/components/PhotoBand";
 import { JsonLd, breadcrumbJsonLd } from "@/components/JsonLd";
 import { PortraitPanel } from "@/components/VisualPanel";
 import { entitySentence, site } from "@/lib/site";
@@ -62,6 +64,7 @@ const personJsonLd = {
   jobTitle: "Gründer und Inhaber",
   worksFor: { "@type": "Organization", name: site.name, url: site.url },
   address: { "@type": "PostalAddress", addressLocality: site.city },
+  image: `${site.url}/images/cedrik-portrait.webp`,
   identifier: "Vermittlerregister Nr. D-LLF9-5XQCE-01",
 };
 
@@ -89,10 +92,23 @@ export default function UeberUnsPage() {
             <PortraitPanel
               name="Cedrik Leibinn"
               role={`Gründer, ${site.name}`}
+              src="/images/cedrik-portrait.webp"
             />
           </div>
         </div>
       </section>
+
+      {/* Editorial-Band — Cedrik am Fenster */}
+      <PhotoBand
+        src="/images/cedrik-window.webp"
+        alt="Cedrik Leibinn am Panoramafenster der Kanzleiräume"
+        focus="right"
+        height="lg"
+      >
+        <p className="max-w-lg font-heading text-2xl leading-snug font-medium text-white text-balance md:text-3xl">
+          Vom ersten Gespräch bis zur laufenden Betreuung: dieselbe Person.
+        </p>
+      </PhotoBand>
 
       {/* 01 · Story — weiß, Pull-Quote am Rand */}
       <LightSection className="border-b border-line">
@@ -132,6 +148,16 @@ export default function UeberUnsPage() {
                 Entscheidungen zusammendenkt, statt sie in Produktschubladen zu
                 sortieren.
               </p>
+              <figure className="mt-8 overflow-hidden rounded-2xl border border-line">
+                <Image
+                  src="/images/cedrik-kundengespraech.webp"
+                  alt="Cedrik Leibinn im Beratungsgespräch mit einer Mandantin"
+                  width={2400}
+                  height={1600}
+                  sizes="(max-width: 768px) 100vw, 60vw"
+                  className="h-auto w-full object-cover"
+                />
+              </figure>
             </div>
           </div>
         </div>

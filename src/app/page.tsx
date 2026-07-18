@@ -84,6 +84,7 @@ const personJsonLd = {
   jobTitle: "Gründer und Inhaber",
   worksFor: { "@type": "Organization", name: site.name },
   address: { "@type": "PostalAddress", addressLocality: site.city },
+  image: `${site.url}/images/cedrik-portrait.webp`,
 };
 
 export default function HomePage() {
@@ -405,6 +406,7 @@ export default function HomePage() {
             <PortraitPanel
               name="Cedrik Leibinn"
               role={`Gründer, ${site.name}`}
+              src="/images/cedrik-portrait.webp"
             />
           </div>
           <div className="md:col-span-7 md:col-start-6">

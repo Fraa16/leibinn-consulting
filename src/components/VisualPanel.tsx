@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { FachbereichSlug } from "./icons";
 import { fachbereichIcons } from "./icons";
 
@@ -84,8 +85,16 @@ export function HeroPanel({
   );
 }
 
-/** Porträt-Platzhalter (Über uns), Austausch: public/images/cedrik-leibinn.jpg */
-export function PortraitPanel({ name, role }: { name: string; role: string }) {
+/** Porträtkarte. Mit `src` echtes Foto (next/image), sonst Initialen-Fallback. */
+export function PortraitPanel({
+  name,
+  role,
+  src,
+}: {
+  name: string;
+  role: string;
+  src?: string;
+}) {
   const initials = name
     .split(" ")
     .map((n) => n[0])
@@ -93,15 +102,28 @@ export function PortraitPanel({ name, role }: { name: string; role: string }) {
   // Feste helle Textfarben: die Karte bleibt auch in .theme-light dunkel
   return (
     <figure className="relative overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-b from-cobalt to-twilight-soft text-[#f4f5ff]">
-      <DotGrid className="absolute inset-0 h-full w-full text-azure/25" />
-      <div className="relative flex aspect-[4/5] flex-col items-center justify-center gap-6">
-        <span className="flex h-36 w-36 items-center justify-center rounded-full border-2 border-azure-light/50 bg-twilight-deep font-heading text-5xl font-bold text-azure-light">
-          {initials}
-        </span>
-        {/* [PLATZHALTER] Professionelles Porträtfoto einsetzen (Copy-Doc /ueber-uns) */}
-        <p className="px-8 text-center text-sm text-[#f4f5ff]/50">
-          Porträtfoto folgt
-        </p>
+      <div className="relative aspect-[4/5]">
+        {src ? (
+          <Image
+            src={src}
+            alt={`${name}, ${role}`}
+            fill
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover object-top"
+          />
+        ) : (
+          <>
+            <DotGrid className="absolute inset-0 h-full w-full text-azure/25" />
+            <div className="relative flex h-full flex-col items-center justify-center gap-6">
+              <span className="flex h-36 w-36 items-center justify-center rounded-full border-2 border-azure-light/50 bg-twilight-deep font-heading text-5xl font-bold text-azure-light">
+                {initials}
+              </span>
+              <p className="px-8 text-center text-sm text-[#f4f5ff]/50">
+                Porträtfoto folgt
+              </p>
+            </div>
+          </>
+        )}
       </div>
       <figcaption className="relative border-t border-white/15 bg-twilight-deep/80 px-6 py-4">
         <p className="font-heading text-lg font-bold">{name}</p>
