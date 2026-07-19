@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GoldFrameDecor } from "@/components/Brand";
 
 /**
  * Asymmetrische Bento-Grids. Spans kommen als Klassen aus der Seite
@@ -43,16 +44,23 @@ export function BentoCell({
   href?: string;
   children: React.ReactNode;
 }) {
-  const base = `group relative flex flex-col overflow-hidden rounded-2xl p-7 md:p-8 ${surfaces[surface]} ${className}`;
+  const base = `group relative isolate flex flex-col overflow-hidden rounded-2xl p-7 md:p-8 ${surfaces[surface]} ${className}`;
+  const decor = surface === "fawn" ? <GoldFrameDecor variant="arc" /> : null;
   if (href) {
     return (
       <Link
         href={href}
         className={`${base} transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl hover:shadow-black/25`}
       >
+        {decor}
         {children}
       </Link>
     );
   }
-  return <div className={base}>{children}</div>;
+  return (
+    <div className={base}>
+      {decor}
+      {children}
+    </div>
+  );
 }

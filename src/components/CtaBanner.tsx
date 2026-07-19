@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { GoldFrameDecor } from "@/components/Brand";
 
 /** Goldenes Full-width-Banner als Abschluss-CTA (Section-Breaker). */
 export function CtaBanner({
@@ -15,7 +16,8 @@ export function CtaBanner({
   microTrust?: string;
 }) {
   return (
-    <section className="bg-fawn text-twilight-deep">
+    <section className="relative isolate overflow-hidden bg-fawn text-twilight-deep">
+      <GoldFrameDecor variant="corner" />
       <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-16 md:grid-cols-12 md:py-24">
         <div className="md:col-span-7">
           <h2 className="text-3xl leading-[1.1] font-bold tracking-tight text-balance md:text-5xl">

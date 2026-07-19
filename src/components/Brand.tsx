@@ -62,3 +62,40 @@ export function LogoFrameDecor({
     </div>
   );
 }
+
+const goldDecorVariants = {
+  /** Flügel-Mark (frame-02) als Eck-Akzent unten rechts */
+  corner: { src: "/brand/frame-02.png", className: "-right-8 -bottom-10 w-[62%] max-w-none" },
+  /** Ribbon-Kurve (frame-01) quer oben rechts */
+  arc: { src: "/brand/frame-01.png", className: "-top-10 -right-8 w-[70%] max-w-none" },
+} as const;
+
+/**
+ * Weiches Marken-Fragment für goldene Container. Kein .frame-on-dark-Filter:
+ * mix-blend-multiply lässt das blaue Linien-Artwork tonal in die Goldfläche
+ * einsinken. `-z-10` hält das Dekor unter dem (nicht-positionierten) Textinhalt,
+ * ohne dass die Kinder ein z-Wrapping brauchen.
+ */
+export function GoldFrameDecor({
+  variant = "corner",
+  opacity = 0.55,
+}: {
+  variant?: keyof typeof goldDecorVariants;
+  opacity?: number;
+}) {
+  const decor = goldDecorVariants[variant];
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={decor.src}
+        alt=""
+        style={{ opacity }}
+        className={`absolute select-none mix-blend-multiply ${decor.className}`}
+      />
+    </div>
+  );
+}

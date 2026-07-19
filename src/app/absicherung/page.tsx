@@ -7,6 +7,7 @@ import { Faq, type FaqItem } from "@/components/Faq";
 import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd, breadcrumbJsonLd } from "@/components/JsonLd";
 import { HeroPanel } from "@/components/VisualPanel";
+import { GoldFrameDecor } from "@/components/Brand";
 import { kontaktHref } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -139,7 +140,8 @@ export default function AbsicherungPage() {
       {/* 02 · Stimme — goldene Feature-Karte */}
       <section className="border-b border-line">
         <div className="mx-auto grid max-w-6xl gap-6 px-6 py-20 md:grid-cols-12 md:py-24">
-          <div className="rounded-2xl bg-fawn p-10 text-twilight-deep md:col-span-8 md:col-start-3 md:p-14">
+          <div className="relative isolate overflow-hidden rounded-2xl bg-fawn p-10 text-twilight-deep md:col-span-8 md:col-start-3 md:p-14">
+            <GoldFrameDecor variant="corner" />
             <p className="font-heading text-2xl leading-relaxed font-medium text-balance md:text-3xl">
               „Kleine Extras wie die regelmäßige Überprüfung meiner bestehenden
               Verträge zeigen, dass Herr Leibinn langfristig interessiert ist,
