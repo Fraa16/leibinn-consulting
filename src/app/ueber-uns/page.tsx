@@ -41,7 +41,7 @@ const prinzipien = [
 const faqItems: FaqItem[] = [
   {
     q: "Wer ist Cedrik Leibinn?",
-    a: "Cedrik Leibinn ist Gründer und Inhaber von Leibinn Consulting in Böblingen bei Stuttgart. Er ist eingetragener Immobilienmakler und zugelassener Versicherungsmakler (Vermittlerregister Nr. D-LLF9-5XQCE-01) und betreut über 50 Mandanten zu Investments, Immobilien und Holding-Strukturen.",
+    a: "Cedrik Leibinn ist Gründer und Inhaber von Leibinn Consulting in Böblingen bei Stuttgart. Er ist eingetragener Immobilienmakler und zugelassener Versicherungsmakler und betreut über 50 Mandanten zu Investments, Immobilien und Holding-Strukturen.",
   },
   {
     q: "Ist Leibinn Consulting unabhängig?",
@@ -65,7 +65,6 @@ const personJsonLd = {
   worksFor: { "@type": "Organization", name: site.name, url: site.url },
   address: { "@type": "PostalAddress", addressLocality: site.city },
   image: `${site.url}/images/cedrik-portrait.webp`,
-  identifier: "Vermittlerregister Nr. D-LLF9-5XQCE-01",
 };
 
 export default function UeberUnsPage() {
@@ -181,13 +180,13 @@ export default function UeberUnsPage() {
           <Bento className="mt-14">
             <BentoCell surface="cobalt" className="md:col-span-5">
               <p className="text-sm font-semibold tracking-wide text-ink-faint uppercase">
-                Vermittlerregister
+                Unabhängig
               </p>
               <p className="mt-3 font-heading text-2xl font-bold">
-                Nr. D-LLF9-5XQCE-01
+                Makler im Auftrag des Kunden
               </p>
               <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-                öffentlich prüfbar unter vermittlerregister.info
+                Freie Auswahl aus dem Markt, keine Bindung an eine Gesellschaft.
               </p>
             </BentoCell>
             <BentoCell surface="deep" className="md:col-span-4">

@@ -425,9 +425,8 @@ export default function HomePage() {
               <p>
                 Leibinn Consulting wird von Cedrik Leibinn geführt:
                 eingetragener Immobilienmakler und zugelassener
-                Versicherungsmakler (Vermittlerregister Nr. D-LLF9-5XQCE-01,
-                IHK Region Stuttgart). Über 50 Mandanten setzen auf diese
-                Betreuung.
+                Versicherungsmakler mit Sitz in Böblingen bei Stuttgart. Über
+                50 Mandanten setzen auf diese Betreuung.
               </p>
               <p>
                 Sie sprechen vom Erstgespräch bis zur laufenden Betreuung mit
