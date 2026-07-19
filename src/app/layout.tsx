@@ -32,6 +32,19 @@ export const metadata: Metadata = {
     type: "website",
     locale: "de_DE",
     siteName: site.name,
+    url: site.url,
+    images: [
+      {
+        url: "/og.jpg",
+        width: 1200,
+        height: 630,
+        alt: `${site.name} \u2013 Vermögensaufbau mit System`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og.jpg"],
   },
 };
 

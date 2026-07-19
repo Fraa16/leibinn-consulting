@@ -14,8 +14,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/ueber-uns",
     "/kontakt",
   ];
+  const lastModified = new Date();
   return paths.map((path) => ({
     url: `${site.url}${path}`,
+    lastModified,
     changeFrequency: "monthly",
     priority: path === "" ? 1 : 0.8,
   }));
