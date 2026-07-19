@@ -12,7 +12,7 @@ export const site = {
 
 /** Footer-Entity-Satz (GEO, sitewide, identisch auf /ueber-uns) — Copy-Doc Startseite v3 */
 export const entitySentence =
-  "Leibinn Consulting ist ein Beratungsunternehmen für Investments, Off-Market-Immobilien, Holding-Strukturen, Finanzierung und Absicherung mit Sitz in Böblingen bei Stuttgart, geführt von Cedrik Leibinn (eingetragener Immobilienmakler und Versicherungsmakler nach § 34d Abs. 1 GewO, Vermittlerregister Nr. D-LLF9-5XQCE-01).";
+  "Leibinn Consulting ist ein Beratungsunternehmen für Investments, Off-Market-Immobilien, Holding-Strukturen, Finanzierung und Absicherung mit Sitz in Böblingen bei Stuttgart, geführt von Cedrik Leibinn (eingetragener Immobilienmakler und zugelassener Versicherungsmakler, Vermittlerregister Nr. D-LLF9-5XQCE-01).";
 
 export type NavItem = { label: string; href: string };
 

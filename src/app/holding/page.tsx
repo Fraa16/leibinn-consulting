@@ -115,7 +115,7 @@ export default function HoldingPage() {
           </div>
           <PullStat
             value="95 %"
-            label="körperschaftsteuerfrei: Anteilsverkauf aus der Holding (§ 8b KStG)"
+            label="körperschaftsteuerfrei: Anteilsverkauf aus der Holding"
             className="hidden md:col-span-4 md:col-start-9 md:block md:text-right [&>p:last-child]:md:ml-auto"
           />
         </div>
@@ -134,7 +134,7 @@ export default function HoldingPage() {
                 Was ist eine Holding?
               </h2>
               <p className="mt-8 hidden border-t border-line pt-6 text-sm leading-relaxed text-ink-faint md:block">
-                § 8b KStG: Gewinne aus dem Verkauf von Tochter-Anteilen bleiben
+                Gewinne aus dem Verkauf von Tochter-Anteilen bleiben
                 in der Holding zu 95 Prozent körperschaftsteuerfrei.
               </p>
             </div>
@@ -151,8 +151,8 @@ export default function HoldingPage() {
                 <p>
                   Der Kern ist Trennung: Das operative Geschäft trägt das
                   Tagesrisiko, die Holding sammelt das Vermögen. Verkauft die
-                  Holding später Anteile an der Tochter, bleibt der Gewinn nach
-                  § 8b KStG zu 95 Prozent körperschaftsteuerfrei.
+                  Holding später Anteile an der Tochter, bleibt der Gewinn
+                  zu 95 Prozent körperschaftsteuerfrei.
                   Ausgeschüttete Gewinne können in der Holding reinvestiert
                   werden, ohne dass sie vorher als Privatentnahme voll
                   versteuert wurden.

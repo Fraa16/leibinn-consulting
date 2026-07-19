@@ -61,7 +61,7 @@ const cards = [
     slug: "absicherung" as const,
     href: "/absicherung",
     title: "Absicherung",
-    text: "Schutz von Einkommen, Vermögen und Betrieb durch einen Makler nach § 34d GewO mit freier Marktauswahl. Ergebnis: Lücken geschlossen, Doppelungen gekündigt. Für alle, die etwas Aufgebautes zu schützen haben.",
+    text: "Schutz von Einkommen, Vermögen und Betrieb durch einen zugelassenen Makler mit freier Marktauswahl. Ergebnis: Lücken geschlossen, Doppelungen gekündigt. Für alle, die etwas Aufgebautes zu schützen haben.",
     surface: "fawn" as const,
     className: "md:col-span-8",
   },

@@ -325,8 +325,8 @@ export default function HomePage() {
                     Absicherung
                   </h3>
                   <p className="mt-3 max-w-xl text-[0.95rem] leading-relaxed text-twilight-deep/75">
-                    Was aufgebaut wird, muss geschützt sein. Als Makler nach
-                    § 34d GewO sichern wir Vermögen, Immobilien und Betrieb ab,
+                    Was aufgebaut wird, muss geschützt sein. Als zugelassener Makler
+                    sichern wir Vermögen, Immobilien und Betrieb ab,
                     mit freier Auswahl aus dem Markt.
                   </p>
                 </div>
@@ -424,11 +424,10 @@ export default function HomePage() {
             <div className="mt-8 space-y-5 leading-relaxed text-ink-soft">
               <p>
                 Leibinn Consulting wird von Cedrik Leibinn geführt:
-                eingetragener Immobilienmakler
-                {/* [PLATZHALTER] § 34c GewO, Nr. bestätigen (Copy-Doc) */} und
-                Versicherungsmakler mit Erlaubnis nach § 34d Abs. 1 GewO
-                (Vermittlerregister Nr. D-LLF9-5XQCE-01, IHK Region Stuttgart).
-                Über 50 Mandanten setzen auf diese Betreuung.
+                eingetragener Immobilienmakler und zugelassener
+                Versicherungsmakler (Vermittlerregister Nr. D-LLF9-5XQCE-01,
+                IHK Region Stuttgart). Über 50 Mandanten setzen auf diese
+                Betreuung.
               </p>
               <p>
                 Sie sprechen vom Erstgespräch bis zur laufenden Betreuung mit
@@ -439,7 +438,7 @@ export default function HomePage() {
             <ul className="mt-7 space-y-2.5">
               {[
                 "Fester Ansprechpartner, vom Erstgespräch bis zur laufenden Betreuung",
-                "Eingetragener Immobilien- und Versicherungsmakler (§ 34d GewO)",
+                "Eingetragener Immobilien- und Versicherungsmakler, IHK Region Stuttgart",
                 "Über 50 laufend betreute Mandanten",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">

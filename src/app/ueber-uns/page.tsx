@@ -41,7 +41,7 @@ const prinzipien = [
 const faqItems: FaqItem[] = [
   {
     q: "Wer ist Cedrik Leibinn?",
-    a: "Cedrik Leibinn ist Gründer und Inhaber von Leibinn Consulting in Böblingen bei Stuttgart. Er ist eingetragener Immobilienmakler und Versicherungsmakler mit Erlaubnis nach § 34d Abs. 1 GewO (Vermittlerregister Nr. D-LLF9-5XQCE-01) und betreut über 50 Mandanten zu Investments, Immobilien und Holding-Strukturen.",
+    a: "Cedrik Leibinn ist Gründer und Inhaber von Leibinn Consulting in Böblingen bei Stuttgart. Er ist eingetragener Immobilienmakler und zugelassener Versicherungsmakler (Vermittlerregister Nr. D-LLF9-5XQCE-01) und betreut über 50 Mandanten zu Investments, Immobilien und Holding-Strukturen.",
   },
   {
     q: "Ist Leibinn Consulting unabhängig?",
@@ -195,7 +195,7 @@ export default function UeberUnsPage() {
                 Versicherungsmakler
               </p>
               <p className="mt-3 font-heading text-2xl font-bold">
-                § 34d Abs. 1 GewO
+                Behördlich zugelassen
               </p>
               <p className="mt-2 text-sm leading-relaxed text-ink-soft">
                 Aufsichtsbehörde: IHK Region Stuttgart
@@ -208,9 +208,8 @@ export default function UeberUnsPage() {
               <p className="mt-3 font-heading text-xl font-bold">
                 Eingetragen
               </p>
-              {/* [PLATZHALTER] § 34c GewO, Nachweis ergänzen (Copy-Doc) */}
               <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-                [§ 34c GewO, Nachweis ergänzen]
+                Immobilienvermittlung als eingetragener Makler
               </p>
             </BentoCell>
             <BentoCell surface="azure" className="md:col-span-4">

@@ -12,7 +12,7 @@ import { kontaktHref } from "@/lib/site";
 export const metadata: Metadata = {
   title: { absolute: "Absicherung: Vermögen schützen | Leibinn Consulting" },
   description:
-    "Einkommen, Immobilien und Betrieb absichern: Versicherungsmakler nach § 34d GewO mit freier Marktauswahl. Kostenloser Vertragscheck, Region Stuttgart.",
+    "Einkommen, Immobilien und Betrieb absichern: Versicherungsmakler mit freier Marktauswahl. Kostenloser Vertragscheck, Region Stuttgart.",
   alternates: { canonical: "/absicherung" },
 };
 
@@ -54,8 +54,8 @@ export default function AbsicherungPage() {
               Vermögensaufbau ohne Absicherung ist ein Plan mit offener Flanke:
               Ein Berufsunfähigkeitsfall, ein Haftungsschaden oder ein Schaden
               am Anlageobjekt kann Jahre an Aufbau zunichtemachen. Leibinn
-              Consulting schließt diese Lücken als Versicherungsmakler nach
-              § 34d Abs. 1 GewO, mit freier Auswahl aus dem Markt.
+              Consulting schließt diese Lücken als zugelassener
+              Versicherungsmakler, mit freier Auswahl aus dem Markt.
             </p>
             <div className="mt-9">
               <CtaButton href={kontaktHref("vertragscheck")}>
@@ -70,8 +70,8 @@ export default function AbsicherungPage() {
           <div className="md:col-span-5">
             <HeroPanel
               slug="absicherung"
-              fact="§ 34d"
-              factLabel="Versicherungsmakler mit freier Auswahl aus dem Markt"
+              fact="0 €"
+              factLabel="Kostenloser Vertragscheck – auch Ihrer bestehenden Verträge"
             />
           </div>
         </div>
@@ -95,8 +95,8 @@ export default function AbsicherungPage() {
           <div className="md:col-span-6 md:col-start-7">
             <p className="border-l-4 border-azure pl-6 text-lg leading-relaxed font-medium">
               Ein Versicherungsvertreter arbeitet für eine Gesellschaft und
-              vermittelt deren Produkte. Ein Versicherungsmakler nach § 34d
-              GewO arbeitet rechtlich im Auftrag des Kunden und wählt frei aus
+              vermittelt deren Produkte. Ein Versicherungsmakler arbeitet
+              rechtlich im Auftrag des Kunden und wählt frei aus
               dem Markt. Empfohlen wird, was Preis und Leistung rechtfertigen,
               und die Empfehlung wird begründet.
             </p>
