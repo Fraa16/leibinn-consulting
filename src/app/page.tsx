@@ -159,7 +159,7 @@ export default function HomePage() {
             ))}
           </div>
         </div>
-        {/* Trust-Strip — [PLATZHALTER] Partner/Auszeichnungen bestätigen */}
+        {/* Trust-Strip (Partner vom Kunden bestätigt) */}
         <div className="relative border-t border-line">
           <div className="mx-auto flex max-w-6xl flex-wrap items-center gap-x-10 gap-y-2 px-6 py-5 text-ink-faint">
             <span className="text-xs font-semibold tracking-[0.25em] uppercase">

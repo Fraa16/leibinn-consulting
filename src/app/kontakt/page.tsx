@@ -112,19 +112,36 @@ export default function KontaktPage() {
 
           <div className="md:col-span-7">
             <div className="theme-light rounded-3xl bg-white p-7 shadow-2xl shadow-black/30 md:p-10">
-              <Suspense fallback={null}>
-                <KontaktForm />
-              </Suspense>
-              {site.calendlyUrl ? (
-                <iframe
-                  src={site.calendlyUrl}
-                  title="Termin online buchen (Calendly)"
-                  className="mt-10 h-[700px] w-full rounded-2xl border border-line"
-                />
-              ) : null
-              /* [PLATZHALTER] Calendly-Einbettung erscheint automatisch, sobald
-                 site.calendlyUrl in src/lib/site.ts gesetzt ist. */
-              }
+              {site.calendlyUrl && (
+                <div className="mb-10">
+                  <h2 className="font-heading text-xl font-bold">
+                    Direkt Termin buchen
+                  </h2>
+                  <p className="mt-2 text-sm text-ink-soft">
+                    Wählen Sie einen freien Slot – 60 Minuten, online oder vor
+                    Ort in Böblingen.
+                  </p>
+                  <iframe
+                    src={site.calendlyUrl}
+                    title="Termin online buchen (Calendly)"
+                    className="mt-5 h-[680px] w-full rounded-2xl border border-line"
+                  />
+                </div>
+              )}
+              <div
+                className={
+                  site.calendlyUrl ? "border-t border-line pt-10" : undefined
+                }
+              >
+                {site.calendlyUrl && (
+                  <h2 className="mb-6 font-heading text-xl font-bold">
+                    Oder senden Sie uns eine Nachricht
+                  </h2>
+                )}
+                <Suspense fallback={null}>
+                  <KontaktForm />
+                </Suspense>
+              </div>
             </div>
           </div>
         </div>

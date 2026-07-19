@@ -1,16 +1,12 @@
 export const site = {
   name: "Leibinn Consulting",
-  // [PLATZHALTER] Domain bestätigen, bevor die Seite live geht (Canonical-URLs, Sitemap, OG)
-  url: "https://www.leibinn-consulting.de",
+  url: "https://leibinn-consulting.de",
   city: "Böblingen",
   region: "Böblingen bei Stuttgart",
-  // [PLATZHALTER] Echte Kontaktdaten einsetzen (aus Impressum übernehmen)
-  email: "kontakt@leibinn-consulting.de",
-  phone: "+49 711 000000",
-  // [PLATZHALTER] Straße ergänzen (Copy-Doc /kontakt)
-  address: "[Straße ergänzen], Böblingen",
-  // [PLATZHALTER] Calendly-URL eintragen, dann erscheint die Einbettung auf /kontakt
-  calendlyUrl: "",
+  email: "beratung@leibinn-consulting.de",
+  phone: "+49 176 34529336",
+  address: "Konrad-Zuse-Straße 98, 71034 Böblingen",
+  calendlyUrl: "https://calendly.com/beratung-leibinn-consulting/60min",
   owner: "Cedrik Leibinn",
 } as const;
 
