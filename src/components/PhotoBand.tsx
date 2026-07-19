@@ -13,7 +13,7 @@ export function PhotoBand({
 }: {
   src: string;
   alt: string;
-  focus?: "center" | "top" | "right" | "left";
+  focus?: "center" | "top" | "right" | "left" | "right-top";
   height?: "sm" | "md" | "lg";
   children?: React.ReactNode;
 }) {
@@ -28,6 +28,7 @@ export function PhotoBand({
     top: "object-top",
     right: "object-right",
     left: "object-left",
+    "right-top": "object-[80%_20%]",
   }[focus];
 
   return (

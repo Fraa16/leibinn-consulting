@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { entitySentence, leistungenItems, legalNav, site } from "@/lib/site";
-import { LogoFrameDecor, LogoLockup } from "./Brand";
+import { LogoLockup } from "./Brand";
 
 export function SiteFooter() {
   return (
-    <footer className="relative overflow-hidden border-t border-line bg-twilight-deep">
-      <LogoFrameDecor variant="corner" opacity={0.25} />
-      <div className="relative mx-auto max-w-6xl px-6 py-16">
+    <footer className="border-t border-line bg-twilight-deep">
+      <div className="mx-auto max-w-6xl px-6 py-16">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <LogoLockup className="h-28 w-auto" />

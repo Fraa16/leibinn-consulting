@@ -101,7 +101,7 @@ export default function UeberUnsPage() {
       <PhotoBand
         src="/images/cedrik-window.webp"
         alt="Cedrik Leibinn am Panoramafenster der Kanzleiräume"
-        focus="right"
+        focus="right-top"
         height="lg"
       >
         <p className="max-w-lg font-heading text-2xl leading-snug font-medium text-white text-balance md:text-3xl">
