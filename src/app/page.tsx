@@ -375,32 +375,28 @@ export default function HomePage() {
             }
           />
           {/* [PLATZHALTER] Google-Bewertungs-Widget ergänzt/ersetzt die Zitate (Copy-Doc) */}
-          <div className="mt-14 grid gap-6 md:grid-cols-12">
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
             <Testimonial
-              featured
               tone="light"
-              className="md:col-span-7"
               quote="Als Anwalt bin ich es gewohnt, komplexe Sachverhalte zu durchdringen. Bei Investments verlasse ich mich auf Herrn Leibinn, weil er transparent kommuniziert und jede Empfehlung nachvollziehbar begründet."
               name="Luka Šilić"
               role="Anwalt"
               photo="/images/luka-silic.webp"
             />
-            <div className="flex flex-col gap-6 md:col-span-5">
-              <Testimonial
-                tone="light"
-                quote="Zeit ist als Selbstständiger mein wertvollstes Gut. Durch die klaren Strategien läuft mein Vermögensaufbau, ohne dass ich mich darum kümmern muss. Ich kann mich voll auf mein Geschäft konzentrieren."
-                name="Tom Müller"
-                role="selbstständiger Tätowierer"
-                photo="/images/tom-mueller.webp"
-              />
-              <Testimonial
-                tone="light"
-                quote="Kleine Extras wie die regelmäßige Überprüfung meiner bestehenden Verträge zeigen, dass Herr Leibinn langfristig interessiert ist, nicht am schnellen Abschluss."
-                name="Winsome Okafor"
-                role="Lehrerin"
-                photo="/images/winsome-okafor.webp"
-              />
-            </div>
+            <Testimonial
+              tone="light"
+              quote="Zeit ist als Selbstständiger mein wertvollstes Gut. Durch die klaren Strategien läuft mein Vermögensaufbau, ohne dass ich mich darum kümmern muss. Ich kann mich voll auf mein Geschäft konzentrieren."
+              name="Tom Müller"
+              role="selbstständiger Tätowierer"
+              photo="/images/tom-mueller.webp"
+            />
+            <Testimonial
+              tone="light"
+              quote="Kleine Extras wie die regelmäßige Überprüfung meiner bestehenden Verträge zeigen, dass Herr Leibinn langfristig interessiert ist, nicht am schnellen Abschluss."
+              name="Winsome Okafor"
+              role="Lehrerin"
+              photo="/images/winsome-okafor.webp"
+            />
           </div>
         </div>
       </section>

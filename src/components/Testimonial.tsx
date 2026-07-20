@@ -69,11 +69,13 @@ export function Testimonial({
     >
       <Stars className={t.stars} />
       <blockquote
-        className={`mt-5 flex-1 font-heading leading-relaxed font-medium text-balance ${
+        className={`mt-5 flex flex-1 items-center font-heading leading-relaxed font-medium text-balance ${
           featured ? "text-xl md:text-3xl" : "text-lg md:text-xl"
         }`}
       >
-        „{quote}“
+        <span>
+          „{quote}“
+        </span>
       </blockquote>
       <figcaption className={`mt-6 flex items-center gap-4 ${t.caption}`}>
         {photo ? (
