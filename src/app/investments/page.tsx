@@ -212,12 +212,14 @@ export default function InvestmentsPage() {
             quote="Als Anwalt bin ich es gewohnt, komplexe Sachverhalte zu durchdringen. Bei Investments verlasse ich mich auf Herrn Leibinn, weil er transparent kommuniziert und jede Empfehlung nachvollziehbar begründet."
             name="Luka Šilić"
             role="Anwalt"
+            photo="/images/luka-silic.webp"
           />
           <Testimonial
             className="md:col-span-6 md:translate-y-8"
             quote="Zeit ist als Selbstständiger mein wertvollstes Gut. Durch die klaren Strategien läuft mein Vermögensaufbau, ohne dass ich mich darum kümmern muss."
             name="Tom Müller"
             role="selbstständiger Tätowierer"
+            photo="/images/tom-mueller.webp"
           />
         </div>
       </LightSection>

@@ -382,17 +382,20 @@ export default function HomePage() {
               quote="Als Anwalt bin ich es gewohnt, komplexe Sachverhalte zu durchdringen. Bei Investments verlasse ich mich auf Herrn Leibinn, weil er transparent kommuniziert und jede Empfehlung nachvollziehbar begründet."
               name="Luka Šilić"
               role="Anwalt"
+              photo="/images/luka-silic.webp"
             />
             <div className="flex flex-col gap-6 md:col-span-5">
               <Testimonial
                 quote="Zeit ist als Selbstständiger mein wertvollstes Gut. Durch die klaren Strategien läuft mein Vermögensaufbau, ohne dass ich mich darum kümmern muss. Ich kann mich voll auf mein Geschäft konzentrieren."
                 name="Tom Müller"
                 role="selbstständiger Tätowierer"
+                photo="/images/tom-mueller.webp"
               />
               <Testimonial
                 quote="Kleine Extras wie die regelmäßige Überprüfung meiner bestehenden Verträge zeigen, dass Herr Leibinn langfristig interessiert ist, nicht am schnellen Abschluss."
                 name="Winsome Okafor"
                 role="Lehrerin"
+                photo="/images/winsome-okafor.webp"
               />
             </div>
           </div>

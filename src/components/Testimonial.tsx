@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 function initials(name: string) {
   return name
     .split(" ")
@@ -28,12 +30,14 @@ export function Testimonial({
   quote,
   name,
   role,
+  photo,
   featured = false,
   className = "",
 }: {
   quote: string;
   name: string;
   role: string;
+  photo?: string;
   featured?: boolean;
   className?: string;
 }) {
@@ -50,9 +54,15 @@ export function Testimonial({
         „{quote}“
       </blockquote>
       <figcaption className="mt-6 flex items-center gap-4">
-        <span className="flex h-11 w-11 items-center justify-center rounded-full bg-azure/25 font-heading font-bold text-azure-light [.theme-light_&]:text-azure">
-          {initials(name)}
-        </span>
+        {photo ? (
+          <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full">
+            <Image src={photo} alt={name} fill sizes="44px" className="object-cover" />
+          </span>
+        ) : (
+          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-azure/25 font-heading font-bold text-azure-light [.theme-light_&]:text-azure">
+            {initials(name)}
+          </span>
+        )}
         <div className="text-sm">
           <p className="font-semibold">{name}</p>
           <p className="text-ink-soft">{role}</p>
