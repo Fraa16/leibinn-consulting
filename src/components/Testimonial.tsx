@@ -7,9 +7,9 @@ function initials(name: string) {
     .join("");
 }
 
-export function Stars({ className = "" }: { className?: string }) {
+export function Stars({ className = "text-fawn" }: { className?: string }) {
   return (
-    <div aria-label="5 von 5 Sternen" className={`flex gap-1 text-fawn ${className}`}>
+    <div aria-label="5 von 5 Sternen" className={`flex gap-1 ${className}`}>
       {Array.from({ length: 5 }).map((_, i) => (
         <svg key={i} viewBox="0 0 20 20" className="h-4 w-4" aria-hidden>
           <path
@@ -22,6 +22,25 @@ export function Stars({ className = "" }: { className?: string }) {
   );
 }
 
+/*
+ * Tonvarianten: "default" (Akzent-Tint, flächenneutral wie bisher) und
+ * "light" (weiße erhöhte Karte für dunkle Sektionen).
+ */
+const tones = {
+  default: {
+    card: "rounded-2xl border border-line bg-accent-tint",
+    stars: "text-fawn",
+    caption: "",
+    role: "text-ink-soft",
+  },
+  light: {
+    card: "theme-light rounded-3xl shadow-2xl shadow-black/25",
+    stars: "text-fawn",
+    caption: "border-t border-line pt-6",
+    role: "text-ink-soft",
+  },
+} as const;
+
 /**
  * Zitatkarte, flächenneutral: nutzt Token-Klassen und funktioniert dadurch
  * auf dunklen Sektionen wie in .theme-light. `featured` macht sie größer.
@@ -32,6 +51,7 @@ export function Testimonial({
   role,
   photo,
   featured = false,
+  tone = "default",
   className = "",
 }: {
   quote: string;
@@ -39,13 +59,15 @@ export function Testimonial({
   role: string;
   photo?: string;
   featured?: boolean;
+  tone?: keyof typeof tones;
   className?: string;
 }) {
+  const t = tones[tone];
   return (
     <figure
-      className={`flex flex-col rounded-2xl border border-line bg-accent-tint p-8 ${featured ? "md:p-12" : "md:p-9"} ${className}`}
+      className={`flex flex-col p-8 ${featured ? "md:p-12" : "md:p-9"} ${t.card} ${className}`}
     >
-      <Stars />
+      <Stars className={t.stars} />
       <blockquote
         className={`mt-5 flex-1 font-heading leading-relaxed font-medium text-balance ${
           featured ? "text-xl md:text-3xl" : "text-lg md:text-xl"
@@ -53,7 +75,7 @@ export function Testimonial({
       >
         „{quote}“
       </blockquote>
-      <figcaption className="mt-6 flex items-center gap-4">
+      <figcaption className={`mt-6 flex items-center gap-4 ${t.caption}`}>
         {photo ? (
           <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full">
             <Image src={photo} alt={name} fill sizes="44px" className="object-cover" />
@@ -65,7 +87,7 @@ export function Testimonial({
         )}
         <div className="text-sm">
           <p className="font-semibold">{name}</p>
-          <p className="text-ink-soft">{role}</p>
+          <p className={t.role}>{role}</p>
         </div>
       </figcaption>
     </figure>
