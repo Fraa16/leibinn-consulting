@@ -5,15 +5,18 @@ export function EditorialHeader({
   kicker,
   title,
   intro,
+  wide = false,
 }: {
   no?: string;
   kicker: string;
   title: React.ReactNode;
   intro?: React.ReactNode;
+  /** Titel über die volle Breite — für schmale Elternspalten. */
+  wide?: boolean;
 }) {
   return (
     <div className="grid gap-8 md:grid-cols-12 md:items-end">
-      <div className="md:col-span-6">
+      <div className={wide ? "md:col-span-12" : "md:col-span-6"}>
       <p className="flex items-baseline gap-3 text-sm font-semibold tracking-[0.2em] uppercase">
         {no && <span className="font-heading text-fawn [.theme-light_&]:text-azure">{no}</span>}
         <span className="text-ink-faint">{kicker}</span>
