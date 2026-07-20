@@ -9,6 +9,7 @@ import { MobileNav } from "./MobileNav";
 
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -33,16 +34,31 @@ export function SiteHeader() {
           </span>
         </Link>
         <nav className="hidden items-center gap-8 lg:flex">
-          <div className="group relative">
-            <Link
-              href="/leistungen"
+          <div
+            className="relative"
+            onMouseEnter={() => setMenuOpen(true)}
+            onMouseLeave={() => setMenuOpen(false)}
+            onBlur={(e) => {
+              if (!e.currentTarget.contains(e.relatedTarget)) {
+                setMenuOpen(false);
+              }
+            }}
+            onKeyDown={(e) => {
+              if (e.key === "Escape") setMenuOpen(false);
+            }}
+          >
+            <button
+              type="button"
+              aria-expanded={menuOpen}
+              aria-haspopup="menu"
+              onClick={() => setMenuOpen(true)}
               className="flex items-center gap-1.5 py-6 text-[0.95rem] text-ink-soft transition-colors hover:text-frost"
             >
               Leistungen
               <svg
                 viewBox="0 0 12 12"
                 aria-hidden
-                className="h-3 w-3 transition-transform group-hover:rotate-180 group-focus-within:rotate-180"
+                className={`h-3 w-3 transition-transform ${menuOpen ? "rotate-180" : ""}`}
               >
                 <path
                   d="M2 4l4 4 4-4"
@@ -52,8 +68,12 @@ export function SiteHeader() {
                   strokeLinecap="round"
                 />
               </svg>
-            </Link>
-            <div className="invisible absolute top-full left-1/2 -translate-x-1/2 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+            </button>
+            <div
+              className={`absolute top-full left-1/2 -translate-x-1/2 transition-all duration-150 ${
+                menuOpen ? "visible opacity-100" : "invisible opacity-0"
+              }`}
+            >
               <ul className="w-72 rounded-xl border border-line bg-cobalt p-2 shadow-2xl shadow-black/40">
                 {leistungenItems.map((item) => {
                   const Icon =
@@ -62,6 +82,7 @@ export function SiteHeader() {
                     <li key={item.href}>
                       <Link
                         href={item.href}
+                        onClick={() => setMenuOpen(false)}
                         className="flex items-center gap-3 rounded-lg px-4 py-2.5 text-[0.95rem] text-ink-soft transition-colors hover:bg-azure/20 hover:text-frost"
                       >
                         <Icon className="h-5 w-5 shrink-0 text-azure-light" />
@@ -73,6 +94,7 @@ export function SiteHeader() {
                 <li className="mt-1 border-t border-line pt-1">
                   <Link
                     href="/leistungen"
+                    onClick={() => setMenuOpen(false)}
                     className="block rounded-lg px-4 py-2.5 text-sm font-medium text-fawn transition-colors hover:bg-azure/20"
                   >
                     Alle Leistungen im Überblick →

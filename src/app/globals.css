@@ -81,7 +81,9 @@
 
 html {
   color-scheme: dark;
-  scroll-behavior: smooth;
+  /* Kein globales smooth scrolling: Seitenwechsel sollen sofort oben starten.
+     Padding hält Anker-Ziele unter dem sticky Header sichtbar. */
+  scroll-padding-top: 5.5rem;
 }
 
 body {

@@ -409,10 +409,11 @@ export default function HomePage() {
               src="/images/cedrik-portrait.webp"
             />
           </div>
-          <div className="md:col-span-7 md:col-start-6">
+          <div className="md:col-span-8 md:col-start-5">
             <EditorialHeader
               no="05"
               kicker="Ihr Ansprechpartner"
+              wide
               title={
                 <>
                   Ein Name. Eine Verantwortung.
