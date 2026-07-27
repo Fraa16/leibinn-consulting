@@ -11,7 +11,6 @@ import { Faq, type FaqItem } from "@/components/Faq";
 import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd, howToJsonLd } from "@/components/JsonLd";
 import { PortraitPanel } from "@/components/VisualPanel";
-import { LogoMark } from "@/components/Brand";
 import { HeroVideo } from "@/components/HeroVideo";
 import { Reveal } from "@/components/Reveal";
 import { fachbereichIcons, IconArrowRight } from "@/components/icons";
@@ -113,7 +112,7 @@ export default function HomePage() {
                 Vermögensaufbau · Region Stuttgart
               </p>
               <h1 className="mt-6 text-4xl leading-[1.08] font-bold tracking-tight text-balance md:text-6xl lg:text-7xl">
-                <Scribble>Vermögen</Scribble> strategisch aufbauen, Risiken
+                Vermögen <Scribble>strategisch</Scribble> aufbauen, Risiken
                 gezielt absichern
                 <span className="mt-3 block text-3xl font-medium text-ink-soft md:text-5xl">
                   für Privatpersonen und Unternehmen.
@@ -140,24 +139,23 @@ export default function HomePage() {
               </p>
             </Reveal>
           </div>
-          <div className="hidden md:col-span-3 md:col-start-10 md:flex md:flex-col md:justify-center md:gap-4">
+          <div className="hidden md:col-span-3 md:col-start-10 md:block md:self-center">
             <Reveal delay={300}>
-              <LogoMark className="logo-drift mb-6 h-20 w-auto" />
+              <div className="divide-y divide-line overflow-hidden rounded-2xl border border-line bg-twilight-deep/60 backdrop-blur-sm">
+                {[
+                  ["60 Min", "kostenloses Erstgespräch"],
+                  ["100+", "laufend betreute Mandanten"],
+                  ["24 h", "Antwortzeit auf Anfragen"],
+                ].map(([value, label]) => (
+                  <div key={value} className="px-5 py-5">
+                    <p className="font-heading text-2xl font-bold text-fawn">
+                      {value}
+                    </p>
+                    <p className="mt-0.5 text-sm text-ink-soft">{label}</p>
+                  </div>
+                ))}
+              </div>
             </Reveal>
-            {[
-              ["60 Min", "kostenloses Erstgespräch"],
-              ["100+", "laufend betreute Mandanten"],
-              ["24 h", "Antwortzeit auf Anfragen"],
-            ].map(([value, label], i) => (
-              <Reveal key={value} delay={360 + i * 90}>
-                <div className="rounded-xl border border-line bg-twilight-deep/70 px-5 py-4">
-                  <p className="font-heading text-2xl font-bold text-fawn">
-                    {value}
-                  </p>
-                  <p className="mt-0.5 text-sm text-ink-soft">{label}</p>
-                </div>
-              </Reveal>
-            ))}
           </div>
         </div>
         {/* Trust-Strip (Partner vom Kunden bestätigt) */}
