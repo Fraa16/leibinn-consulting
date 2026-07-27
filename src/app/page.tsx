@@ -113,14 +113,17 @@ export default function HomePage() {
                 Vermögensaufbau · Region Stuttgart
               </p>
               <h1 className="mt-6 text-4xl leading-[1.08] font-bold tracking-tight text-balance md:text-6xl lg:text-7xl">
-<Scribble>Vermögen</Scribble> strategisch aufbauen, Risiken gezielt
-                absichern – für Privatpersonen und Unternehmen.
+                <Scribble>Vermögen</Scribble> strategisch aufbauen, Risiken
+                gezielt absichern
+                <span className="mt-3 block text-3xl font-medium text-ink-soft md:text-5xl">
+                  für Privatpersonen und Unternehmen.
+                </span>
               </h1>
             </Reveal>
             <Reveal delay={120}>
               <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl">
-                Effizienz trifft auf Expertise – wir entwickeln maßgeschneiderte
-                Strategien für Ihren privaten und unternehmerischen Erfolg.
+                Wir entwickeln maßgeschneiderte Strategien für Ihren privaten
+                und unternehmerischen Erfolg.
               </p>
             </Reveal>
             <Reveal delay={220}>
