@@ -11,7 +11,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: { absolute: "Leistungen im Überblick | Leibinn Consulting" },
   description:
-    "Sechs Fachbereiche, ein Ansprechpartner: Investments, Off-Market-Immobilien, Holding-Strukturen, Finanzierung, Steuern & Recht, Absicherung. Region Stuttgart.",
+    "Sechs Fachbereiche, ein Ansprechpartner: Investments, Off-Market-Immobilien, Holding-Strukturen, Finanzierung, bAV / bKV, Absicherung. Region Stuttgart.",
   alternates: { canonical: "/leistungen" },
 };
 
@@ -50,10 +50,10 @@ const cards = [
     className: "md:col-span-7",
   },
   {
-    slug: "steuern-recht" as const,
-    href: "/steuern-recht",
-    title: "Steuern & Recht",
-    text: "Vermittlung geprüfter Steuerberater und Anwälte, passend zur Struktur. Ergebnis: Spezialisten, die zur Situation passen, ohne eigene Suche. Für alle, deren Struktur komplexer wird.",
+    slug: "bav-bkv" as const,
+    href: "/bav-bkv",
+    title: "bAV / bKV",
+    text: "Betriebliche Altersvorsorge und Krankenversicherung als Mitarbeiter-Benefit. Ergebnis: ein attraktiverer Arbeitgeber, der Fachkräfte gewinnt und bindet, steuerlich optimiert. Für Unternehmen, die ihr Team langfristig halten wollen.",
     surface: "outline" as const,
     className: "md:col-span-4",
   },
@@ -71,7 +71,7 @@ const kette = [
   { label: "Holding gründen", zusatz: "Struktur", href: "/holding" },
   { label: "Off-Market-Immobilie kaufen", zusatz: "Objekt", href: "/immobilien" },
   { label: "Bankenvergleich", zusatz: "Konditionen", href: "/finanzierung" },
-  { label: "Steuerlich prüfen lassen", zusatz: "Netzwerk", href: "/steuern-recht" },
+  { label: "Mitarbeiter binden", zusatz: "Benefits", href: "/bav-bkv" },
   { label: "Gebäude & Haftung absichern", zusatz: "Schutz", href: "/absicherung" },
 ];
 
@@ -108,10 +108,10 @@ export default function LeistungenPage() {
           <div className="md:col-span-5 md:col-start-8">
             <p className="text-lg leading-relaxed text-ink-soft">
               Leibinn Consulting deckt sechs Bereiche ab: Investments,
-              Off-Market-Immobilien, Holding-Strukturen, Finanzierung, die
-              Vermittlung von Steuer- und Rechtsexperten sowie Absicherung.
-              Jeder Bereich funktioniert einzeln. Ihren Wert entfalten sie
-              zusammen, weil Vermögensentscheidungen zusammenhängen.
+              Off-Market-Immobilien, Holding-Strukturen, Finanzierung,
+              betriebliche Vorsorge (bAV / bKV) sowie Absicherung. Jeder Bereich
+              funktioniert einzeln. Ihren Wert entfalten sie zusammen, weil
+              Vermögensentscheidungen zusammenhängen.
             </p>
           </div>
         </div>

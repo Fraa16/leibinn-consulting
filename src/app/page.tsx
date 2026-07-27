@@ -113,16 +113,14 @@ export default function HomePage() {
                 Vermögensaufbau · Region Stuttgart
               </p>
               <h1 className="mt-6 text-4xl leading-[1.08] font-bold tracking-tight text-balance md:text-6xl lg:text-7xl">
-                <Scribble>Vermögensaufbau</Scribble> mit System: Investments,
-                Immobilien, Holding.
+<Scribble>Vermögen</Scribble> strategisch aufbauen, Risiken gezielt
+                absichern – für Privatpersonen und Unternehmen.
               </h1>
             </Reveal>
             <Reveal delay={120}>
               <p className="mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl">
-                Leibinn Consulting entwickelt Strategien für Vermögensaufbau,
-                Immobilien-Investments und Holding-Strukturen für Unternehmer
-                und Privatpersonen in der Region Stuttgart. Als eingetragener
-                Immobilienmakler mit direktem Zugang zu Off-Market-Objekten.
+                Effizienz trifft auf Expertise – wir entwickeln maßgeschneiderte
+                Strategien für Ihren privaten und unternehmerischen Erfolg.
               </p>
             </Reveal>
             <Reveal delay={220}>
@@ -145,7 +143,7 @@ export default function HomePage() {
             </Reveal>
             {[
               ["60 Min", "kostenloses Erstgespräch"],
-              ["50+", "laufend betreute Mandanten"],
+              ["100+", "laufend betreute Mandanten"],
               ["24 h", "Antwortzeit auf Anfragen"],
             ].map(([value, label], i) => (
               <Reveal key={value} delay={360 + i * 90}>
@@ -230,7 +228,7 @@ export default function HomePage() {
                 Ein Ansprechpartner.
               </>
             }
-            intro="Leibinn Consulting deckt sechs Bereiche ab: Investments, Off-Market-Immobilien, Holding-Strukturen, Finanzierung, die Vermittlung von Steuer- und Rechtsexperten sowie Absicherung. Die Bereiche greifen ineinander. Genau darin liegt der Unterschied zur Einzelberatung."
+            intro="Leibinn Consulting deckt sechs Bereiche ab: Investments, Off-Market-Immobilien, Holding-Strukturen, Finanzierung, betriebliche Vorsorge (bAV / bKV) sowie Absicherung. Die Bereiche greifen ineinander. Genau darin liegt der Unterschied zur Einzelberatung."
           />
           <Bento className="mt-14">
             <BentoCell
@@ -299,18 +297,18 @@ export default function HomePage() {
               <CellArrow />
             </BentoCell>
             <BentoCell
-              href="/steuern-recht"
+              href="/bav-bkv"
               surface="outline"
               className="md:col-span-3"
             >
-              <CellIcon slug="steuern-recht" />
+              <CellIcon slug="bav-bkv" />
               <h3 className="mt-6 font-heading text-xl font-bold group-hover:text-fawn">
-                Steuern & Recht
+                bAV / bKV
               </h3>
               <p className="mt-3 flex-1 text-[0.95rem] leading-relaxed text-ink-soft">
-                Hier beraten wir nicht selbst. Wir vermitteln geprüfte
-                Steuerberater und Anwälte aus unserem Netzwerk, passend zu
-                Ihrer Struktur.
+                Betriebliche Altersvorsorge und Krankenversicherung als
+                Benefit, der Fachkräfte gewinnt und bindet, steuerlich
+                optimiert und verwaltungsarm.
               </p>
               <CellArrow />
             </BentoCell>
@@ -429,7 +427,7 @@ export default function HomePage() {
                 Leibinn Consulting wird von Cedrik Leibinn geführt:
                 eingetragener Immobilienmakler und zugelassener
                 Versicherungsmakler mit Sitz in Böblingen bei Stuttgart. Über
-                50 Mandanten setzen auf diese Betreuung.
+                100 Mandanten setzen auf diese Betreuung.
               </p>
               <p>
                 Sie sprechen vom Erstgespräch bis zur laufenden Betreuung mit
@@ -441,7 +439,7 @@ export default function HomePage() {
               {[
                 "Fester Ansprechpartner, vom Erstgespräch bis zur laufenden Betreuung",
                 "Eingetragener Immobilien- und Versicherungsmakler, IHK Region Stuttgart",
-                "Über 50 laufend betreute Mandanten",
+                "Über 100 laufend betreute Mandanten",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
                   <svg

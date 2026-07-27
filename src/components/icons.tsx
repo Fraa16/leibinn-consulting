@@ -61,13 +61,12 @@ export function IconPercent({ className }: IconProps) {
   );
 }
 
-/** Steuern & Recht: Waage */
-export function IconScale({ className }: IconProps) {
+/** bAV / bKV: Schild mit Herz (Mitarbeiter-Benefits) */
+export function IconBenefit({ className }: IconProps) {
   return (
     <svg {...base(className)}>
-      <path d="M12 3v18M8 21h8" />
-      <path d="M5 7h14" />
-      <path d="M5 7l-2.5 6a2.9 2.9 0 0 0 5 0L5 7ZM19 7l-2.5 6a2.9 2.9 0 0 0 5 0L19 7Z" />
+      <path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6l7-3Z" />
+      <path d="M12 15.5c-1.6-1.1-3-2.3-3-3.8a1.7 1.7 0 0 1 3-1 1.7 1.7 0 0 1 3 1c0 1.5-1.4 2.7-3 3.8Z" />
     </svg>
   );
 }
@@ -151,7 +150,7 @@ export const fachbereichIcons = {
   immobilien: IconBuilding,
   holding: IconStructure,
   finanzierung: IconPercent,
-  "steuern-recht": IconScale,
+  "bav-bkv": IconBenefit,
   absicherung: IconShield,
 } as const;
 

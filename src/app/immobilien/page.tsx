@@ -14,7 +14,7 @@ import { kontaktHref, site } from "@/lib/site";
 export const metadata: Metadata = {
   title: { absolute: "Off-Market-Immobilien kaufen | Leibinn Consulting" },
   description:
-    "Off-Market-Immobilien als Kapitalanlage: Zugang zu Objekten, die nie inseriert werden. Eingetragener Immobilienmakler, Region Stuttgart. Ersteinschätzung kostenlos.",
+    "Off-Market-Immobilien als Kapitalanlage: Zugang zu Objekten, die nie inseriert werden. Eingetragener Immobilienmakler, deutschlandweit. Ersteinschätzung kostenlos.",
   alternates: { canonical: "/immobilien" },
 };
 
@@ -44,8 +44,7 @@ const ablauf = [
 const faqItems: FaqItem[] = [
   {
     q: "In welchen Regionen vermittelt Leibinn Consulting?",
-    // [PLATZHALTER] Regionen von Cedrik einsetzen (z. B. Großraum Stuttgart und weitere Standorte)
-    a: "Der Schwerpunkt liegt auf Regionen mit stabiler Mietnachfrage, insbesondere im Großraum Stuttgart. Entscheidend ist nicht die Postleitzahl, sondern die Kennzahlen des Objekts: Vermietungsstand, Mietniveau, Entwicklung des Standorts. Ihr Suchprofil bestimmt, welche Regionen infrage kommen.",
+    a: "Deutschlandweit. Der Fokus liegt auf Standorten mit stabiler Mietnachfrage, darunter Stuttgart, München, Berlin, Köln und Frankfurt sowie weitere Metropolregionen. Entscheidend ist nicht die Postleitzahl, sondern die Kennzahlen des Objekts: Vermietungsstand, Mietniveau, Entwicklung des Standorts. Ihr Suchprofil bestimmt, welche Regionen konkret infrage kommen.",
   },
   {
     q: "Welche Kosten entstehen für Käufer?",
@@ -222,10 +221,10 @@ export default function ImmobilienPage() {
             <div className="mt-6 space-y-4 leading-relaxed text-ink-soft">
               <p>
                 Off-Market heißt nicht automatisch billig. Es heißt: weniger
-                Wettbewerb, direkte Verhandlung, Zugang zu Objekten in Regionen
-                mit stabiler Mietnachfrage. Wer eine Immobilie als langfristige
-                Kapitalanlage versteht, findet hier Angebote, die der Markt nie
-                zu sehen bekommt.
+                Wettbewerb, direkte Verhandlung, Zugang zu Objekten in
+                nachfragestarken Standorten deutschlandweit. Wer eine Immobilie
+                als langfristige Kapitalanlage versteht, findet hier Angebote,
+                die der Markt nie zu sehen bekommt.
               </p>
               <p>
                 Unternehmer kaufen auf Wunsch über eine Gesellschaftsstruktur.

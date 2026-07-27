@@ -22,7 +22,7 @@ export const leistungenItems: NavItem[] = [
   { label: "Off-Market-Immobilien", href: "/immobilien" },
   { label: "Holding-Strukturen", href: "/holding" },
   { label: "Finanzierung", href: "/finanzierung" },
-  { label: "Steuern & Recht", href: "/steuern-recht" },
+  { label: "bAV / bKV", href: "/bav-bkv" },
   { label: "Absicherung", href: "/absicherung" },
 ];
 
@@ -53,7 +53,7 @@ export const anliegenOptions = [
   { key: "struktur-check", label: "Holding & Unternehmen" },
   { key: "konditions-check", label: "Finanzierung" },
   { key: "vertragscheck", label: "Absicherung" },
-  { key: "experten-vermittlung", label: "Steuern & Recht" },
+  { key: "bav-bkv", label: "bAV / bKV" },
   { key: "unklar", label: "Weiß ich noch nicht" },
 ] as const;
 

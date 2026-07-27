@@ -41,7 +41,7 @@ const prinzipien = [
 const faqItems: FaqItem[] = [
   {
     q: "Wer ist Cedrik Leibinn?",
-    a: "Cedrik Leibinn ist Gründer und Inhaber von Leibinn Consulting in Böblingen bei Stuttgart. Er ist eingetragener Immobilienmakler und zugelassener Versicherungsmakler und betreut über 50 Mandanten zu Investments, Immobilien und Holding-Strukturen.",
+    a: "Cedrik Leibinn ist Gründer und Inhaber von Leibinn Consulting in Böblingen bei Stuttgart. Er ist eingetragener Immobilienmakler und zugelassener Versicherungsmakler und betreut über 100 Mandanten zu Investments, Immobilien und Holding-Strukturen.",
   },
   {
     q: "Ist Leibinn Consulting unabhängig?",
@@ -141,7 +141,7 @@ export default function UeberUnsPage() {
                 </span>
               </p>
               <p>
-                Heute betreue ich über 50 Mandanten, vom angestellten
+                Heute betreue ich über 100 Mandanten, vom angestellten
                 Akademiker bis zum Unternehmer mit Holding-Struktur. Der
                 gemeinsame Nenner: Sie wollen einen Ansprechpartner, der ihre
                 Entscheidungen zusammendenkt, statt sie in Produktschubladen zu
@@ -212,7 +212,7 @@ export default function UeberUnsPage() {
               </p>
             </BentoCell>
             <BentoCell surface="azure" className="md:col-span-4">
-              <p className="font-heading text-6xl font-bold">50+</p>
+              <p className="font-heading text-6xl font-bold">100+</p>
               <p className="mt-2 text-white/85">laufend betreute Mandanten</p>
             </BentoCell>
             <BentoCell surface="fawn" className="md:col-span-8 md:flex-row md:items-center md:justify-between md:gap-8">

@@ -29,7 +29,7 @@ export function SiteHeader() {
       <div className="relative mx-auto flex h-18 max-w-6xl items-center justify-between px-6">
         <Link href="/" className="flex items-center gap-3">
           <LogoMark className="h-9 w-auto" />
-          <span className="font-heading text-xl font-bold tracking-tight md:text-2xl">
+          <span className="font-heading text-xl font-bold tracking-wide uppercase md:text-2xl">
             {site.name}
           </span>
         </Link>

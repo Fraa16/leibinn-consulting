@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/holding",
     "/absicherung",
     "/finanzierung",
-    "/steuern-recht",
+    "/bav-bkv",
     "/ueber-uns",
     "/kontakt",
   ];
