@@ -133,12 +133,12 @@ export default function UeberUnsPage() {
                 kennt sein Produkt. Niemand kennt das Gesamtbild.
               </p>
               <p>
-                Leibinn Consulting ist die Antwort auf genau dieses Problem.{" "}
-                <span className="rounded bg-accent-tint px-1.5 py-0.5 text-sm">
-                  [PLATZHALTER: 2–3 Sätze persönlicher Werdegang — Ausbildung,
-                  Stationen, seit wann selbstständig. Von Cedrik einholen bzw.
-                  Entwurf bestätigen lassen.]
-                </span>
+                Leibinn Consulting ist die Antwort auf genau dieses Problem. Ich
+                habe zuvor in einer Investmentberatung gearbeitet und dort
+                gesehen, wo die Lücken liegen: gute Einzelprodukte, aber niemand,
+                der das Gesamtbild zusammenhält. 2023 habe ich Leibinn Consulting
+                gegründet, um genau das zu ändern — unabhängige Beratung aus einer
+                Hand, entlang des Gesamtbilds statt entlang von Produktkategorien.
               </p>
               <p>
                 Heute betreue ich über 100 Mandanten, vom angestellten

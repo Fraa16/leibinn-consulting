@@ -63,7 +63,6 @@ export default function KontaktPage() {
                 <p className="text-sm font-semibold tracking-[0.2em] text-ink-faint uppercase">
                   Lieber direkt?
                 </p>
-                {/* [PLATZHALTER] Nummer/Adresse aus Impressum übernehmen */}
                 <a
                   href={`tel:${site.phone.replace(/\s/g, "")}`}
                   className="flex items-center gap-3 transition-colors hover:text-fawn"

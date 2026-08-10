@@ -41,6 +41,8 @@ export default function ImpressumPage() {
           <p className="mt-3">
             Erlaubnis: nach § 34d Abs. 1 Gewerbeordnung (Versicherungsmakler)
             <br />
+            Erlaubnis: nach § 34c Abs. 1 Gewerbeordnung (Immobilienmakler)
+            <br />
             Aufsichtsbehörde: Industrie- und Handelskammer Region Stuttgart,
             Jägerstraße 30, 70174 Stuttgart
           </p>
@@ -79,8 +81,9 @@ export default function ImpressumPage() {
         <div>
           <h2>Berufsbezeichnung und Berufskammer</h2>
           <p className="mt-3">
-            Berufsbezeichnung: Versicherungsmakler mit Erlaubnis nach § 34d
-            Abs. 1 Gewerbeordnung, Bundesrepublik Deutschland
+            Berufsbezeichnungen: Versicherungsmakler (Erlaubnis nach § 34d
+            Abs. 1 Gewerbeordnung) und Immobilienmakler (Erlaubnis nach § 34c
+            Abs. 1 Gewerbeordnung), Bundesrepublik Deutschland
             <br />
             Zuständige Berufskammer: Industrie- und Handelskammer Region
             Stuttgart, Jägerstraße 30, 70174 Stuttgart
@@ -96,6 +99,8 @@ export default function ImpressumPage() {
               Verordnung über die Versicherungsvermittlung und -beratung
               (VersVermV)
             </li>
+            <li>§ 34c Gewerbeordnung (GewO)</li>
+            <li>Makler- und Bauträgerverordnung (MaBV)</li>
           </ul>
           <p className="mt-3">
             Diese Regelungen können auf der Website{" "}

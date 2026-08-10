@@ -92,7 +92,6 @@ export default function FinanzierungPage() {
               <CtaButton href={kontaktHref("konditions-check")}>
                 Konditions-Check anfragen
               </CtaButton>
-              {/* [PLATZHALTER] Schufa-Aussage prüfen, ob zusagbar (Copy-Doc-Hinweis) */}
               <p className="mt-4 text-sm text-ink-faint">
                 Kostenlos, unverbindlich, ohne Auswirkung auf Ihre Schufa
               </p>

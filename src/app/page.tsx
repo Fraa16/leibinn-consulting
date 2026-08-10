@@ -373,7 +373,6 @@ export default function HomePage() {
               </>
             }
           />
-          {/* [PLATZHALTER] Google-Bewertungs-Widget ergänzt/ersetzt die Zitate (Copy-Doc) */}
           <div className="mt-14 grid gap-6 md:grid-cols-3">
             <Testimonial
               tone="light"

@@ -65,7 +65,6 @@ export function SiteFooter() {
               Kontakt
             </p>
             <ul className="mt-4 space-y-2 text-sm text-ink-soft">
-              {/* [PLATZHALTER] Echte Kontaktdaten einsetzen */}
               <li>
                 <a
                   href={`mailto:${site.email}`}
