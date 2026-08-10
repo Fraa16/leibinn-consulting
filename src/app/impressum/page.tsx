@@ -14,7 +14,7 @@ export default function ImpressumPage() {
         <div>
           <h2>Angaben gemäß § 5 DDG</h2>
           <p className="mt-3">
-            Leibinn Consulting / Cedrik Leibinn
+            Leibinn Consulting / Cedrik Robin Leibinn
             <br />
             Konrad-Zuse-Straße 98
             <br />
@@ -28,12 +28,12 @@ export default function ImpressumPage() {
               beratung@leibinn-consulting.de
             </a>
           </p>
-          <p className="mt-3">Geschäftsführung: Cedrik Leibinn</p>
+          <p className="mt-3">Geschäftsführung: Cedrik Robin Leibinn</p>
         </div>
 
         <div>
           <h2>Inhaltlich verantwortlich i.S.d. § 18 Abs. 2 MStV</h2>
-          <p className="mt-3">Cedrik Leibinn (Anschrift wie oben)</p>
+          <p className="mt-3">Cedrik Robin Leibinn (Anschrift wie oben)</p>
         </div>
 
         <div>
