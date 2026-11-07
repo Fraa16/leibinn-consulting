@@ -54,7 +54,7 @@ export async function POST(request: Request) {
       from,
       to: [to],
       reply_to: email,
-      subject: `Erstgespräch-Anfrage: ${anliegen.label} – ${name}`,
+      subject: `Erstgespräch-Anfrage: ${anliegen.label} · ${name}`,
       text: [
         `Thema: ${anliegen.label}`,
         `Beruflicher Status: ${status}`,

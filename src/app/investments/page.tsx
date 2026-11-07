@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CtaButton } from "@/components/CtaButton";
-import { LightSection } from "@/components/Theme";
-import { Bento, BentoCell } from "@/components/Bento";
-import { EditorialHeader, PullStat } from "@/components/Editorial";
-import { StepList, type Step } from "@/components/StepList";
-import { Testimonial } from "@/components/Testimonial";
-import { Faq, type FaqItem } from "@/components/Faq";
-import { CtaBanner } from "@/components/CtaBanner";
-import { Disclaimer } from "@/components/Disclaimer";
+import type { FaqEntry } from "@/components/FaqList";
 import { JsonLd, breadcrumbJsonLd } from "@/components/JsonLd";
-import { kontaktHref } from "@/lib/site";
+import { Reveal } from "@/components/Reveal";
+import { SectionHead } from "@/components/SectionHead";
+import { BrandLine } from "@/components/Brand";
+import { MiniGrowth } from "@/components/home/LeistungenBento";
+import { PageHero } from "@/components/page/PageHero";
+import { BookingSection } from "@/components/page/BookingSection";
+import { FaqBlock } from "@/components/page/FaqBlock";
+import {
+  PageShell,
+  ProcessSteps,
+  QuoteCard,
+  RelatedTopics,
+  TopicEyebrow,
+  type ProcessStep,
+} from "@/components/page/Blocks";
 
 export const metadata: Metadata = {
   title: { absolute: "Vermögensaufbau mit Strategie | Leibinn Consulting" },
@@ -19,7 +25,26 @@ export const metadata: Metadata = {
   alternates: { canonical: "/investments" },
 };
 
-const steps: Step[] = [
+const principles = [
+  {
+    title: "Streuung statt Wette.",
+    text: "Einzelne Aktien, einzelne Branchen, einzelne Länder können fallen. Ein breit gestreutes Portfolio hängt nicht an einer Entscheidung. Wer streut, muss die Zukunft nicht vorhersagen.",
+  },
+  {
+    title: "Risiko nach Situation, nicht nach Mut.",
+    text: "Wie viel Schwankung Ihr Portfolio verträgt, bestimmen Ihr Horizont, Ihre Liquidität und Ihre Pläne, nicht die Stimmung am Markt. Die Risikoverteilung wird festgelegt, bevor investiert wird.",
+  },
+  {
+    title: "Kosten sind die einzige sichere Größe.",
+    text: "Renditen schwanken, Kosten fallen immer an. Jeder Prozentpunkt Gebühr wirkt über Jahrzehnte gegen Sie. Deshalb sind Kostentransparenz und günstige Umsetzung feste Kriterien, kein Verhandlungsergebnis.",
+  },
+  {
+    title: "Disziplin schlägt Timing.",
+    text: "Die teuersten Fehler passieren in Extremphasen: Verkaufen im Crash, Einsteigen auf dem Hoch. Eine schriftliche Strategie ist der Schutz vor der eigenen Reaktion.",
+  },
+];
+
+const steps: ProcessStep[] = [
   {
     title: "Bestandsaufnahme",
     plainText:
@@ -32,13 +57,9 @@ const steps: Step[] = [
       "Zielrendite, Risikoverteilung, Sparrate, Zeithorizont: Sie erhalten eine schriftliche Strategie, die zu Ihrer Gesamtsituation passt, inklusive der Frage, ob über die Holding investiert wird.",
     text: (
       <>
-        Zielrendite, Risikoverteilung, Sparrate, Zeithorizont: Sie erhalten
-        eine schriftliche Strategie, die zu Ihrer Gesamtsituation passt,
-        inklusive der Frage, ob{" "}
-        <Link href="/holding" className="text-accent underline underline-offset-2">
-          über die Holding investiert
-        </Link>{" "}
-        wird.
+        Zielrendite, Risikoverteilung, Sparrate, Zeithorizont: Sie erhalten eine
+        schriftliche Strategie, die zu Ihrer Gesamtsituation passt, inklusive der
+        Frage, ob <Link href="/holding">über die Holding investiert</Link> wird.
       </>
     ),
   },
@@ -56,7 +77,25 @@ const steps: Step[] = [
   },
 ];
 
-const faqItems: FaqItem[] = [
+const roles = [
+  {
+    who: "Leibinn Consulting",
+    tasks: ["Analyse Ihrer Situation", "Schriftliche Strategie", "Koordination der Umsetzung", "Laufende Überprüfung"],
+    highlight: true,
+  },
+  {
+    who: "Lizenzierter Partner",
+    tasks: ["Anlageberatung im rechtlichen Sinn", "Konkrete Produkte auf Basis der Strategie"],
+    highlight: false,
+  },
+  {
+    who: "Sie",
+    tasks: ["Entscheiden jeden Schritt", "Ein Ansprechpartner für das Gesamtbild"],
+    highlight: false,
+  },
+];
+
+const faqItems: FaqEntry[] = [
   {
     q: "Ab welchem Betrag lohnt sich eine Strategie?",
     a: "Früher, als die meisten denken. Entscheidend ist nicht das vorhandene Vermögen, sondern die Sparfähigkeit: Wer monatlich investieren kann, profitiert von einer Strategie ab dem ersten Euro, weil Fehler in der Anfangsphase über Jahrzehnte nachwirken. Ein Mindestvermögen ist keine Voraussetzung für das Erstgespräch.",
@@ -81,185 +120,171 @@ const faqItems: FaqItem[] = [
 
 export default function InvestmentsPage() {
   return (
-    <>
-      {/* Hero — kompakt, asymmetrisch, Kennzahl rechts */}
-      <section className="border-b border-line">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-16 md:grid-cols-12 md:py-24">
-          <div className="md:col-span-8">
-            <p className="text-sm font-semibold tracking-[0.25em] text-fawn uppercase">
-              Investments
-            </p>
-            <h1 className="mt-5 text-4xl leading-[1.08] font-bold tracking-tight text-balance md:text-6xl">
-              Vermögensaufbau:
-              <br />
-              Strategie schlägt Bauchgefühl.
-            </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft">
-              Leibinn Consulting entwickelt Investmentstrategien für
-              Privatpersonen und Unternehmer: breite Streuung, klare
-              Risikoverteilung, transparente Kosten. Die Strategie kommt von
-              uns, die Anlageberatung führen lizenzierte Partner durch, und Sie
-              behalten einen Ansprechpartner für das Gesamtbild.
-            </p>
-            <div className="mt-9">
-              <CtaButton href={kontaktHref("strategie-gespraech")}>
-                Strategie-Gespräch buchen
-              </CtaButton>
-              <p className="mt-4 text-sm text-ink-faint">
-                15 Minuten, kostenlos, mit erster Einschätzung Ihrer aktuellen
-                Aufstellung
-              </p>
-            </div>
-          </div>
-          <PullStat
-            value="15&thinsp;Min"
-            label="kostenloses Strategie-Gespräch mit erster Einschätzung"
-            className="hidden md:col-span-3 md:col-start-10 md:block"
-          />
-        </div>
-      </section>
-
-      {/* 01 · Methodik — weiß, asymmetrisches Prinzipien-Bento */}
-      <LightSection className="border-b border-line">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <EditorialHeader
-            no="01"
-            kicker="Die Methodik"
-            title="Was macht eine gute Investmentstrategie aus?"
-            intro="Eine tragfähige Investmentstrategie beruht auf vier Prinzipien: breite Streuung über Anlageklassen und Regionen, eine Risikoverteilung, die zur eigenen Situation passt, niedrige und transparente Kosten sowie Disziplin über Marktphasen hinweg. Kein einzelnes Produkt ersetzt diese Grundlagen, und keine Prognose macht sie überflüssig."
-          />
-          <Bento className="mt-14">
-            <BentoCell surface="azure" className="md:col-span-7 md:min-h-60">
-              <h3 className="font-heading text-2xl font-bold">
-                Streuung statt Wette.
-              </h3>
-              <p className="mt-4 max-w-lg leading-relaxed text-white/85">
-                Einzelne Aktien, einzelne Branchen, einzelne Länder können
-                fallen. Ein breit gestreutes Portfolio hängt nicht an einer
-                Entscheidung. Wer streut, muss die Zukunft nicht vorhersagen.
-              </p>
-            </BentoCell>
-            <BentoCell surface="outline" className="md:col-span-5">
-              <h3 className="font-heading text-xl font-bold">
-                Risiko nach Situation, nicht nach Mut.
-              </h3>
-              <p className="mt-4 leading-relaxed text-ink-soft">
-                Wie viel Schwankung Ihr Portfolio verträgt, bestimmen Ihr
-                Horizont, Ihre Liquidität und Ihre Pläne, nicht die Stimmung am
-                Markt. Die Risikoverteilung wird festgelegt, bevor investiert
-                wird.
-              </p>
-            </BentoCell>
-            <BentoCell surface="outline" className="md:col-span-5">
-              <h3 className="font-heading text-xl font-bold">
-                Kosten sind die einzige sichere Größe.
-              </h3>
-              <p className="mt-4 leading-relaxed text-ink-soft">
-                Renditen schwanken, Kosten fallen immer an. Jeder Prozentpunkt
-                Gebühr wirkt über Jahrzehnte gegen Sie. Deshalb sind
-                Kostentransparenz und günstige Umsetzung feste Kriterien, kein
-                Verhandlungsergebnis.
-              </p>
-            </BentoCell>
-            <BentoCell surface="deep" className="md:col-span-7 md:min-h-60">
-              <h3 className="font-heading text-2xl font-bold">
-                Disziplin schlägt Timing.
-              </h3>
-              <p className="mt-4 max-w-lg leading-relaxed text-ink-soft">
-                Die teuersten Fehler passieren in Extremphasen: Verkaufen im
-                Crash, Einsteigen auf dem Hoch. Eine schriftliche Strategie ist
-                der Schutz vor der eigenen Reaktion.
-              </p>
-            </BentoCell>
-          </Bento>
-        </div>
-      </LightSection>
-
-      {/* 02 · Partnermodell — dunkel, Split mit Prozess-Schiene */}
-      <section className="border-b border-line">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <EditorialHeader
-            no="02"
-            kicker="Ablauf & Partnermodell"
-            title="Wie funktioniert der Vermögensaufbau bei Leibinn Consulting?"
-            intro="Leibinn Consulting analysiert Ihre Situation, entwickelt die Strategie und koordiniert die Umsetzung. Die Anlageberatung im rechtlichen Sinn führen lizenzierte Partner durch, mit denen wir zusammenarbeiten. Sie behalten dabei einen Ansprechpartner, der Investments, Immobilien und Struktur zusammendenkt, statt jede Entscheidung isoliert zu treffen."
-          />
-          <div className="mt-14 grid gap-12 md:grid-cols-12">
-            <div className="md:col-span-5">
-              <p className="leading-relaxed text-ink-soft">
-                Warum dieses Modell? Weil die Strategie wichtiger ist als das
-                Produkt. Die meisten Anleger scheitern nicht an der
-                Produktauswahl, sondern daran, dass niemand ihre Investments
-                mit dem Rest ihres Vermögens abstimmt: mit der Immobilie, der
-                Firmenstruktur, der Liquiditätsplanung. Genau diese Abstimmung
-                ist unsere Arbeit. Die produktbezogene Beratung übernimmt der
-                Partner, der dafür zugelassen ist, und Sie bekommen beides,
-                ohne es selbst koordinieren zu müssen.
-              </p>
-            </div>
-            <div className="md:col-span-6 md:col-start-7">
-              <StepList steps={steps} />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 03 · Kundenstimmen — weiß, zweispaltig versetzt */}
-      <LightSection className="border-b border-line">
-        <div className="mx-auto grid max-w-6xl gap-6 px-6 py-20 md:grid-cols-12 md:py-24">
-          <Testimonial
-            className="md:col-span-6"
-            quote="Als Anwalt bin ich es gewohnt, komplexe Sachverhalte zu durchdringen. Bei Investments verlasse ich mich auf Herrn Leibinn, weil er transparent kommuniziert und jede Empfehlung nachvollziehbar begründet."
-            name="Luka Šilić"
-            role="Anwalt"
-            photo="/images/luka-silic.webp"
-          />
-          <Testimonial
-            className="md:col-span-6 md:translate-y-8"
-            quote="Zeit ist als Selbstständiger mein wertvollstes Gut. Durch die klaren Strategien läuft mein Vermögensaufbau, ohne dass ich mich darum kümmern muss."
-            name="Tom Müller"
-            role="selbstständiger Tätowierer"
-            photo="/images/tom-mueller.webp"
-          />
-        </div>
-      </LightSection>
-
-      {/* 04 · FAQ */}
-      <section>
-        <div className="mx-auto grid max-w-6xl gap-8 px-6 py-20 md:grid-cols-12 md:py-24">
-          <p className="font-heading text-sm font-semibold tracking-[0.2em] text-fawn uppercase md:col-span-3">
-            04 · FAQ
-          </p>
-          <div className="md:col-span-9">
-            <Faq title="Häufige Fragen zum Vermögensaufbau" items={faqItems} />
-          </div>
-        </div>
-      </section>
-
-      <CtaBanner
+    <PageShell accent="petrol">
+      <PageHero
+        crumbs={[{ label: "Start", href: "/" }, { label: "Leistungen", href: "/leistungen" }, { label: "Investments" }]}
+        eyebrow={<TopicEyebrow slug="investments" />}
         title={
           <>
-            Ihr Depot ist gewachsen.
-            <br />
-            Aber ist es geplant?
+            Vermögensaufbau: <em>Strategie schlägt Bauchgefühl.</em>
           </>
         }
-        text="Im kostenlosen Strategie-Gespräch analysieren wir Ihre aktuelle Aufstellung und Sie erfahren, wo Streuung, Kosten oder Risikoverteilung nicht zu Ihren Zielen passen."
-        ctaLabel="Strategie-Gespräch buchen"
-        ctaHref={kontaktHref("strategie-gespraech")}
+        lead="Leibinn Consulting entwickelt Investmentstrategien für Privatpersonen und Unternehmer: breite Streuung, klare Risikoverteilung, transparente Kosten. Die Strategie kommt von uns, die Anlageberatung führen lizenzierte Partner durch, und Sie behalten einen Ansprechpartner für das Gesamtbild."
+        primary={{ label: "Strategie-Gespräch buchen", href: "#termin" }}
+        secondary={{ label: "Die vier Prinzipien", href: "#methodik" }}
+        micro="15 Minuten, kostenlos, mit erster Einschätzung Ihrer aktuellen Aufstellung."
+        image={{
+          src: "/images/cedrik-kundengespraech.webp",
+          alt: "Cedrik Leibinn im Beratungsgespräch mit einer Mandantin",
+          pos: "object-[30%_35%]",
+        }}
+        floating={<MiniGrowth />}
+        facts={[
+          { value: "4", label: "Prinzipien jeder Strategie" },
+          { value: "Schriftlich", label: "Ihre Strategie auf Papier" },
+          { value: "15 Min", label: "Kostenloses Erstgespräch" },
+        ]}
       />
 
-      <Disclaimer>
-        Kapitalanlagen sind mit Risiken verbunden. Kurse können schwanken,
-        Verluste bis zum Totalverlust einzelner Anlagen sind möglich. Frühere
-        Wertentwicklungen sind kein verlässlicher Indikator für zukünftige
-        Ergebnisse. Diese Seite enthält allgemeine Informationen und keine
-        Anlageberatung.
-      </Disclaimer>
+      {/* Methodik */}
+      <section id="methodik" className="lc-section">
+        <div className="lc-wrap">
+          <SectionHead
+            eyebrow="Die Methodik"
+            title={
+              <>
+                Was macht eine gute <em>Investmentstrategie</em> aus?
+              </>
+            }
+            lead="Vier Prinzipien: breite Streuung über Anlageklassen und Regionen, eine Risikoverteilung, die zur eigenen Situation passt, niedrige und transparente Kosten sowie Disziplin über Marktphasen hinweg. Kein Produkt ersetzt diese Grundlagen, keine Prognose macht sie überflüssig."
+          />
+          <ol className="mt-[clamp(48px,6vw,72px)] grid gap-4 md:grid-cols-2">
+            {principles.map((p, i) => (
+              <Reveal
+                as="li"
+                key={p.title}
+                delay={i * 80}
+                className={`flex flex-col rounded-[24px] p-[clamp(26px,3vw,40px)] ${
+                  i === 0 ? "bg-navy text-white" : "border border-sand bg-white text-navy"
+                }`}
+              >
+                <span className={`mono ${i === 0 ? "text-acc-light" : "text-acc-dark"}`}>
+                  Prinzip 0{i + 1}
+                </span>
+                <h3 className="mt-8 text-[clamp(24px,2.4vw,32px)] leading-tight font-normal tracking-[-0.03em]">
+                  {p.title}
+                </h3>
+                <p className={`mt-4 text-[15.5px] leading-relaxed ${i === 0 ? "text-on-dark-body" : "text-body"}`}>
+                  {p.text}
+                </p>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
 
-      <JsonLd
-        data={breadcrumbJsonLd([{ name: "Investments", path: "/investments" }])}
+      {/* Ablauf & Partnermodell */}
+      <section id="ablauf" className="lc-panel">
+        <BrandLine shape="b" color="var(--acc-light)" opacity={0.12} className="-top-10 -right-48 w-[min(1000px,90vw)]" />
+        <div className="lc-wrap relative">
+          <SectionHead
+            eyebrow="Ablauf & Partnermodell"
+            title={
+              <>
+                Wie funktioniert der Vermögensaufbau <em>bei Leibinn Consulting?</em>
+              </>
+            }
+            lead="Wir analysieren Ihre Situation, entwickeln die Strategie und koordinieren die Umsetzung. Die Anlageberatung im rechtlichen Sinn führen lizenzierte Partner durch. Sie behalten einen Ansprechpartner, der Investments, Immobilien und Struktur zusammendenkt."
+          />
+          <div className="mt-[clamp(48px,6vw,72px)]">
+            <ProcessSteps steps={steps} />
+          </div>
+
+          <div className="mt-[clamp(56px,7vw,96px)] grid gap-10 border-t border-white/10 pt-[clamp(40px,5vw,64px)] min-[1000px]:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] min-[1000px]:gap-16">
+            <Reveal>
+              <p className="mono text-acc-light">Warum dieses Modell?</p>
+              <p className="mt-5 text-[clamp(20px,1.8vw,24px)] leading-snug font-medium tracking-[-0.015em]">
+                Weil die Strategie wichtiger ist als das Produkt.
+              </p>
+              <p className="mt-5 text-[15.5px] leading-relaxed text-on-dark-body">
+                Die meisten Anleger scheitern nicht an der Produktauswahl,
+                sondern daran, dass niemand ihre Investments mit dem Rest ihres
+                Vermögens abstimmt: mit der Immobilie, der Firmenstruktur, der
+                Liquiditätsplanung. Genau diese Abstimmung ist unsere Arbeit. Die
+                produktbezogene Beratung übernimmt der Partner, der dafür
+                zugelassen ist, und Sie bekommen beides, ohne es selbst
+                koordinieren zu müssen.
+              </p>
+            </Reveal>
+            <Reveal delay={100} className="grid gap-3 sm:grid-cols-3">
+              {roles.map((r) => (
+                <div
+                  key={r.who}
+                  className={`flex flex-col rounded-[20px] p-5 ${
+                    r.highlight ? "bg-acc-light text-navy-950" : "border border-white/10 bg-navy-850"
+                  }`}
+                >
+                  <p className={`mono ${r.highlight ? "text-navy-950/70" : "text-on-dark-subtle"}`}>Wer</p>
+                  <p className="mt-2 text-[17px] font-semibold">{r.who}</p>
+                  <ul className={`mt-4 space-y-2 border-t pt-4 text-[14px] leading-snug ${r.highlight ? "border-navy-950/15" : "border-white/10 text-on-dark-body"}`}>
+                    {r.tasks.map((t) => (
+                      <li key={t}>{t}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* Stimmen */}
+      <section className="lc-section !pb-0">
+        <div className="lc-wrap grid gap-4 md:grid-cols-2">
+          <Reveal>
+            <QuoteCard
+              quote="Als Anwalt bin ich es gewohnt, komplexe Sachverhalte zu durchdringen. Bei Investments verlasse ich mich auf Herrn Leibinn, weil er transparent kommuniziert und jede Empfehlung nachvollziehbar begründet."
+              name="Luka Šilić"
+              role="Anwalt"
+              photo="/images/luka-silic.webp"
+            />
+          </Reveal>
+          <Reveal delay={100}>
+            <QuoteCard
+              quote="Zeit ist als Selbstständiger mein wertvollstes Gut. Durch die klaren Strategien läuft mein Vermögensaufbau, ohne dass ich mich darum kümmern muss."
+              name="Tom Müller"
+              role="Selbstständiger Tätowierer"
+              photo="/images/tom-mueller.webp"
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      <FaqBlock
+        title={
+          <>
+            Häufige Fragen <em>zum Vermögensaufbau.</em>
+          </>
+        }
+        items={faqItems}
       />
-    </>
+
+      <BookingSection
+        title={
+          <>
+            Ihr Depot ist gewachsen. <em>Aber ist es geplant?</em>
+          </>
+        }
+        lead="Im kostenlosen Erstgespräch schauen wir auf Ihre aktuelle Aufstellung. Sie erfahren, wo Streuung, Kosten oder Risikoverteilung nicht zu Ihren Zielen passen."
+      />
+
+      <RelatedTopics
+        current="Investments"
+        slugs={["absicherung", "holding", "immobilien"]}
+        disclaimer="Kapitalanlagen sind mit Risiken verbunden. Kurse können schwanken, Verluste bis zum Totalverlust einzelner Anlagen sind möglich. Frühere Wertentwicklungen sind kein verlässlicher Indikator für zukünftige Ergebnisse. Diese Seite enthält allgemeine Informationen und keine Anlageberatung."
+      />
+
+      <JsonLd data={breadcrumbJsonLd([{ name: "Leistungen", path: "/leistungen" }, { name: "Investments", path: "/investments" }])} />
+    </PageShell>
   );
 }

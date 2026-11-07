@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import Image from "next/image";
+import type { FaqEntry } from "@/components/FaqList";
 import { KontaktForm } from "@/components/KontaktForm";
-import { BookingCard } from "@/components/home/BookingCard";
-import { LightSection } from "@/components/Theme";
-import { Faq, type FaqItem } from "@/components/Faq";
-import { CtaButton } from "@/components/CtaButton";
 import { JsonLd, breadcrumbJsonLd } from "@/components/JsonLd";
-import { IconMail, IconPhone, IconPin } from "@/components/icons";
+import { Reveal } from "@/components/Reveal";
+import { BrandLine } from "@/components/Brand";
+import { BookingCard } from "@/components/home/BookingCard";
+import { PageHero } from "@/components/page/PageHero";
+import { FaqBlock } from "@/components/page/FaqBlock";
+import { PageShell } from "@/components/page/Blocks";
+import { IconCalendar, IconMail, IconPhone, IconPin } from "@/components/icons";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -17,7 +20,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/kontakt" },
 };
 
-const faqItems: FaqItem[] = [
+const faqItems: FaqEntry[] = [
   {
     q: "Muss ich mich auf das Gespräch vorbereiten?",
     a: "Nein. Hilfreich ist ein grobes Bild Ihrer Situation: ungefähres Einkommen, vorhandene Anlagen, laufende Verpflichtungen, Ziele. Exakte Unterlagen sind im Erstgespräch nicht nötig, es geht um die Richtung und den größten Hebel, nicht um die zweite Nachkommastelle.",
@@ -25,6 +28,10 @@ const faqItems: FaqItem[] = [
   {
     q: "Entstehen durch das Erstgespräch Verpflichtungen?",
     a: "Nein, keine. Das Gespräch ist kostenlos, es folgt kein Vertrag und kein automatischer Folgetermin. Sie entscheiden danach in Ruhe, ob eine Zusammenarbeit für Sie passt. Die erste Einschätzung aus dem Gespräch behalten Sie in jedem Fall.",
+  },
+  {
+    q: "Was passiert nach der Buchung?",
+    a: "Sie erhalten eine Bestätigung mit allen Details. Das Gespräch dauert 15 Minuten, per Video oder Telefon. Passt es, folgt ein ausführlicher Analysetermin, online oder vor Ort in Böblingen. Unterlagen brauchen Sie keine, Zahlen aus dem Kopf reichen für den Anfang.",
   },
 ];
 
@@ -35,127 +42,107 @@ const contactPageJsonLd = {
   url: `${site.url}/kontakt`,
 };
 
+function ContactWays() {
+  const row =
+    "flex items-center gap-3.5 rounded-[16px] border border-white/10 bg-white/4 px-4 py-3.5 text-[15px] text-white transition-colors hover:border-white/24 hover:bg-white/8";
+  return (
+    <div className="mt-9 grid w-full max-w-[34rem] gap-2">
+      <a href={`tel:${site.phone.replace(/\s/g, "")}`} className={row}>
+        <IconPhone className="h-5 w-5 shrink-0 text-acc-light" />
+        {site.phone}
+      </a>
+      <a href={`mailto:${site.email}`} className={`${row} break-all`}>
+        <IconMail className="h-5 w-5 shrink-0 text-acc-light" />
+        {site.email}
+      </a>
+      <p className={`${row} hover:border-white/10 hover:bg-white/4`}>
+        <IconPin className="h-5 w-5 shrink-0 text-acc-light" />
+        {site.address}
+      </p>
+    </div>
+  );
+}
+
 export default function KontaktPage() {
   return (
-    <>
-      {/* Split-Layout: links dunkle Info-Spalte (sticky), rechts weiße Formular-Karte */}
-      <section id="termin" className="border-b border-line">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:grid-cols-12 md:py-24">
-          <div className="md:col-span-5">
-            <div className="md:sticky md:top-28">
-              <p className="text-sm font-semibold tracking-[0.25em] text-fawn uppercase">
-                Kontakt & Erstgespräch
-              </p>
-              <h1 className="mt-5 text-4xl leading-[1.08] font-bold tracking-tight md:text-5xl">
-                15 Minuten.
-                <br />
-                Eine ehrliche
-                <br />
-                Einschätzung.
-              </h1>
-              <p className="mt-6 leading-relaxed text-ink-soft">
-                Das Erstgespräch ist kostenlos und unverbindlich: Ihre
-                Situation, Ihre Ziele, eine erste Einschätzung, was der größte
-                Hebel ist. Sie gehen mit einem Ergebnis raus, auch wenn Sie
-                sich gegen eine Zusammenarbeit entscheiden.
-              </p>
+    <PageShell>
+      <PageHero
+        id="termin"
+        crumbs={[{ label: "Start", href: "/" }, { label: "Kontakt" }]}
+        eyebrow="Kontakt & Erstgespräch"
+        title={
+          <>
+            15 Minuten. <em>Eine ehrliche Einschätzung.</em>
+          </>
+        }
+        lead="Das Erstgespräch ist kostenlos und unverbindlich: Ihre Situation, Ihre Ziele, eine erste Einschätzung, wo der größte Hebel liegt. Sie gehen mit einem Ergebnis raus, auch wenn Sie sich gegen eine Zusammenarbeit entscheiden."
+        extra={<ContactWays />}
+        aside={<BookingCard showAlternatives={false} />}
+        facts={[
+          { value: "15 Min", label: "Per Video oder Telefon" },
+          { value: "24 h", label: "Antwort auf Anfragen" },
+          { value: "0 €", label: "Kostenlos und unverbindlich" },
+        ]}
+      />
 
-              <div className="mt-10 space-y-5 border-t border-line pt-8">
-                <p className="text-sm font-semibold tracking-[0.2em] text-ink-faint uppercase">
-                  Lieber direkt?
-                </p>
-                <a
-                  href={`tel:${site.phone.replace(/\s/g, "")}`}
-                  className="flex items-center gap-3 transition-colors hover:text-fawn"
-                >
-                  <IconPhone className="h-5 w-5 text-azure-light" />
-                  {site.phone}
-                </a>
-                <a
-                  href={`mailto:${site.email}`}
-                  className="flex items-center gap-3 break-all transition-colors hover:text-fawn"
-                >
-                  <IconMail className="h-5 w-5 shrink-0 text-azure-light" />
-                  {site.email}
-                </a>
-                <p className="flex items-center gap-3">
-                  <IconPin className="h-5 w-5 text-azure-light" />
-                  {site.address}
-                </p>
-              </div>
-
-              <figure className="mt-10 overflow-hidden rounded-2xl border border-line">
-                <Image
-                  src="/images/cedrik-buero.webp"
-                  alt="Beratungsgespräch in den Räumen von Leibinn Consulting"
-                  width={2400}
-                  height={1600}
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                  className="h-auto w-full object-cover"
-                />
-              </figure>
-
-              <div className="mt-10 border-t border-line pt-8">
-                <h2 className="font-heading text-xl font-bold">
-                  Was passiert nach der Buchung?
-                </h2>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                  Nach der Buchung erhalten Sie eine Bestätigung mit allen
-                  Details. Das Gespräch dauert 15 Minuten, per Video oder
-                  Telefon. Passt es, folgt ein ausführlicher Analysetermin,
-                  online oder vor Ort in Böblingen. Besprochen werden Ihre Situation, Ihre Ziele
-                  und der größte Hebel. Unterlagen brauchen Sie keine, Zahlen
-                  aus dem Kopf reichen für den Anfang.
-                </p>
-              </div>
+      {/* Formular */}
+      <section id="nachricht" className="lc-section">
+        <div className="lc-wrap grid items-start gap-12 min-[1000px]:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] min-[1000px]:gap-20">
+          <Reveal className="min-[1000px]:sticky min-[1000px]:top-[calc(var(--header-h)+40px)]">
+            <p className="eyebrow">Lieber schreiben?</p>
+            <h2 className="display-2 mt-6 text-navy">
+              Oder senden Sie <em>uns eine Nachricht.</em>
+            </h2>
+            <p className="lead mt-6">
+              Drei kurze Fragen, damit das Gespräch bei Ihrer Situation startet
+              statt bei null. Wir melden uns innerhalb von 24 Stunden zur
+              Terminabstimmung.
+            </p>
+            <div className="relative mt-9 aspect-[16/10] overflow-hidden rounded-[24px] bg-navy-850">
+              <Image
+                src="/images/cedrik-buero.webp"
+                alt="Beratungsgespräch in den Räumen von Leibinn Consulting"
+                fill
+                sizes="(min-width: 1000px) 38vw, 100vw"
+                className="object-cover object-[60%_40%]"
+              />
             </div>
-          </div>
-
-          <div className="space-y-6 md:col-span-7">
-            {/* Calendly erst nach Klick (Zwei-Klick-Lösung) */}
-            <BookingCard showAlternatives={false} />
-            <div className="theme-light rounded-3xl bg-white p-7 shadow-2xl shadow-black/30 md:p-10">
-              <h2 className="mb-6 font-heading text-xl font-bold">
-                Oder senden Sie uns eine Nachricht
-              </h2>
-              <Suspense fallback={null}>
-                <KontaktForm />
-              </Suspense>
-            </div>
-          </div>
+          </Reveal>
+          <Reveal delay={100} className="rounded-[28px] border border-sand bg-white p-[clamp(22px,3.6vw,48px)] shadow-[0_30px_70px_-40px_rgba(13,26,45,0.35)]">
+            <Suspense fallback={null}>
+              <KontaktForm />
+            </Suspense>
+          </Reveal>
         </div>
       </section>
 
-      {/* FAQ — weißer Breaker */}
-      <LightSection className="border-b border-line">
-        <div className="mx-auto grid max-w-6xl gap-8 px-6 py-20 md:grid-cols-12 md:py-24">
-          <p className="font-heading text-sm font-semibold tracking-[0.2em] text-azure uppercase md:col-span-3">
-            FAQ
-          </p>
-          <div className="md:col-span-9">
-            <Faq title="Häufige Fragen zum Erstgespräch" items={faqItems} />
-          </div>
-        </div>
-      </LightSection>
+      <FaqBlock
+        className="!pt-0"
+        title={
+          <>
+            Häufige Fragen <em>zum Erstgespräch.</em>
+          </>
+        }
+        items={faqItems}
+      />
 
       {/* Abschlusszeile */}
-      <section>
-        <div className="mx-auto max-w-4xl px-6 py-20 text-center md:py-24">
-          <p className="font-heading text-2xl leading-snug font-medium text-balance md:text-4xl">
-            Der schnellste Weg zu einem Gesamtbild Ihrer Finanzen sind
-            15 Minuten Gespräch.{" "}
-            <span className="text-azure-light">
-              Der langsamste ist, es weiter aufzuschieben.
-            </span>
+      <section className="lc-panel">
+        <BrandLine shape="b" color="var(--acc-light)" opacity={0.14} className="-bottom-16 -left-36 w-[min(960px,100vw)]" />
+        <Reveal className="lc-wrap relative flex flex-col items-start gap-10 md:flex-row md:items-end md:justify-between">
+          <p className="display-3 max-w-[22em]">
+            Der schnellste Weg zu einem Gesamtbild Ihrer Finanzen sind 15
+            Minuten Gespräch. <em>Der langsamste ist, es weiter aufzuschieben.</em>
           </p>
-          <div className="mt-10">
-            <CtaButton href="#termin">Termin wählen</CtaButton>
-          </div>
-        </div>
+          <a href="#termin" className="btn btn-lg btn-copper shrink-0">
+            <IconCalendar className="h-[18px] w-[18px]" />
+            Termin wählen
+          </a>
+        </Reveal>
       </section>
 
       <JsonLd data={breadcrumbJsonLd([{ name: "Kontakt", path: "/kontakt" }])} />
       <JsonLd data={contactPageJsonLd} />
-    </>
+    </PageShell>
   );
 }

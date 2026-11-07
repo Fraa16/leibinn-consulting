@@ -30,7 +30,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} – Vermögensaufbau, ganzheitlich beraten`,
+    default: `${site.name}: Vermögensaufbau, ganzheitlich beraten`,
     template: `%s | ${site.name}`,
   },
   description:
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
         url: "/og.jpg",
         width: 1200,
         height: 630,
-        alt: `${site.name} \u2013 Vermögensaufbau mit System`,
+        alt: `${site.name}: Vermögen strategisch aufbauen, gezielt absichern`,
       },
     ],
   },

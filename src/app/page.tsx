@@ -5,18 +5,19 @@ import { HeroVideo } from "@/components/HeroVideo";
 import { Reveal } from "@/components/Reveal";
 import { SectionHead } from "@/components/SectionHead";
 import { BrandLine } from "@/components/Brand";
-import { FaqList, type FaqEntry } from "@/components/FaqList";
+import type { FaqEntry } from "@/components/FaqList";
+import { FaqBlock } from "@/components/page/FaqBlock";
+import { BookingSection } from "@/components/page/BookingSection";
+import { PageShell } from "@/components/page/Blocks";
 import { JsonLd, howToJsonLd } from "@/components/JsonLd";
 import { LeistungenBento } from "@/components/home/LeistungenBento";
 import { Wegweiser } from "@/components/home/Wegweiser";
 import { TestimonialSlider, type Quote } from "@/components/home/TestimonialSlider";
-import { BookingCard } from "@/components/home/BookingCard";
 import {
   IconArrowRight,
   IconArrowUpRight,
   IconCalendar,
   IconCheck,
-  IconMail,
   IconShieldCheck,
 } from "@/components/icons";
 import { site, topicBySlug, topics, worlds, type TopicSlug } from "@/lib/site";
@@ -190,7 +191,7 @@ const personJsonLd = {
 
 export default function HomePage() {
   return (
-    <div className="lc-page -mt-[var(--header-h)] pt-[var(--inset)] pb-[var(--inset)]">
+    <PageShell>
       <Hero />
       <Situation />
       <Leistungen />
@@ -198,8 +199,22 @@ export default function HomePage() {
       <Ablauf />
       <Ueber />
       <Stimmen />
-      <FaqSection />
-      <Termin />
+      <FaqBlock
+        title={
+          <>
+            Gut zu wissen, <em>bevor wir sprechen.</em>
+          </>
+        }
+        items={faqItems}
+      />
+      <BookingSection
+        title={
+          <>
+            Sprechen wir über <em>Ihre Situation.</em>
+          </>
+        }
+        lead={`${site.callMinutes} Minuten, kostenlos und unverbindlich. Danach wissen Sie, wo Ihr größter Hebel liegt und wie es weitergehen kann.`}
+      />
       <JsonLd data={personJsonLd} />
       <JsonLd
         data={howToJsonLd(
@@ -207,7 +222,7 @@ export default function HomePage() {
           steps.map((s) => ({ title: s.title, plainText: `${s.summary} ${s.details}` })),
         )}
       />
-    </div>
+    </PageShell>
   );
 }
 
@@ -736,107 +751,3 @@ function Stimmen() {
   );
 }
 
-/* ---------- 07 FAQ ---------- */
-
-function FaqSection() {
-  return (
-    <section id="faq" className="lc-section">
-      <div className="lc-wrap grid items-start gap-12 min-[1000px]:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] min-[1000px]:gap-20">
-        <Reveal className="min-[1000px]:sticky min-[1000px]:top-[calc(var(--header-h)+40px)]">
-          <p className="eyebrow">Häufige Fragen</p>
-          <h2 className="display-2 mt-6">
-            Gut zu wissen, <em>bevor wir sprechen.</em>
-          </h2>
-          <p className="lead mt-6 max-w-[28rem]">
-            Die wichtigsten Antworten vorab. Alles Weitere klären wir gern
-            persönlich.
-          </p>
-          <a href="#termin" className="btn btn-outline mt-8">
-            Frage im Gespräch klären
-            <IconArrowRight className="h-4 w-4" />
-          </a>
-          <div className="mt-10 flex max-w-[26rem] items-start gap-4 rounded-[20px] border border-sand bg-white p-5">
-            <Image
-              src="/images/cedrik-avatar.webp"
-              alt=""
-              width={48}
-              height={48}
-              className="h-12 w-12 shrink-0 rounded-full object-cover"
-            />
-            <div>
-              <p className="text-[15px] font-semibold text-navy">
-                Ihre Frage ist nicht dabei?
-              </p>
-              <p className="mt-1 text-[14px] leading-relaxed text-body">
-                Schreiben Sie uns, wir antworten innerhalb von 24 Stunden.
-              </p>
-              <a
-                href={`mailto:${site.email}`}
-                className="mt-3 inline-flex items-center gap-2 text-[14px] font-semibold text-navy hover:text-copper-dark"
-              >
-                <IconMail className="h-4 w-4" />
-                {site.email}
-              </a>
-            </div>
-          </div>
-        </Reveal>
-        <Reveal delay={100}>
-          <FaqList items={faqItems} />
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/* ---------- 08 Termin ---------- */
-
-function Termin() {
-  return (
-    <section id="termin" className="lc-panel">
-      <BrandLine
-        shape="b"
-        color="var(--color-copper-light)"
-        opacity={0.14}
-        className="-bottom-16 -left-36 w-[min(960px,100vw)]"
-      />
-      <div className="lc-wrap relative grid items-start gap-[clamp(48px,6vw,96px)] min-[1000px]:grid-cols-2">
-        <Reveal>
-          <p className="eyebrow">Kostenloses Erstgespräch</p>
-          <h2 className="display-2 mt-6">
-            Sprechen wir über <em>Ihre Situation.</em>
-          </h2>
-          <p className="lead mt-6 max-w-[32rem]">
-            {site.callMinutes} Minuten, kostenlos und unverbindlich. Danach
-            wissen Sie, wo Ihr größter Hebel liegt und wie es weitergehen kann.
-          </p>
-          <div className="relative mt-9 aspect-[16/10] overflow-hidden rounded-[24px] bg-navy-850">
-            <Image
-              src="/images/cedrik-window.webp"
-              alt="Cedrik Leibinn am Fenster seines Büros"
-              fill
-              sizes="(min-width: 1000px) 45vw, 100vw"
-              className="object-cover object-[70%_30%]"
-            />
-          </div>
-          <ol className="mt-8 space-y-4">
-            {[
-              `Termin wählen: ${site.callMinutes} Minuten, kostenlos`,
-              "Gespräch per Video oder Telefon",
-              "Ihre ehrliche erste Einschätzung",
-            ].map((t, i) => (
-              <li key={t} className="flex items-center gap-3.5 text-[16px] text-on-dark">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-ivory text-[14px] font-semibold text-navy">
-                  {i + 1}
-                </span>
-                {t}
-              </li>
-            ))}
-          </ol>
-        </Reveal>
-        <Reveal delay={120}>
-          <BookingCard />
-        </Reveal>
-      </div>
-    </section>
-  );
-}

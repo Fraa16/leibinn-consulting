@@ -116,7 +116,7 @@ function TopicCard({
 
 /* ---------- Mini-Interfaces ---------- */
 
-function MiniFrame({
+export function MiniFrame({
   title,
   chip,
   children,
@@ -153,7 +153,7 @@ function Chip({
   );
 }
 
-function MiniGrowth() {
+export function MiniGrowth() {
   return (
     <MiniFrame
       title="Vermögensentwicklung"
@@ -208,7 +208,7 @@ function MiniGrowth() {
   );
 }
 
-function MiniObjektCheck() {
+export function MiniObjektCheck() {
   const rows: [string, number, boolean][] = [
     ["Lage", 92, false],
     ["Mietpotenzial", 84, false],
@@ -239,7 +239,7 @@ function MiniObjektCheck() {
   );
 }
 
-function MiniStructure() {
+export function MiniStructure() {
   const box =
     "rounded-lg border px-2 py-2 text-center text-[11px] leading-tight font-medium";
   return (
@@ -267,7 +267,7 @@ function MiniStructure() {
   );
 }
 
-function MiniBanks() {
+export function MiniBanks() {
   const rows: [string, number, boolean][] = [
     ["Partnerbank A", 68, false],
     ["Partnerbank B", 92, true],
@@ -302,7 +302,7 @@ function MiniBanks() {
   );
 }
 
-function MiniBenefits() {
+export function MiniBenefits() {
   return (
     <MiniFrame title="Benefit-Paket" note="Schematische Darstellung">
       <div className="space-y-2">
@@ -337,7 +337,7 @@ function MiniBenefits() {
   );
 }
 
-function MiniCoverage() {
+export function MiniCoverage() {
   const rows: [string, boolean][] = [
     ["Einkommen", true],
     ["Familie", true],

@@ -1,22 +1,41 @@
-# Leibinn Consulting – Website
+# Leibinn Consulting · Website
 
-Marketing-Website für Leibinn Consulting: Vermögensaufbau, Off-Market-Immobilien, Holding-Strukturen, Absicherung und Finanzierung (Region Stuttgart).
+Marketing-Website für Leibinn Consulting: Investments, Off-Market-Immobilien, Holding-Strukturen, Finanzierung, bAV / bKV und Absicherung (Böblingen bei Stuttgart).
 
-**Stack:** Next.js (App Router) · Tailwind CSS 4 · TypeScript · Fonts: Host Grotesk + Geist Mono (lokal via `next/font`, keine Verbindung zu Google im Browser)
+**Stack:** Next.js (App Router) · Tailwind CSS 4 · TypeScript · Fonts: Host Grotesk + Geist Mono (lokal via `next/font`, keine Verbindung zu Google im Browser) · Vercel Web Analytics
 
-**Design-System (Markenfamilie, wie die Landingpages):** Ivory `#F5F3EE` als Grund, Ink `#0D1A2D` als abgerundete Inset-Panels, Copper `#B8875A` als Akzent der Hauptseite. Schwebende Pill-Navigation, Mono-Eyebrows, Pill-Buttons, Logo-Spuren als tönbare CSS-Masken (`.bl-a`, `.bl-b`). Token und Komponenten-Klassen (`.lc-panel`, `.display-1/2/3`, `.eyebrow`, `.btn-*`) in `src/app/globals.css`.
+## Design-System
 
-**Drei Welten, drei Akzente** (`worlds` in `src/lib/site.ts`): Jede Welt trägt die Farbe ihrer Landingpage, damit Hauptseite und Landingpages sichtbar zusammengehören.
+Die Hauptseite teilt die DNA der Landingpages (Investment- & Finanzberatung, Immobilien & Steuern, Benefits):
+
+- **Grund und Flächen:** Ivory `#F5F3EE` als Seitengrund, Ink `#0D1A2D` als abgerundete Inset-Panels (`.lc-panel`), weiße Karten auf Ivory.
+- **Typografie:** Host Grotesk für alles, Geist Mono für Eyebrows und Labels. Headlines mit kursivem Akzent (`<em>` in `.display-*`).
+- **Elemente:** schwebende Pill-Navigation, Pill-Buttons (`.btn-copper`, `.btn-ink`, `.btn-outline` …), Logo-Spuren als tönbare CSS-Masken (`.bl-a`, `.bl-b`), Logo als Maske (`.logo-wordmark`, `.logo-lockup`).
+- **Token und Klassen:** `src/app/globals.css`.
+
+**Drei Welten, drei Akzente** (`worlds` in `src/lib/site.ts`). Jede Fachseite setzt per `PageShell accent="…"` den Akzent ihrer Welt (CSS-Variablen `--acc*`, Utilities `text-acc`, `bg-acc-light` …):
 
 | Welt | Akzent | Fachbereiche |
 | --- | --- | --- |
-| Privates Vermögen | Petrol `#2F7A7E` (LP Investment- & Finanzberatung) | Investments, Absicherung |
-| Immobilien | Copper `#B8875A` (LP Immobilien & Steuern) | Off-Market-Immobilien, Finanzierung |
-| Unternehmen | Indigo `#4A4FB0` (Benefit-Website) | Holding-Strukturen, bAV / bKV |
+| Privates Vermögen | Petrol `#2F7A7E` | Investments, Absicherung |
+| Immobilien | Copper `#B8875A` (auch Hub-Akzent) | Off-Market-Immobilien, Finanzierung |
+| Unternehmen | Indigo `#4A4FB0` | Holding-Strukturen, bAV / bKV |
 
-**Marken-Assets** (`public/brand/`): `logo-wordmark.webp` (Bildmarke + Schriftzug, Header), `logo-lockup-dark.webp` (mit „Investment Consulting“, Footer), beide als CSS-Maske einfärbbar; `line-a.png` / `line-b.png` (Logo-Spuren für Dekor). Ältere Dateien (`logo-mark-white.png`, `frame-*.png`) nutzen noch die Fachseiten. Achtung: `frame-21.png` enthält eine Platzhalter-URL als Wasserzeichen, nicht als Dekor verwenden.
+**Regel für Texte:** Sie-Form, keine Gedankenstriche (– oder —) als Satzzeichen; Komma, Doppelpunkt oder Punkt verwenden.
 
-**Redesign-Status:** Startseite, Header und Footer sind neu. Die Fachseiten, Über uns, Kontakt und die Rechtsseiten folgen in Phase 2; bis dahin zeigen ihre alten Token-Namen (`twilight`, `fawn`, `azure` …) auf die neue Palette.
+## Struktur
+
+| Bereich | Dateien |
+| --- | --- |
+| Seiten | `src/app/**/page.tsx` (Start, Leistungen, 6 Fachseiten, Über uns, Kontakt, Impressum, Datenschutz, 404) |
+| Inhalte zentral | `src/lib/site.ts` (Kontaktdaten, Fachbereiche, Welten, Anliegen) |
+| Global | `SiteHeader`, `SiteFooter`, `Brand` (Logo, Marken-Linien), `Reveal`, `FaqList`, `SectionHead`, `icons` |
+| Seiten-Baukasten | `src/components/page/`: `PageHero`, `BookingSection`, `FaqBlock`, `Blocks` (PageShell, ProcessSteps, Compare, QuoteCard, RelatedTopics, CheckList …), `LegalPage`, `ZinsRechner` |
+| Startseite | `src/components/home/`: `LeistungenBento` (inkl. Mini-Interfaces), `Wegweiser`, `TestimonialSlider`, `BookingCard` |
+
+**Wegweiser:** drei Fragen führen zu den passenden Fachbereichen; läuft im Browser, speichert nichts. Das Ergebnis erscheint in der Buchungskarte als „Ihr Fokus“.
+
+**Zins-Rechner (`/finanzierung`):** vereinfachte Modellrechnung (Annuitätendarlehen, 3,7 % Basiszins, 2 % Anfangstilgung). Annahmen in `ZinsRechner.tsx`.
 
 ## Entwicklung
 
@@ -24,65 +43,36 @@ Marketing-Website für Leibinn Consulting: Vermögensaufbau, Off-Market-Immobili
 npm install
 npm run dev      # http://localhost:3000
 npm run build    # Produktions-Build (statisch generiert)
+npm run lint
 ```
 
 ## Deployment (Vercel)
 
-Repo bei [vercel.com/new](https://vercel.com/new) importieren – Next.js wird automatisch erkannt, keine Sonderkonfiguration nötig. Umgebungsvariablen aus `.env.example` im Vercel-Dashboard setzen, sobald das Kontaktformular aktiv werden soll.
+Next.js wird automatisch erkannt. Umgebungsvariablen im Vercel-Dashboard:
 
-## Kontaktformular
-
-`src/app/api/contact/route.ts` versendet Anfragen über [Resend](https://resend.com). Ohne `RESEND_API_KEY` ist das Formular inaktiv und verweist auf E-Mail/Telefon. Aktivieren:
-
-1. Resend-Konto anlegen, Domain verifizieren
-2. `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` in Vercel setzen
-
-**Terminbuchung:** Erstgespräch 15 Min (Video oder Telefon). Calendly wird per Zwei-Klick geladen (`src/components/home/BookingCard.tsx`): erst nach Klick auf „Kalender laden“ geht eine Anfrage an Calendly. Das Event setzen Sie über `NEXT_PUBLIC_CALENDLY_URL` in Vercel; ohne Variable greift der Fallback in `src/lib/site.ts` (derzeit noch das 60-Minuten-Event).
-
-CTA-Buttons übergeben ihr Anliegen per Query-Parameter (z. B. `/kontakt?anliegen=struktur-check`) und wählen es im Formular vor. Optionen: `src/lib/site.ts`.
-
-## Inhalte & Struktur
-
-Copy stammt wortgetreu aus den Copy-Dokumenten (Startseite v3, übrige v1). Wiederverwendbare Sektionen in `src/components/` (SplitHero, QuestionSection, StepList/Timeline, CardGrid, StatStrip, Testimonial, Faq inkl. FAQPage-Schema, FinalCta, Disclaimer, VisualPanel, icons …).
-
-| Seite | Status |
+| Variable | Zweck |
 | --- | --- |
-| `/` (Start) | Fertig nach Copy v3 |
-| `/leistungen` (Hub) | Fertig nach Copy v1 |
-| `/investments`, `/immobilien`, `/holding`, `/absicherung`, `/finanzierung`, `/steuern-recht` | Fertig nach Copy v1 |
-| `/ueber-uns` | Fertig nach Copy v1 (Werdegang-Sätze offen) |
-| `/kontakt` | Fertig nach Copy v1 (Calendly-URL offen, Formular als Fallback aktiv) |
-| `/impressum`, `/datenschutz` | Gerüst mit PLATZHALTERN, vor Go-live juristisch füllen |
+| `NEXT_PUBLIC_CALENDLY_URL` | Calendly-Event für das 15-Minuten-Erstgespräch (Fallback in `src/lib/site.ts`) |
+| `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` | Kontaktformular über [Resend](https://resend.com); ohne Key verweist das Formular auf E-Mail/Telefon |
+
+**Terminbuchung:** Calendly wird per Zwei-Klick geladen (`BookingCard.tsx`). Erst nach Klick auf „Kalender laden“ geht eine Anfrage an Calendly.
+
+**Anliegen:** Links wie `/kontakt?anliegen=struktur-check` wählen das Anliegen im Formular vor. Optionen in `src/lib/site.ts`.
 
 ## Bilder
 
+Fotos (Shooting Cedrik Leibinn) und Skyline-Motive liegen optimiert als WebP in `public/images/`. Austausch: Datei mit gleichem Namen und ähnlichem Ausschnitt ersetzen.
+
 **Fotonachweis Skyline (Unsplash-Lizenz, Nennung freiwillig):** `city-night` Bharat Patil · `ffm-dom` Kilian Karger · `ffm-towers` Lana · `ffm-park` Leonhard Niederwimmer.
 
-**Hero-Video:** Frankfurter Skyline (`public/media/hero.webm`) — spielt einmal pro Laden und friert auf dem letzten Frame ein (`HeroVideo.tsx`); Standbild-Fallback für Mobil/iOS/reduced-motion via `hero-last.jpg`.
+**Hero-Video:** Frankfurter Skyline (`public/media/hero.webm`), spielt einmal und friert auf dem letzten Frame ein (`HeroVideo.tsx`). Standbild-Fallback für Mobil, iOS und reduced-motion via `hero-last.jpg`.
 
-**Fotos** (Shooting Cedrik Leibinn): optimiert in `public/images/` (Original-Uploads liegen in `images/`). Verwendung:
+**Marken-Assets** (`public/brand/`): `logo-wordmark.webp` (Header), `logo-lockup-dark.webp` (Footer), `logo-emblem-navy.png` (Bildmarke), `line-a.png` / `line-b.png` (Logo-Spuren). OG-Bild: `public/og.jpg`; Icons: `src/app/icon.png`, `src/app/apple-icon.png`.
 
-| Datei | Einsatz |
-| --- | --- |
-| `cedrik-portrait.webp` | Über-uns-Hero + Startseite „Über Cedrik“ (`PortraitPanel src=…`) |
-| `cedrik-window.webp` | Editorial-Band auf `/ueber-uns` (`PhotoBand`) |
-| `cedrik-kundengespraech.webp` | Story-Sektion `/ueber-uns` |
-| `cedrik-buero.webp` | `/kontakt` (Info-Spalte) |
-| `cedrik-praesentation.webp` | Foto-Band auf `/leistungen` |
+## Vor Go-live prüfen
 
-Austausch: Datei in `public/images/` ersetzen (gleiche Maße/Ausschnitt beachten). Die Fachseiten (Investments, Holding etc.) bleiben bewusst grafisch (Editorial-Stil) — dort später bei Bedarf `PhotoBand`/`HeroPanel` mit passenden Motiven ergänzen.
-
-## Offene PLATZHALTER (vor Go-live)
-
-Alle Stellen sind im Code mit `[PLATZHALTER]` markiert (`grep -r PLATZHALTER src/`):
-
-1. **Domain** bestätigen → `src/lib/site.ts` (Canonical-URLs, Sitemap, OG)
-2. **Kontaktdaten** (E-Mail, Telefon, Straße) → `src/lib/site.ts`
-3. **Calendly-URL** → `src/lib/site.ts` (`calendlyUrl`), Einbettung auf `/kontakt` erscheint automatisch
-4. **Logo-Datei** einsetzen → `src/components/SiteHeader.tsx` (aktuell Wortmarke)
-5. **Werdegang-Sätze** für die Story auf `/ueber-uns` (von Cedrik bestätigen lassen)
-6. **§ 34c-Eintragung/Nachweis** → `/impressum`, `/ueber-uns`, Startseiten-Sektion „Über Cedrik“
-7. **Regionen** in FAQ auf `/immobilien` (Vorgabe „von Cedrik“ aus Copy-Doc)
-8. **Schufa-Aussage** auf `/finanzierung` prüfen, ob zusagbar (Copy-Doc-Hinweis)
-9. **Impressum & Datenschutz** vollständig befüllen und prüfen lassen
-10. **Google-Bewertungs-Widget** einrichten (ersetzt/ergänzt Zitate laut Copy-Doc Startseite)
+1. **Calendly:** 15-Minuten-Event anlegen und `NEXT_PUBLIC_CALENDLY_URL` setzen (Fallback ist noch das 60-Minuten-Event).
+2. **Datenschutz:** Absatz zur Zwei-Klick-Terminbuchung (Calendly, USA) juristisch prüfen lassen.
+3. **Partner-Leiste** auf der Startseite („Ausgezeichnet und vernetzt“) bestätigen.
+4. **Schufa-Aussage** auf `/finanzierung` prüfen, ob zusagbar.
+5. **Zins-Rechner:** Annahmen (Basiszins, Tilgung) mit dem Finanzierungspartner abstimmen.

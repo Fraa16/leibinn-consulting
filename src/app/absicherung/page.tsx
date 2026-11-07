@@ -1,14 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CtaButton } from "@/components/CtaButton";
-import { LightSection } from "@/components/Theme";
-import { Testimonial } from "@/components/Testimonial";
-import { Faq, type FaqItem } from "@/components/Faq";
-import { CtaBanner } from "@/components/CtaBanner";
+import type { FaqEntry } from "@/components/FaqList";
 import { JsonLd, breadcrumbJsonLd } from "@/components/JsonLd";
-import { HeroPanel } from "@/components/VisualPanel";
-import { GoldFrameDecor } from "@/components/Brand";
-import { kontaktHref } from "@/lib/site";
+import { Reveal } from "@/components/Reveal";
+import { SectionHead } from "@/components/SectionHead";
+import { BrandLine } from "@/components/Brand";
+import { MiniCoverage } from "@/components/home/LeistungenBento";
+import { PageHero } from "@/components/page/PageHero";
+import { BookingSection } from "@/components/page/BookingSection";
+import { FaqBlock } from "@/components/page/FaqBlock";
+import {
+  Compare,
+  PageShell,
+  QuoteCard,
+  RelatedTopics,
+  Statement,
+  TopicEyebrow,
+} from "@/components/page/Blocks";
 
 export const metadata: Metadata = {
   title: { absolute: "Absicherung: Vermögen schützen | Leibinn Consulting" },
@@ -17,7 +25,42 @@ export const metadata: Metadata = {
   alternates: { canonical: "/absicherung" },
 };
 
-const faqItems: FaqItem[] = [
+const focus = [
+  {
+    title: "Ihr Einkommen",
+    text: "Ein Berufsunfähigkeitsfall stoppt den Vermögensaufbau am schnellsten. Deshalb beginnt hier jede Prüfung.",
+  },
+  {
+    title: "Immobilien und Anlageobjekte",
+    text: (
+      <>
+        Ein Schaden am Anlageobjekt darf den Plan nicht kippen: Schutz für die{" "}
+        <Link href="/immobilien">Objekte, die Ihr Vermögen tragen</Link>.
+      </>
+    ),
+  },
+  {
+    title: "Ihre Haftung",
+    text: "Private und betriebliche Haftung, damit ein einzelner Schaden nicht Jahre an Aufbau kostet.",
+  },
+  {
+    title: "Ihr Betrieb",
+    text: (
+      <>
+        Bei Unternehmern: Betriebsrisiken und Schlüsselpersonen, abgestimmt auf
+        die <Link href="/holding">Unternehmensstruktur</Link>.
+      </>
+    ),
+  },
+];
+
+const check = [
+  { k: "Was fehlt", v: "Lücken bei existenziellen Risiken werden geschlossen." },
+  { k: "Was doppelt ist", v: "Doppelversicherungen werden gekündigt." },
+  { k: "Was zu teuer ist", v: "Leistung und Preis im Marktvergleich." },
+];
+
+const faqItems: FaqEntry[] = [
   {
     q: "Was kostet die Beratung zur Absicherung?",
     a: "Der Vertragscheck und die Beratung sind für Sie kostenlos. Als Versicherungsmakler wird Leibinn Consulting bei einer Vermittlung über Courtagen der Gesellschaften vergütet, wie gesetzlich vorgesehen. Es entstehen keine zusätzlichen Kosten, und geprüft wird auch, wenn nichts vermittelt wird.",
@@ -38,150 +81,166 @@ const faqItems: FaqItem[] = [
 
 export default function AbsicherungPage() {
   return (
-    <>
-      {/* Hero — Split mit Illustrations-Panel */}
-      <section className="border-b border-line">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 md:grid-cols-12 md:py-24">
-          <div className="md:col-span-7">
-            <p className="text-sm font-semibold tracking-[0.25em] text-fawn uppercase">
-              Absicherung
-            </p>
-            <h1 className="mt-5 text-4xl leading-[1.08] font-bold tracking-tight text-balance md:text-6xl">
-              Was Sie aufbauen,
-              <br />
-              muss geschützt sein.
-            </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink-soft">
-              Vermögensaufbau ohne Absicherung ist ein Plan mit offener Flanke:
-              Ein Berufsunfähigkeitsfall, ein Haftungsschaden oder ein Schaden
-              am Anlageobjekt kann Jahre an Aufbau zunichtemachen. Leibinn
-              Consulting schließt diese Lücken als zugelassener
-              Versicherungsmakler, mit freier Auswahl aus dem Markt.
-            </p>
-            <div className="mt-9">
-              <CtaButton href={kontaktHref("vertragscheck")}>
-                Vertragscheck anfragen
-              </CtaButton>
-              <p className="mt-4 text-sm text-ink-faint">
-                Kostenlose Prüfung Ihrer bestehenden Verträge, auch fremd
-                abgeschlossener
-              </p>
-            </div>
-          </div>
-          <div className="md:col-span-5">
-            <HeroPanel
-              slug="absicherung"
-              fact="0 €"
-              factLabel="Kostenloser Vertragscheck – auch Ihrer bestehenden Verträge"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* 01 · Makler-Sektion — weiß, klebende Überschrift links */}
-      <LightSection className="border-b border-line">
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-20 md:grid-cols-12 md:py-28">
-          <div className="md:col-span-5">
-            <div className="md:sticky md:top-28">
-              <p className="flex items-baseline gap-3 text-sm font-semibold tracking-[0.2em] uppercase">
-                <span className="font-heading text-azure">01</span>
-                <span className="text-ink-faint">Makler statt Vertreter</span>
-              </p>
-              <h2 className="mt-5 text-3xl leading-[1.12] font-bold tracking-tight md:text-4xl">
-                Was unterscheidet einen Makler von einem
-                Versicherungsvertreter?
-              </h2>
-            </div>
-          </div>
-          <div className="md:col-span-6 md:col-start-7">
-            <p className="border-l-4 border-azure pl-6 text-lg leading-relaxed font-medium">
-              Ein Versicherungsvertreter arbeitet für eine Gesellschaft und
-              vermittelt deren Produkte. Ein Versicherungsmakler arbeitet
-              rechtlich im Auftrag des Kunden und wählt frei aus
-              dem Markt. Empfohlen wird, was Preis und Leistung rechtfertigen,
-              und die Empfehlung wird begründet.
-            </p>
-            <p className="mt-8 leading-relaxed text-ink-soft">
-              Wir versichern nicht alles, was versicherbar ist. Der Fokus liegt
-              auf dem, was Ihren Vermögensaufbau trägt: Ihr Einkommen, Ihre{" "}
-              <Link
-                href="/immobilien"
-                className="text-accent underline underline-offset-2"
-              >
-                Immobilien und Anlageobjekte
-              </Link>
-              , Ihre Haftung und, bei Unternehmern,{" "}
-              <Link
-                href="/holding"
-                className="text-accent underline underline-offset-2"
-              >
-                der Betrieb
-              </Link>
-              . Alles andere ist oft verzichtbar, und auch das sagen wir.
-              Gekündigte Doppelversicherungen sind ein häufigeres Ergebnis
-              unserer Vertragschecks als neue Abschlüsse.
-            </p>
-            <div className="mt-10 rounded-2xl bg-paper-warm p-8">
-              <h3 className="font-heading text-2xl leading-snug font-bold">
-                Der Vertragscheck: Erst prüfen, was Sie schon haben.
-              </h3>
-              <p className="mt-4 leading-relaxed text-ink-soft">
-                Die meisten Mandanten kommen nicht ohne Versicherungen, sondern
-                mit einem Ordner voll davon. Der Vertragscheck prüft Bestand
-                gegen Bedarf: Was fehlt, was doppelt sich, was ist zu teuer für
-                seine Leistung. Danach wird der Bestand regelmäßig überprüft,
-                denn Lebensumstände ändern sich schneller als Verträge.
-              </p>
-            </div>
-          </div>
-        </div>
-      </LightSection>
-
-      {/* 02 · Stimme — goldene Feature-Karte */}
-      <section className="border-b border-line">
-        <div className="mx-auto grid max-w-6xl gap-6 px-6 py-20 md:grid-cols-12 md:py-24">
-          <div className="relative isolate overflow-hidden rounded-2xl bg-fawn p-10 text-twilight-deep md:col-span-8 md:col-start-3 md:p-14">
-            <GoldFrameDecor variant="corner" />
-            <p className="font-heading text-2xl leading-relaxed font-medium text-balance md:text-3xl">
-              „Kleine Extras wie die regelmäßige Überprüfung meiner bestehenden
-              Verträge zeigen, dass Herr Leibinn langfristig interessiert ist,
-              nicht am schnellen Abschluss.“
-            </p>
-            <p className="mt-6 text-sm font-semibold">
-              Winsome Okafor · Lehrerin
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 03 · FAQ */}
-      <section>
-        <div className="mx-auto grid max-w-6xl gap-8 px-6 py-20 md:grid-cols-12 md:py-24">
-          <p className="font-heading text-sm font-semibold tracking-[0.2em] text-fawn uppercase md:col-span-3">
-            03 · FAQ
-          </p>
-          <div className="md:col-span-9">
-            <Faq title="Häufige Fragen zur Absicherung" items={faqItems} />
-          </div>
-        </div>
-      </section>
-
-      <CtaBanner
+    <PageShell accent="petrol">
+      <PageHero
+        crumbs={[{ label: "Start", href: "/" }, { label: "Leistungen", href: "/leistungen" }, { label: "Absicherung" }]}
+        eyebrow={<TopicEyebrow slug="absicherung" />}
         title={
           <>
-            Ein Ordner voller Verträge
-            <br />
-            ist noch kein Schutz.
+            Was Sie aufbauen, <em>muss geschützt sein.</em>
           </>
         }
-        text="Der kostenlose Vertragscheck zeigt, was fehlt, was doppelt ist und was zu teuer für seine Leistung ist. Danach entscheiden Sie."
-        ctaLabel="Vertragscheck anfragen"
-        ctaHref={kontaktHref("vertragscheck")}
+        lead="Vermögensaufbau ohne Absicherung ist ein Plan mit offener Flanke: Ein Berufsunfähigkeitsfall, ein Haftungsschaden oder ein Schaden am Anlageobjekt kann Jahre an Aufbau zunichtemachen. Leibinn Consulting schließt diese Lücken als zugelassener Versicherungsmakler, mit freier Auswahl aus dem Markt."
+        primary={{ label: "Vertragscheck anfragen", href: "#termin" }}
+        secondary={{ label: "Makler statt Vertreter", href: "#makler" }}
+        micro="Kostenlose Prüfung Ihrer bestehenden Verträge, auch fremd abgeschlossener."
+        image={{
+          src: "/images/city-night.webp",
+          alt: "Beleuchtete Stadt bei Nacht",
+          pos: "object-[40%_60%]",
+        }}
+        floating={<MiniCoverage />}
+        facts={[
+          { value: "0 €", label: "Kostenloser Vertragscheck" },
+          { value: "Freie Auswahl", label: "Aus dem gesamten Markt" },
+          { value: "Regelmäßig", label: "Bestand gegen Bedarf geprüft" },
+        ]}
       />
 
-      <JsonLd
-        data={breadcrumbJsonLd([{ name: "Absicherung", path: "/absicherung" }])}
+      {/* Makler statt Vertreter */}
+      <section id="makler" className="lc-section">
+        <div className="lc-wrap grid items-start gap-12 min-[1000px]:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] min-[1000px]:gap-20">
+          <Reveal>
+            <p className="eyebrow">Makler statt Vertreter</p>
+            <h2 className="display-2 mt-6 text-navy">
+              Was unterscheidet einen Makler <em>von einem Vertreter?</em>
+            </h2>
+          </Reveal>
+          <Reveal delay={100}>
+            <Statement>
+              Ein Versicherungsvertreter arbeitet für eine Gesellschaft und
+              vermittelt deren Produkte. Ein Versicherungsmakler arbeitet
+              rechtlich im Auftrag des Kunden und wählt frei aus dem Markt.
+              Empfohlen wird, was Preis und Leistung rechtfertigen, und die
+              Empfehlung wird begründet.
+            </Statement>
+            <p className="mt-8 text-[16px] leading-relaxed text-body">
+              Wir versichern nicht alles, was versicherbar ist. Der Fokus liegt
+              auf dem, was Ihren Vermögensaufbau trägt. Alles andere ist oft
+              verzichtbar, und auch das sagen wir. Gekündigte
+              Doppelversicherungen sind ein häufigeres Ergebnis unserer
+              Vertragschecks als neue Abschlüsse.
+            </p>
+          </Reveal>
+        </div>
+        <Reveal className="lc-wrap mt-[clamp(48px,6vw,72px)]">
+          <Compare
+            caption="Wer berät"
+            left="Vertreter"
+            right="Makler"
+            rows={[
+              { label: "Arbeitet für", left: "Eine Versicherungsgesellschaft", right: "Sie, rechtlich im Kundenauftrag" },
+              { label: "Auswahl", left: "Produkte der eigenen Gesellschaft", right: "Freie Auswahl aus dem Markt" },
+              { label: "Empfehlung", left: "Aus dem eigenen Sortiment", right: "Nach Preis und Leistung, begründet" },
+              { label: "Bestand", left: "Eigene Verträge", right: "Auch fremd abgeschlossene Verträge" },
+            ]}
+          />
+        </Reveal>
+      </section>
+
+      {/* Fokus */}
+      <section className="lc-panel">
+        <BrandLine shape="b" color="var(--acc-light)" opacity={0.12} className="-top-10 -right-48 w-[min(1000px,90vw)]" />
+        <div className="lc-wrap relative">
+          <SectionHead
+            eyebrow="Unser Fokus"
+            title={
+              <>
+                Existenzielle Risiken zuerst. <em>Der Rest ist oft verzichtbar.</em>
+              </>
+            }
+            lead="Kleinversicherungen mit geringem Schadenpotenzial stehen bewusst nicht im Mittelpunkt. Hier raten wir häufiger ab als zu."
+          />
+          <ol className="mt-[clamp(48px,6vw,72px)] grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {focus.map((f, i) => (
+              <Reveal
+                as="li"
+                key={f.title}
+                delay={i * 80}
+                className={`flex flex-col rounded-[24px] p-[clamp(22px,2.4vw,32px)] ${
+                  i === 0 ? "bg-acc-light text-navy-950" : "border border-white/10 bg-navy-850"
+                }`}
+              >
+                <span className={`mono ${i === 0 ? "text-navy-950/70" : "text-acc-light"}`}>0{i + 1}</span>
+                <h3 className="mt-8 text-[clamp(20px,1.8vw,24px)] leading-tight font-medium tracking-[-0.02em]">{f.title}</h3>
+                <p
+                  className={`mt-3 text-[15px] leading-relaxed [&_a]:underline [&_a]:underline-offset-2 ${
+                    i === 0 ? "text-navy-950/80" : "text-on-dark-body [&_a]:text-white"
+                  }`}
+                >
+                  {f.text}
+                </p>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* Vertragscheck */}
+      <section className="lc-section !pb-0">
+        <div className="lc-wrap grid gap-4 min-[1000px]:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
+          <Reveal className="rounded-[28px] border border-sand bg-white p-[clamp(26px,3.6vw,52px)]">
+            <p className="eyebrow">Der Vertragscheck</p>
+            <h2 className="display-3 mt-6 text-navy">
+              Erst prüfen, <em>was Sie schon haben.</em>
+            </h2>
+            <p className="mt-5 max-w-[38rem] text-[16px] leading-relaxed text-body">
+              Die meisten Mandanten kommen nicht ohne Versicherungen, sondern mit
+              einem Ordner voll davon. Der Vertragscheck prüft Bestand gegen
+              Bedarf. Danach wird der Bestand regelmäßig überprüft, denn
+              Lebensumstände ändern sich schneller als Verträge.
+            </p>
+            <dl className="mt-8 grid gap-3 sm:grid-cols-3">
+              {check.map((c) => (
+                <div key={c.k} className="rounded-[18px] bg-acc-tint p-5">
+                  <dt className="text-[16px] font-semibold text-navy">{c.k}</dt>
+                  <dd className="mt-2 text-[14px] leading-relaxed text-body">{c.v}</dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+          <Reveal delay={100}>
+            <QuoteCard
+              quote="Kleine Extras wie die regelmäßige Überprüfung meiner bestehenden Verträge zeigen, dass Herr Leibinn langfristig interessiert ist, nicht am schnellen Abschluss."
+              name="Winsome Okafor"
+              role="Lehrerin"
+              photo="/images/winsome-okafor.webp"
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      <FaqBlock
+        title={
+          <>
+            Häufige Fragen <em>zur Absicherung.</em>
+          </>
+        }
+        items={faqItems}
       />
-    </>
+
+      <BookingSection
+        title={
+          <>
+            Ein Ordner voller Verträge <em>ist noch kein Schutz.</em>
+          </>
+        }
+        lead="Der kostenlose Vertragscheck zeigt, was fehlt, was doppelt ist und was zu teuer für seine Leistung ist. Danach entscheiden Sie."
+      />
+
+      <RelatedTopics current="der Absicherung" slugs={["investments", "immobilien", "bav-bkv"]} />
+
+      <JsonLd data={breadcrumbJsonLd([{ name: "Leistungen", path: "/leistungen" }, { name: "Absicherung", path: "/absicherung" }])} />
+    </PageShell>
   );
 }

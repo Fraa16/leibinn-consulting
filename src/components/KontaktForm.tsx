@@ -12,7 +12,7 @@ import {
 type Status = "idle" | "sending" | "sent" | "error" | "not-configured";
 
 const inputStyles =
-  "w-full rounded-lg border border-line bg-paper-warm px-4 py-3 outline-none transition-colors focus:border-azure";
+  "h-[52px] w-full rounded-[14px] border border-sand-deep bg-[#fbfaf7] px-4 text-[16px] text-navy outline-none transition-colors placeholder:text-mute focus:border-navy";
 
 function PillGroup({
   name,
@@ -35,7 +35,7 @@ function PillGroup({
             defaultChecked={option.value === defaultValue}
             className="peer sr-only"
           />
-          <span className="inline-block rounded-full border border-line px-4 py-2 text-sm transition-colors peer-checked:border-azure peer-checked:bg-azure peer-checked:text-white hover:border-azure-light">
+          <span className="inline-flex h-10 items-center rounded-full border border-sand-deep bg-ivory/50 px-4 text-[14px] font-medium text-navy transition-colors peer-checked:border-navy peer-checked:bg-navy peer-checked:text-white peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-copper hover:border-navy/40">
             {option.label}
           </span>
         </label>
@@ -81,9 +81,14 @@ export function KontaktForm() {
 
   if (status === "sent") {
     return (
-      <div className="rounded-2xl bg-accent-tint p-10 text-center">
-        <p className="font-heading text-2xl font-bold">Vielen Dank!</p>
-        <p className="mx-auto mt-3 max-w-md text-ink-soft">
+      <div className="flex flex-col items-center rounded-[20px] bg-copper-tint px-6 py-12 text-center">
+        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-navy text-white">
+          <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+            <path d="M5 12l5 5 9-10" />
+          </svg>
+        </span>
+        <p className="mt-6 text-[26px] font-medium tracking-[-0.02em] text-navy">Vielen Dank!</p>
+        <p className="mx-auto mt-3 max-w-md text-body">
           Ihre Anfrage ist eingegangen. Sie erhalten innerhalb von 24 Stunden
           eine Antwort zur Terminabstimmung.
         </p>
@@ -92,13 +97,13 @@ export function KontaktForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
-      <p className="leading-relaxed text-ink-soft">
+    <form onSubmit={handleSubmit} className="space-y-8 text-navy">
+      <p className="leading-relaxed text-body">
         Damit das Gespräch bei Ihrer Situation startet statt bei null, drei
         kurze Fragen vor der Terminwahl:
       </p>
       <fieldset>
-        <legend className="mb-3 font-semibold">
+        <legend className="mb-3 text-[15px] font-semibold">
           1. Worum geht es hauptsächlich?
         </legend>
         <PillGroup
@@ -108,7 +113,7 @@ export function KontaktForm() {
         />
       </fieldset>
       <fieldset>
-        <legend className="mb-3 font-semibold">
+        <legend className="mb-3 text-[15px] font-semibold">
           2. Sind Sie angestellt, selbstständig oder Unternehmer?
         </legend>
         <PillGroup
@@ -117,7 +122,7 @@ export function KontaktForm() {
         />
       </fieldset>
       <fieldset>
-        <legend className="mb-3 font-semibold">
+        <legend className="mb-3 text-[15px] font-semibold">
           3. Erstgespräch lieber per Video oder Telefon?
         </legend>
         <PillGroup
@@ -126,15 +131,15 @@ export function KontaktForm() {
         />
       </fieldset>
 
-      <div className="grid gap-5 border-t border-line pt-8 md:grid-cols-2">
+      <div className="grid gap-5 border-t border-ivory-deep pt-8 md:grid-cols-2">
         <div>
-          <label htmlFor="name" className="mb-1.5 block text-sm font-semibold">
+          <label htmlFor="name" className="mb-1.5 block text-[13px] font-medium">
             Name *
           </label>
           <input id="name" name="name" required className={inputStyles} />
         </div>
         <div>
-          <label htmlFor="email" className="mb-1.5 block text-sm font-semibold">
+          <label htmlFor="email" className="mb-1.5 block text-[13px] font-medium">
             E-Mail *
           </label>
           <input
@@ -146,7 +151,7 @@ export function KontaktForm() {
           />
         </div>
         <div>
-          <label htmlFor="phone" className="mb-1.5 block text-sm font-semibold">
+          <label htmlFor="phone" className="mb-1.5 block text-[13px] font-medium">
             Telefon (optional)
           </label>
           <input id="phone" name="phone" type="tel" className={inputStyles} />
@@ -154,20 +159,20 @@ export function KontaktForm() {
         <div>
           <label
             htmlFor="message"
-            className="mb-1.5 block text-sm font-semibold"
+            className="mb-1.5 block text-[13px] font-medium"
           >
             Nachricht (optional)
           </label>
           <input id="message" name="message" className={inputStyles} />
         </div>
       </div>
-      <label className="flex items-start gap-3 text-sm text-ink-soft">
-        <input type="checkbox" name="privacy" required className="mt-1" />
+      <label className="flex items-start gap-3 text-[14px] leading-relaxed text-body">
+        <input type="checkbox" name="privacy" required className="mt-1 h-4 w-4 shrink-0 accent-[#0d1a2d]" />
         <span>
           Ich habe die{" "}
           <a
             href="/datenschutz"
-            className="text-accent underline underline-offset-2"
+            className="text-navy underline underline-offset-2"
           >
             Datenschutzerklärung
           </a>{" "}
@@ -179,23 +184,23 @@ export function KontaktForm() {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="rounded-full bg-fawn px-8 py-3.5 font-semibold text-twilight-deep shadow-lg shadow-black/25 transition-all hover:-translate-y-0.5 hover:bg-fawn-light disabled:opacity-60"
+          className="btn btn-lg btn-ink w-full disabled:opacity-60 sm:w-auto"
         >
           {status === "sending" ? "Wird gesendet …" : "Termin anfragen"}
         </button>
-        <p className="mt-4 text-sm text-ink-faint">
+        <p className="mt-4 text-[13px] text-subtle">
           Antwort innerhalb von 24 Stunden. Kein Newsletter, kein Verteiler,
           keine Weitergabe Ihrer Daten.
         </p>
       </div>
       {status === "error" && (
-        <p className="text-sm text-red-300">
+        <p className="text-[14px] text-[#a33b2b]">
           Das hat leider nicht geklappt. Bitte versuchen Sie es erneut oder
           schreiben Sie uns direkt per E-Mail an {site.email}.
         </p>
       )}
       {status === "not-configured" && (
-        <p className="text-sm text-red-300">
+        <p className="text-[14px] text-[#a33b2b]">
           Das Formular ist noch nicht aktiv. Bitte kontaktieren Sie uns direkt
           per E-Mail ({site.email}) oder Telefon.
         </p>

@@ -24,11 +24,11 @@ export function FaqList({
           className="faq-item group border-b border-navy/12"
         >
           <summary className="flex items-start justify-between gap-6 py-6 md:py-7">
-            <span className="flex gap-5">
+            <span className="flex min-w-0 gap-5">
               <span className="mono w-6 shrink-0 pt-[7px] text-subtle tnum">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="text-[clamp(18px,1.6vw,22px)] leading-snug font-medium tracking-[-0.015em] text-navy">
+              <span className="min-w-0 text-[clamp(18px,1.6vw,22px)] leading-snug font-medium tracking-[-0.015em] text-navy hyphens-auto">
                 {item.q}
               </span>
             </span>
@@ -36,7 +36,7 @@ export function FaqList({
               <IconPlus className="h-[18px] w-[18px]" />
             </span>
           </summary>
-          <p className="-mt-1 max-w-[42rem] pr-16 pb-7 pl-11 text-[16px] leading-relaxed text-body">
+          <p className="-mt-1 max-w-[42rem] pb-7 pl-11 sm:pr-16 text-[16px] leading-relaxed text-body">
             {item.a}
           </p>
         </details>

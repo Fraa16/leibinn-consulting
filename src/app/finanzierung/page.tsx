@@ -1,15 +1,24 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CtaButton } from "@/components/CtaButton";
-import { LightSection } from "@/components/Theme";
-import { EditorialHeader } from "@/components/Editorial";
-import { BigSteps } from "@/components/BigSteps";
-import { Faq, type FaqItem } from "@/components/Faq";
-import { CtaBanner } from "@/components/CtaBanner";
-import { Disclaimer } from "@/components/Disclaimer";
-import { JsonLd, breadcrumbJsonLd } from "@/components/JsonLd";
-import { kontaktHref } from "@/lib/site";
-import type { Step } from "@/components/StepList";
+import type { FaqEntry } from "@/components/FaqList";
+import { JsonLd, breadcrumbJsonLd, howToJsonLd } from "@/components/JsonLd";
+import { Reveal } from "@/components/Reveal";
+import { SectionHead } from "@/components/SectionHead";
+import { BrandLine } from "@/components/Brand";
+import { MiniBanks } from "@/components/home/LeistungenBento";
+import { PageHero } from "@/components/page/PageHero";
+import { BookingSection } from "@/components/page/BookingSection";
+import { FaqBlock } from "@/components/page/FaqBlock";
+import { ZinsRechner } from "@/components/page/ZinsRechner";
+import {
+  Compare,
+  PageShell,
+  ProcessSteps,
+  RelatedTopics,
+  Statement,
+  TopicEyebrow,
+  type ProcessStep,
+} from "@/components/page/Blocks";
 
 export const metadata: Metadata = {
   title: {
@@ -20,7 +29,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/finanzierung" },
 };
 
-const steps: Step[] = [
+const steps: ProcessStep[] = [
   {
     title: "Konditions-Check",
     plainText:
@@ -47,7 +56,7 @@ const steps: Step[] = [
   },
 ];
 
-const faqItems: FaqItem[] = [
+const faqItems: FaqEntry[] = [
   {
     q: "Was kostet der Finanzierungsvergleich?",
     a: "Der Konditions-Check und der Vergleich sind für Sie kostenlos. Die Finanzierungsexperten werden im Erfolgsfall von der finanzierenden Bank vergütet, wie bei Finanzierungsvermittlung üblich. Diese Vergütung wird offen ausgewiesen, und ein Abschlusszwang besteht zu keinem Zeitpunkt.",
@@ -68,127 +77,138 @@ const faqItems: FaqItem[] = [
 
 export default function FinanzierungPage() {
   return (
-    <>
-      {/* Hero — dunkler Streifen, Aussage im Zentrum */}
-      <section className="border-b border-line">
-        <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
-          <div className="md:max-w-4xl">
-            <p className="text-sm font-semibold tracking-[0.25em] text-fawn uppercase">
-              Finanzierung
-            </p>
-            <h1 className="mt-5 text-4xl leading-[1.08] font-bold tracking-tight text-balance md:text-6xl">
-              Die Hausbank ist ein Angebot.
-              <br />
-              <span className="text-azure-light">Nicht der Markt.</span>
-            </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft">
-              Leibinn Consulting koordiniert Immobilien- und
-              Anschlussfinanzierungen über unabhängige Finanzierungsexperten
-              aus dem Partnernetzwerk: Konditionen mehrerer Banken im
-              Vergleich, ein Ansprechpartner, ein Prozess. Der Konditions-Check
-              ist kostenlos.
-            </p>
-            <div className="mt-9">
-              <CtaButton href={kontaktHref("konditions-check")}>
-                Konditions-Check anfragen
-              </CtaButton>
-              <p className="mt-4 text-sm text-ink-faint">
-                Kostenlos, unverbindlich, ohne Auswirkung auf Ihre Schufa
-              </p>
-            </div>
-          </div>
+    <PageShell accent="copper">
+      <PageHero
+        crumbs={[{ label: "Start", href: "/" }, { label: "Leistungen", href: "/leistungen" }, { label: "Finanzierung" }]}
+        eyebrow={<TopicEyebrow slug="finanzierung" />}
+        title={
+          <>
+            Die Hausbank ist ein Angebot. <em>Nicht der Markt.</em>
+          </>
+        }
+        lead="Leibinn Consulting koordiniert Immobilien- und Anschlussfinanzierungen über unabhängige Finanzierungsexperten aus dem Partnernetzwerk: Konditionen mehrerer Banken im Vergleich, ein Ansprechpartner, ein Prozess."
+        primary={{ label: "Konditions-Check anfragen", href: "#termin" }}
+        secondary={{ label: "Was ein Zinsunterschied kostet", href: "#rechner" }}
+        micro="Kostenlos, unverbindlich, ohne Auswirkung auf Ihre Schufa."
+        image={{
+          src: "/images/ffm-towers.webp",
+          alt: "Bankenviertel mit Hochhäusern",
+          pos: "object-[70%_40%]",
+        }}
+        floating={<MiniBanks />}
+        facts={[
+          { value: "Mehrere Banken", label: "Konditionen im Vergleich" },
+          { value: "1 Prozess", label: "Ein Ansprechpartner" },
+          { value: "Kostenlos", label: "Konditions-Check" },
+        ]}
+      />
+
+      {/* Rechner */}
+      <section id="rechner" className="lc-section">
+        <div className="lc-wrap">
+          <SectionHead
+            eyebrow="Der Unterschied"
+            title={
+              <>
+                Wenige Zehntelprozent. <em>Fünfstellige Beträge.</em>
+              </>
+            }
+            lead="Die Hausbank bietet ihre eigenen Konditionen an, nicht die des Marktes. Schon kleine Zinsunterschiede summieren sich über die Laufzeit einer Immobilienfinanzierung. Rechnen Sie es selbst nach."
+          />
+          <Reveal className="mt-[clamp(48px,6vw,72px)]">
+            <ZinsRechner />
+          </Reveal>
         </div>
       </section>
 
-      {/* 01 · Ablauf zuerst — weißer Breaker mit BigSteps */}
-      <LightSection className="border-b border-line">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <EditorialHeader
-            no="01"
-            kicker="Der Prozess"
-            title="So läuft die Finanzierung ab."
-          />
-          <div className="mt-6">
-            <BigSteps steps={steps} />
-          </div>
-        </div>
-      </LightSection>
-
-      {/* 02 · Warum — dunkles Band, versetzt */}
-      <section className="border-b border-line">
-        <div className="mx-auto grid max-w-6xl gap-10 px-6 py-20 md:grid-cols-12 md:py-28">
-          <div className="md:col-span-5">
-            <p className="flex items-baseline gap-3 text-sm font-semibold tracking-[0.2em] uppercase">
-              <span className="font-heading text-fawn">02</span>
-              <span className="text-ink-faint">Der Vergleich</span>
-            </p>
-            <h2 className="mt-5 text-3xl leading-[1.12] font-bold tracking-tight md:text-5xl">
-              Warum nicht einfach zur Hausbank?
+      {/* Warum nicht Hausbank */}
+      <section id="vergleich" className="lc-panel">
+        <BrandLine shape="b" color="var(--acc-light)" opacity={0.12} className="-top-10 -right-48 w-[min(1000px,90vw)]" />
+        <div className="lc-wrap relative grid items-start gap-12 min-[1000px]:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)] min-[1000px]:gap-20">
+          <Reveal>
+            <p className="eyebrow">Der Vergleich</p>
+            <h2 className="display-2 mt-6">
+              Warum nicht einfach <em>zur Hausbank?</em>
             </h2>
-          </div>
-          <div className="md:col-span-6 md:col-start-7">
-            <p className="border-l-4 border-azure pl-6 text-lg leading-relaxed font-medium">
-              Die Hausbank bietet ihre eigenen Konditionen an, nicht die des
-              Marktes. Schon wenige Zehntelprozent Zinsunterschied summieren
-              sich über die Laufzeit einer Immobilienfinanzierung zu
-              fünfstelligen Beträgen. Ein unabhängiger Vergleich mehrerer
-              Banken zeigt, was Ihre Finanzierung tatsächlich kosten muss,
-              bevor Sie unterschreiben.
-            </p>
-            <p className="mt-8 leading-relaxed text-ink-soft">
+            <div className="mt-8">
+              <Statement tone="dark">
+                Ein unabhängiger Vergleich mehrerer Banken zeigt, was Ihre
+                Finanzierung tatsächlich kosten muss, bevor Sie unterschreiben.
+              </Statement>
+            </div>
+            <p className="mt-8 text-[16px] leading-relaxed text-on-dark-body">
               Dazu kommt der Prozess: Unterlagen aufbereiten, Banken anfragen,
               Rückfragen beantworten, Fristen halten. Wer das neben Beruf und
               Objektsuche selbst koordiniert, verliert Zeit, und bei
-              Off-Market-Objekten ist Zeit das knappste Gut. Deshalb gehören
-              bei uns{" "}
-              <Link
-                href="/immobilien"
-                className="text-accent underline underline-offset-2"
-              >
+              Off-Market-Objekten ist Zeit das knappste Gut. Deshalb gehören bei
+              uns{" "}
+              <Link href="/immobilien" className="text-white underline underline-offset-2">
                 Objekt und Finanzierung in einen Prozess
               </Link>
               .
             </p>
+          </Reveal>
+          <Reveal delay={100} className="on-light">
+            <Compare
+              caption="Finanzierung über"
+              left="Hausbank"
+              right="Unser Vergleich"
+              rows={[
+                { label: "Angebote", left: "Ein Angebot, eigene Konditionen", right: "Mehrere Banken nebeneinander" },
+                { label: "Konditionen", left: "Wie angeboten", right: "Verhandelt von Finanzierungsexperten" },
+                { label: "Unterlagen", left: "Für jede Bank neu", right: "Einmal aufbereitet, für alle Anfragen" },
+                { label: "Anschluss", left: "Wenn die Bank sich meldet", right: "Rechtzeitig vor Ablauf angestoßen" },
+              ]}
+            />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Prozess */}
+      <section id="prozess" className="lc-section">
+        <div className="lc-wrap">
+          <SectionHead
+            eyebrow="Der Prozess"
+            title={
+              <>
+                So läuft <em>die Finanzierung</em> ab.
+              </>
+            }
+            lead="Ein Check, ein Satz Unterlagen, mehrere Angebote im Vergleich. Sie entscheiden, wir koordinieren bis zur Auszahlung."
+          />
+          <div className="mt-[clamp(48px,6vw,72px)]">
+            <ProcessSteps steps={steps} tone="light" />
           </div>
         </div>
       </section>
 
-      {/* 03 · FAQ — weiß */}
-      <LightSection>
-        <div className="mx-auto grid max-w-6xl gap-8 px-6 py-20 md:grid-cols-12 md:py-24">
-          <p className="font-heading text-sm font-semibold tracking-[0.2em] text-azure uppercase md:col-span-3">
-            03 · FAQ
-          </p>
-          <div className="md:col-span-9">
-            <Faq title="Häufige Fragen zur Finanzierung" items={faqItems} />
-          </div>
-        </div>
-      </LightSection>
-
-      <CtaBanner
+      <FaqBlock
+        className="!pt-0"
         title={
           <>
-            Erst der Marktvergleich.
-            <br />
-            Dann die Unterschrift.
+            Häufige Fragen <em>zur Finanzierung.</em>
           </>
         }
-        text="Der Konditions-Check zeigt kostenlos, was Ihre Finanzierung am Markt kosten muss. Danach entscheiden Sie, mit allen Zahlen auf dem Tisch."
-        ctaLabel="Konditions-Check anfragen"
-        ctaHref={kontaktHref("konditions-check")}
+        items={faqItems}
       />
 
-      <Disclaimer>
-        Finanzierungen sind langfristige Verpflichtungen. Konditionen hängen
-        von Bonität, Objekt und Marktlage ab. Die Vermittlung erfolgt durch
-        lizenzierte Partner.
-      </Disclaimer>
-
-      <JsonLd
-        data={breadcrumbJsonLd([
-          { name: "Finanzierung", path: "/finanzierung" },
-        ])}
+      <BookingSection
+        title={
+          <>
+            Erst der Marktvergleich. <em>Dann die Unterschrift.</em>
+          </>
+        }
+        lead="Der Konditions-Check zeigt kostenlos, was Ihre Finanzierung am Markt kosten muss. Danach entscheiden Sie, mit allen Zahlen auf dem Tisch."
       />
-    </>
+
+      <RelatedTopics
+        current="der Finanzierung"
+        slugs={["immobilien", "holding", "absicherung"]}
+        disclaimer="Finanzierungen sind langfristige Verpflichtungen. Konditionen hängen von Bonität, Objekt und Marktlage ab. Die Vermittlung erfolgt durch lizenzierte Partner. Die Modellrechnung dient der Veranschaulichung und ersetzt keine Finanzierungsberatung."
+      />
+
+      <JsonLd data={breadcrumbJsonLd([{ name: "Leistungen", path: "/leistungen" }, { name: "Finanzierung", path: "/finanzierung" }])} />
+      <JsonLd data={howToJsonLd("Finanzierung mit Leibinn Consulting", steps)} />
+    </PageShell>
   );
 }

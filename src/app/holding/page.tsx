@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { CtaButton } from "@/components/CtaButton";
-import { LightSection } from "@/components/Theme";
-import { Bento, BentoCell } from "@/components/Bento";
-import { EditorialHeader, PullStat } from "@/components/Editorial";
-import { BigSteps } from "@/components/BigSteps";
-import { Faq, type FaqItem } from "@/components/Faq";
-import { CtaBanner } from "@/components/CtaBanner";
-import { Disclaimer } from "@/components/Disclaimer";
+import type { FaqEntry } from "@/components/FaqList";
 import { JsonLd, breadcrumbJsonLd, howToJsonLd } from "@/components/JsonLd";
-import { kontaktHref } from "@/lib/site";
-import type { Step } from "@/components/StepList";
+import { Reveal } from "@/components/Reveal";
+import { SectionHead } from "@/components/SectionHead";
+import { BrandLine } from "@/components/Brand";
+import { MiniStructure } from "@/components/home/LeistungenBento";
+import { PageHero } from "@/components/page/PageHero";
+import { BookingSection } from "@/components/page/BookingSection";
+import { FaqBlock } from "@/components/page/FaqBlock";
+import {
+  PageShell,
+  ProcessSteps,
+  RelatedTopics,
+  Statement,
+  TopicEyebrow,
+  type ProcessStep,
+} from "@/components/page/Blocks";
 
 export const metadata: Metadata = {
   title: { absolute: "Holding gründen: Beratung | Leibinn Consulting" },
@@ -19,7 +25,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/holding" },
 };
 
-const steps: Step[] = [
+const steps: ProcessStep[] = [
   {
     title: "Analyse",
     plainText:
@@ -46,20 +52,32 @@ const steps: Step[] = [
       <>
         Eine leere Holding bringt nichts. Jetzt folgt der eigentliche Zweck:
         Vermögensaufbau über die Struktur, vom{" "}
-        <Link href="/investments" className="text-accent underline underline-offset-2">
-          Investment-Depot
-        </Link>{" "}
-        bis zur{" "}
-        <Link href="/immobilien" className="text-accent underline underline-offset-2">
-          Immobilie in der Gesellschaft
-        </Link>
-        .
+        <Link href="/investments">Investment-Depot</Link> bis zur{" "}
+        <Link href="/immobilien">Immobilie in der Gesellschaft</Link>.
       </>
     ),
   },
 ];
 
-const faqItems: FaqItem[] = [
+const cases = [
+  {
+    tag: "Fall 01",
+    title: "Der Reinvestierer.",
+    text: "Die GmbH läuft, die Gewinne übersteigen den privaten Bedarf. Statt voller Besteuerung bei Entnahme fließt das Kapital in die Holding und arbeitet dort weiter: in Investments, Immobilien oder neuen Beteiligungen.",
+  },
+  {
+    tag: "Fall 02",
+    title: "Der Verkäufer in fünf Jahren.",
+    text: "Wer einen Exit für möglich hält, stellt die Struktur besser Jahre vorher auf. Der Anteilsverkauf aus der Holding ist zu 95 Prozent körperschaftsteuerfrei, aus dem Privatvermögen nicht.",
+  },
+  {
+    tag: "Fall 03",
+    title: "Der Risiko-Trenner.",
+    text: "Betriebsimmobilie, Fuhrpark, Rücklagen: Was in der operativen GmbH liegt, haftet mit. In der Holding liegt es außerhalb der Reichweite des Tagesgeschäfts.",
+  },
+];
+
+const faqItems: FaqEntry[] = [
   {
     q: "Was kostet die Gründung einer Holding?",
     a: "Für eine Holding-GmbH fallen Notar- und Handelsregisterkosten von einigen hundert bis wenigen tausend Euro an, dazu das Stammkapital von 25.000 Euro, von dem zur Gründung die Hälfte eingezahlt sein muss. Laufend kommen Buchhaltung und Jahresabschluss hinzu. Die Gesamtrechnung gehört in jede Analyse, bevor gegründet wird.",
@@ -82,198 +100,204 @@ const faqItems: FaqItem[] = [
   },
 ];
 
+/** Großes Struktur-Schema: wer haftet, wo das Vermögen liegt. */
+function StructureDiagram() {
+  const node = "rounded-2xl border px-4 py-3.5 text-center";
+  return (
+    <figure className="rounded-[28px] border border-sand bg-white p-[clamp(20px,3vw,40px)]">
+      <div className="flex flex-col items-center">
+        <span className="mono rounded-full bg-ivory px-3 py-1.5 text-subtle">Sie als Gesellschafter</span>
+        <span aria-hidden className="h-6 w-px bg-navy/20" />
+        <div className={`${node} w-full max-w-[340px] border-navy bg-navy text-white`}>
+          <p className="text-[17px] font-semibold">Holding GmbH</p>
+          <p className="mono mt-1.5 text-[10px] text-acc-light">Sammelt Vermögen</p>
+        </div>
+        <span aria-hidden className="h-6 w-px bg-navy/20" />
+        <span aria-hidden className="h-px w-[68%] bg-navy/20" />
+        <div className="grid w-full grid-cols-3 gap-2 sm:gap-3">
+          {[
+            { t: "Operative GmbH", s: "Trägt das Tagesrisiko", strong: true },
+            { t: "Immobilien", s: "Getrennt vom Betrieb", strong: false },
+            { t: "Investments", s: "Reinvestierte Gewinne", strong: false },
+          ].map((n) => (
+            <div key={n.t} className="flex flex-col items-center">
+              <span aria-hidden className="h-6 w-px bg-navy/20" />
+              <div className={`${node} w-full ${n.strong ? "border-acc bg-acc-tint" : "border-sand-deep bg-ivory/60"}`}>
+                <p className="text-[14px] font-semibold text-navy sm:text-[15px]">{n.t}</p>
+                <p className="mono mt-1.5 text-[9.5px] text-subtle">{n.s}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <figcaption className="mono mt-7 border-t border-ivory-deep pt-4 text-[10px] text-subtle">
+        Schematische Darstellung · 95 % des Gewinns aus einem Anteilsverkauf bleiben in der Holding körperschaftsteuerfrei
+      </figcaption>
+    </figure>
+  );
+}
+
 export default function HoldingPage() {
   return (
-    <>
-      {/* Hero — schmaler dunkler Streifen, 95 % als Anker */}
-      <section className="border-b border-line">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-16 md:grid-cols-12 md:py-24">
-          <div className="md:col-span-7">
-            <p className="text-sm font-semibold tracking-[0.25em] text-fawn uppercase">
-              Holding-Strukturen & Unternehmensberatung
-            </p>
-            <h1 className="mt-5 text-4xl leading-[1.08] font-bold tracking-tight text-balance md:text-6xl">
-              Holding gründen:
-              <br />
-              Erst rechnen, dann strukturieren.
-            </h1>
-            <p className="mt-7 max-w-xl text-lg leading-relaxed text-ink-soft">
-              Leibinn Consulting begleitet Unternehmer von der Frage, ob sich
-              eine Holding lohnt, bis zur fertigen Struktur: Analyse, Konzept,
-              Gründung und laufende Betreuung in einem Prozess, gemeinsam mit
-              Steuerberatern aus dem Partnernetzwerk.
-            </p>
-            <div className="mt-9">
-              <CtaButton href={kontaktHref("struktur-check")}>
-                Struktur-Check anfragen
-              </CtaButton>
-              <p className="mt-4 text-sm text-ink-faint">
-                Kostenloses Erstgespräch, mit klarer Empfehlung, auch wenn sie
-                „keine Holding“ lautet
-              </p>
-            </div>
-          </div>
-          <PullStat
-            value="95 %"
-            label="körperschaftsteuerfrei: Anteilsverkauf aus der Holding"
-            className="hidden md:col-span-4 md:col-start-9 md:block md:text-right [&>p:last-child]:md:ml-auto"
-          />
-        </div>
-      </section>
+    <PageShell accent="indigo">
+      <PageHero
+        crumbs={[{ label: "Start", href: "/" }, { label: "Leistungen", href: "/leistungen" }, { label: "Holding-Strukturen" }]}
+        eyebrow={<TopicEyebrow slug="holding" />}
+        title={
+          <>
+            Holding gründen: <em>Erst rechnen, dann strukturieren.</em>
+          </>
+        }
+        lead="Leibinn Consulting begleitet Unternehmer von der Frage, ob sich eine Holding lohnt, bis zur fertigen Struktur: Analyse, Konzept, Gründung und laufende Betreuung in einem Prozess, gemeinsam mit Steuerberatern aus dem Partnernetzwerk."
+        primary={{ label: "Struktur-Check anfragen", href: "#termin" }}
+        secondary={{ label: "Ab wann lohnt sich das?", href: "#rechnung" }}
+        micro="Kostenloses Erstgespräch mit klarer Empfehlung, auch wenn sie „keine Holding“ lautet."
+        image={{
+          src: "/images/cedrik-buero.webp",
+          alt: "Cedrik Leibinn im Gespräch mit einem Unternehmer",
+          pos: "object-[62%_40%]",
+        }}
+        floating={<MiniStructure />}
+        facts={[
+          { value: "95 %", label: "Körperschaftsteuerfrei beim Anteilsverkauf" },
+          { value: "Mit Steuerberater", label: "Aus dem Partnernetzwerk" },
+          { value: "Wochen", label: "Bis zur eingetragenen Struktur" },
+        ]}
+      />
 
-      {/* 01 · Definition — weiß, mit Randnotiz-Spalte */}
-      <LightSection className="border-b border-line">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <div className="grid gap-10 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <p className="flex items-baseline gap-3 text-sm font-semibold tracking-[0.2em] uppercase">
-                <span className="font-heading text-azure">01</span>
-                <span className="text-ink-faint">Definition</span>
-              </p>
-              <h2 className="mt-5 text-3xl leading-[1.12] font-bold tracking-tight md:text-4xl">
-                Was ist eine Holding?
-              </h2>
-              <p className="mt-8 hidden border-t border-line pt-6 text-sm leading-relaxed text-ink-faint md:block">
-                Gewinne aus dem Verkauf von Tochter-Anteilen bleiben
-                in der Holding zu 95 Prozent körperschaftsteuerfrei.
-              </p>
-            </div>
-            <div className="md:col-span-7 md:col-start-6">
-              <p className="border-l-4 border-azure pl-6 text-lg leading-relaxed font-medium">
+      {/* Definition */}
+      <section className="lc-section">
+        <div className="lc-wrap grid items-start gap-12 min-[1000px]:grid-cols-2 min-[1000px]:gap-20">
+          <Reveal>
+            <p className="eyebrow">Definition</p>
+            <h2 className="display-2 mt-6 text-navy">
+              Was ist eine <em>Holding?</em>
+            </h2>
+            <div className="mt-8">
+              <Statement>
                 Eine Holding ist eine Gesellschaft, die Anteile an anderen
                 Gesellschaften hält, typischerweise eine GmbH als
                 Muttergesellschaft über einer operativen GmbH. Gewinne der
                 Tochtergesellschaft können weitgehend steuerbegünstigt in die
                 Holding fließen und dort für Investments, Immobilien oder neue
                 Beteiligungen eingesetzt werden.
-              </p>
-              <div className="mt-8 space-y-5 leading-relaxed text-ink-soft">
-                <p>
-                  Der Kern ist Trennung: Das operative Geschäft trägt das
-                  Tagesrisiko, die Holding sammelt das Vermögen. Verkauft die
-                  Holding später Anteile an der Tochter, bleibt der Gewinn
-                  zu 95 Prozent körperschaftsteuerfrei.
-                  Ausgeschüttete Gewinne können in der Holding reinvestiert
-                  werden, ohne dass sie vorher als Privatentnahme voll
-                  versteuert wurden.
-                </p>
-                <p>
-                  Ob diese Vorteile bei Ihnen greifen, hängt vom Einzelfall ab:
-                  Gewinnhöhe, Ausschüttungsverhalten, Exit-Pläne, private
-                  Entnahmen. Genau das ist die Rechnung, die vor jeder Gründung
-                  stehen muss.
-                </p>
-              </div>
+              </Statement>
             </div>
-          </div>
-
-          {/* 02 · Lohnt sich — Fälle-Bento im selben hellen Block */}
-          <div className="mt-24 md:mt-32">
-            <EditorialHeader
-              no="02"
-              kicker="Die Rechnung"
-              title="Ab wann lohnt sich eine Holding?"
-              intro="Eine Holding lohnt sich in der Regel, wenn dauerhaft Gewinne im Unternehmen bleiben, die nicht privat gebraucht werden, wenn ein späterer Verkauf des Unternehmens denkbar ist oder wenn Vermögen wie Immobilien und Beteiligungen vom operativen Risiko getrennt werden sollen. Wer alle Gewinne privat entnimmt, profitiert selten."
-            />
-            <Bento className="mt-14">
-              <BentoCell surface="cobalt" className="md:col-span-4">
-                <h3 className="font-heading text-xl font-bold">
-                  Der Reinvestierer.
-                </h3>
-                <p className="mt-3 leading-relaxed text-ink-soft">
-                  Die GmbH läuft, die Gewinne übersteigen den privaten Bedarf.
-                  Statt voller Besteuerung bei Entnahme fließt das Kapital in
-                  die Holding und arbeitet dort weiter: in Investments,
-                  Immobilien oder neuen Beteiligungen.
-                </p>
-              </BentoCell>
-              <BentoCell surface="azure" className="md:col-span-4 md:-translate-y-4">
-                <h3 className="font-heading text-xl font-bold">
-                  Der Verkäufer in fünf Jahren.
-                </h3>
-                <p className="mt-3 leading-relaxed text-white/85">
-                  Wer einen Exit für möglich hält, stellt die Struktur besser
-                  Jahre vorher auf. Der Anteilsverkauf aus der Holding ist zu
-                  95 Prozent körperschaftsteuerfrei, aus dem Privatvermögen
-                  nicht.
-                </p>
-              </BentoCell>
-              <BentoCell surface="cobalt" className="md:col-span-4">
-                <h3 className="font-heading text-xl font-bold">
-                  Der Risiko-Trenner.
-                </h3>
-                <p className="mt-3 leading-relaxed text-ink-soft">
-                  Betriebsimmobilie, Fuhrpark, Rücklagen: Was in der operativen
-                  GmbH liegt, haftet mit. In der Holding liegt es außerhalb der
-                  Reichweite des Tagesgeschäfts.
-                </p>
-              </BentoCell>
-              <BentoCell surface="outline" className="md:col-span-12 md:flex-row md:items-center md:gap-10">
-                <h3 className="shrink-0 font-heading text-2xl font-bold">
-                  Und wann nicht?
-                </h3>
-                <p className="mt-3 leading-relaxed text-ink-soft md:mt-0">
-                  Wenn Sie Ihre Gewinne vollständig privat entnehmen, wenn die
-                  Verwaltungskosten den Steuervorteil auffressen oder wenn das
-                  Geschäft dafür schlicht zu klein ist. Das sagen wir Ihnen im
-                  Erstgespräch genauso deutlich. Eine Holding, die sich nicht
-                  rechnet, ist keine Struktur, sondern Ballast.
-                </p>
-              </BentoCell>
-            </Bento>
-          </div>
+            <div className="mt-8 space-y-5 text-[16px] leading-relaxed text-body">
+              <p>
+                Der Kern ist Trennung: Das operative Geschäft trägt das
+                Tagesrisiko, die Holding sammelt das Vermögen. Verkauft die
+                Holding später Anteile an der Tochter, bleibt der Gewinn zu 95
+                Prozent körperschaftsteuerfrei. Ausgeschüttete Gewinne können in
+                der Holding reinvestiert werden, ohne dass sie vorher als
+                Privatentnahme voll versteuert wurden.
+              </p>
+              <p>
+                Ob diese Vorteile bei Ihnen greifen, hängt vom Einzelfall ab:
+                Gewinnhöhe, Ausschüttungsverhalten, Exit-Pläne, private
+                Entnahmen. Genau das ist die Rechnung, die vor jeder Gründung
+                stehen muss.
+              </p>
+            </div>
+          </Reveal>
+          <Reveal delay={100} className="min-[1000px]:sticky min-[1000px]:top-[calc(var(--header-h)+40px)]">
+            <StructureDiagram />
+          </Reveal>
         </div>
-      </LightSection>
+      </section>
 
-      {/* 03 · Ablauf — dunkel, BigSteps */}
-      <section className="border-b border-line">
-        <div className="mx-auto max-w-6xl px-6 py-20 md:py-28">
-          <EditorialHeader
-            no="03"
-            kicker="Der Prozess"
-            title="Wie läuft die Holding-Gründung ab?"
-            intro="Die Gründung folgt vier Schritten: Analyse Ihrer Zahlen und Ziele, Strukturkonzept mit Steuerberater aus dem Partnernetzwerk, notarielle Gründung und Eintragung sowie anschließende Einbindung von Investments und Immobilien in die Struktur. Von der Entscheidung bis zur eingetragenen Holding vergehen üblicherweise mehrere Wochen."
+      {/* Die Rechnung */}
+      <section id="rechnung" className="lc-panel">
+        <BrandLine shape="b" color="var(--acc-light)" opacity={0.12} className="-top-10 -right-48 w-[min(1000px,90vw)]" />
+        <div className="lc-wrap relative">
+          <SectionHead
+            eyebrow="Die Rechnung"
+            title={
+              <>
+                Ab wann lohnt sich <em>eine Holding?</em>
+              </>
+            }
+            lead="In der Regel, wenn dauerhaft Gewinne im Unternehmen bleiben, die nicht privat gebraucht werden, wenn ein späterer Verkauf denkbar ist oder wenn Vermögen vom operativen Risiko getrennt werden soll. Wer alle Gewinne privat entnimmt, profitiert selten."
           />
-          <div className="mt-10">
-            <BigSteps steps={steps} />
+          <div className="mt-[clamp(48px,6vw,72px)] grid gap-4 md:grid-cols-3">
+            {cases.map((c, i) => (
+              <Reveal
+                key={c.title}
+                delay={i * 80}
+                className={`flex flex-col rounded-[24px] p-[clamp(24px,2.6vw,36px)] ${
+                  i === 1 ? "bg-acc-light text-navy-950" : "border border-white/10 bg-navy-850"
+                }`}
+              >
+                <span className={`mono ${i === 1 ? "text-navy-950/70" : "text-acc-light"}`}>{c.tag}</span>
+                <h3 className="mt-7 text-[clamp(22px,2vw,27px)] leading-tight font-normal tracking-[-0.025em]">
+                  {c.title}
+                </h3>
+                <p className={`mt-4 text-[15px] leading-relaxed ${i === 1 ? "text-navy-950/80" : "text-on-dark-body"}`}>
+                  {c.text}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className="mt-4 flex flex-col gap-4 rounded-[24px] border border-white/14 p-[clamp(24px,2.6vw,36px)] md:flex-row md:items-center md:gap-12">
+            <h3 className="shrink-0 text-[clamp(22px,2vw,28px)] font-normal tracking-[-0.025em]">
+              Und wann <em className="font-light text-acc-light">nicht?</em>
+            </h3>
+            <p className="text-[15.5px] leading-relaxed text-on-dark-body">
+              Wenn Sie Ihre Gewinne vollständig privat entnehmen, wenn die
+              Verwaltungskosten den Steuervorteil auffressen oder wenn das
+              Geschäft dafür schlicht zu klein ist. Das sagen wir Ihnen im
+              Erstgespräch genauso deutlich. Eine Holding, die sich nicht rechnet,
+              ist keine Struktur, sondern Ballast.
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Prozess */}
+      <section id="prozess" className="lc-section">
+        <div className="lc-wrap">
+          <SectionHead
+            eyebrow="Der Prozess"
+            title={
+              <>
+                Wie läuft die <em>Holding-Gründung</em> ab?
+              </>
+            }
+            lead="Analyse Ihrer Zahlen und Ziele, Strukturkonzept mit Steuerberater, notarielle Gründung und Eintragung, danach die Einbindung von Investments und Immobilien. Von der Entscheidung bis zur eingetragenen Holding vergehen üblicherweise mehrere Wochen."
+          />
+          <div className="mt-[clamp(48px,6vw,72px)]">
+            <ProcessSteps steps={steps} tone="light" />
           </div>
         </div>
       </section>
 
-      {/* 04 · FAQ — weiß */}
-      <LightSection>
-        <div className="mx-auto grid max-w-6xl gap-8 px-6 py-20 md:grid-cols-12 md:py-24">
-          <p className="font-heading text-sm font-semibold tracking-[0.2em] text-azure uppercase md:col-span-3">
-            04 · FAQ
-          </p>
-          <div className="md:col-span-9">
-            <Faq title="Häufige Fragen zur Holding" items={faqItems} />
-          </div>
-        </div>
-      </LightSection>
-
-      <CtaBanner
+      <FaqBlock
+        className="!pt-0"
         title={
           <>
-            Erst die Rechnung.
-            <br />
-            Dann die Struktur.
+            Häufige Fragen <em>zur Holding.</em>
           </>
         }
-        text="Im kostenlosen Erstgespräch prüfen wir, ob sich eine Holding für Ihre Situation trägt. Sie erhalten eine klare Empfehlung, auch wenn sie „noch nicht“ lautet."
-        ctaLabel="Struktur-Check anfragen"
-        ctaHref={kontaktHref("struktur-check")}
+        items={faqItems}
       />
 
-      <Disclaimer>
-        Die Inhalte dieser Seite sind allgemeine Informationen und ersetzen
-        keine steuerliche oder rechtliche Beratung. Die Beurteilung des
-        Einzelfalls erfolgt durch Steuerberater und Rechtsanwälte aus dem
-        Partnernetzwerk.
-      </Disclaimer>
+      <BookingSection
+        title={
+          <>
+            Erst die Rechnung. <em>Dann die Struktur.</em>
+          </>
+        }
+        lead="Im kostenlosen Erstgespräch prüfen wir, ob sich eine Holding für Ihre Situation trägt. Sie erhalten eine klare Empfehlung, auch wenn sie „noch nicht“ lautet."
+      />
 
-      <JsonLd data={breadcrumbJsonLd([{ name: "Holding", path: "/holding" }])} />
+      <RelatedTopics
+        current="der Holding"
+        slugs={["immobilien", "investments", "bav-bkv"]}
+        disclaimer="Die Inhalte dieser Seite sind allgemeine Informationen und ersetzen keine steuerliche oder rechtliche Beratung. Die Beurteilung des Einzelfalls erfolgt durch Steuerberater und Rechtsanwälte aus dem Partnernetzwerk."
+      />
+
+      <JsonLd data={breadcrumbJsonLd([{ name: "Leistungen", path: "/leistungen" }, { name: "Holding-Strukturen", path: "/holding" }])} />
       <JsonLd data={howToJsonLd("Holding-Gründung mit Leibinn Consulting", steps)} />
-    </>
+    </PageShell>
   );
 }

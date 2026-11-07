@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { LegalPage } from "@/components/page/LegalPage";
 
 export const metadata: Metadata = {
   title: "Datenschutzerklärung",
@@ -37,7 +38,7 @@ const sections: Section[] = [
   {
     h: "Art und Ort der Datenverarbeitung",
     p: [
-      "Verarbeitungsmethoden: Der Anbieter verarbeitet die personenbezogenen Daten der Nutzer auf ordnungsgemäße Weise und ergreift angemessene Sicherheitsmaßnahmen, um den unbefugten Zugriff und die unbefugte Weiterleitung, Veränderung oder Vernichtung von Daten zu vermeiden. Zusätzlich zum Verantwortlichen können auch andere Personen intern oder – als Auftragsverarbeiter benannt – extern (z. B. technische Dienstleister, Hosting-Anbieter, IT-Unternehmen) Zugriff auf die Daten haben.",
+      "Verarbeitungsmethoden: Der Anbieter verarbeitet die personenbezogenen Daten der Nutzer auf ordnungsgemäße Weise und ergreift angemessene Sicherheitsmaßnahmen, um den unbefugten Zugriff und die unbefugte Weiterleitung, Veränderung oder Vernichtung von Daten zu vermeiden. Zusätzlich zum Verantwortlichen können auch andere Personen intern oder, als Auftragsverarbeiter benannt, extern (z. B. technische Dienstleister, Hosting-Anbieter, IT-Unternehmen) Zugriff auf die Daten haben.",
       "Ort: Die Daten werden in der Niederlassung des Anbieters und an allen anderen Orten verarbeitet, an denen sich die beteiligten Stellen befinden. Je nach Standort der Nutzer können Datenübertragungen die Übertragung in ein anderes Land beinhalten.",
       "Speicherdauer: Sofern nicht anders festgelegt, werden personenbezogene Daten so lange verarbeitet und gespeichert, wie es der Zweck erfordert, zu dem sie erhoben wurden, und ggf. aufgrund einer rechtlichen Verpflichtung oder Einwilligung länger aufbewahrt.",
     ],
@@ -90,28 +91,28 @@ const sections: Section[] = [
   {
     h: "Änderungen dieser Datenschutzerklärung",
     p: [
-      "Der Anbieter behält sich vor, jederzeit Änderungen an dieser Datenschutzerklärung vorzunehmen. Nutzern wird nahegelegt, diese Seite regelmäßig aufzurufen. Soweit Änderungen eine auf Einwilligung basierte Datennutzung betreffen, wird – soweit erforderlich – eine neue Einwilligung eingeholt.",
+      "Der Anbieter behält sich vor, jederzeit Änderungen an dieser Datenschutzerklärung vorzunehmen. Nutzern wird nahegelegt, diese Seite regelmäßig aufzurufen. Soweit Änderungen eine auf Einwilligung basierte Datennutzung betreffen, wird, soweit erforderlich, eine neue Einwilligung eingeholt.",
     ],
   },
 ];
 
 export default function DatenschutzPage() {
   return (
-    <section className="mx-auto max-w-3xl px-6 py-16 md:py-24">
-      <h1 className="text-4xl font-bold tracking-tight">
-        Datenschutzerklärung
-      </h1>
-      <div className="mt-10 space-y-8 leading-relaxed text-ink-soft [&_h2]:font-heading [&_h2]:text-xl [&_h2]:font-bold [&_h2]:text-ink">
+    <LegalPage
+      title="Datenschutzerklärung"
+      current="/datenschutz"
+      lead="Welche Daten wir verarbeiten, welche Dienste wir einsetzen, auf welcher Grundlage und welche Rechte Sie haben."
+    >
         {sections.map((s) => (
           <div key={s.h}>
             <h2>{s.h}</h2>
             {s.p?.map((para, i) => (
-              <p key={i} className="mt-3">
+              <p key={i}>
                 {para}
               </p>
             ))}
             {s.ul && (
-              <ul className="mt-3 list-disc space-y-1 pl-5">
+              <ul>
                 {s.ul.map((li, i) => (
                   <li key={i}>{li}</li>
                 ))}
@@ -119,7 +120,6 @@ export default function DatenschutzPage() {
             )}
           </div>
         ))}
-      </div>
-    </section>
+    </LegalPage>
   );
 }
