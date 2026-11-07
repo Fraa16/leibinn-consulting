@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import Image from "next/image";
 import { KontaktForm } from "@/components/KontaktForm";
+import { BookingCard } from "@/components/home/BookingCard";
 import { LightSection } from "@/components/Theme";
 import { Faq, type FaqItem } from "@/components/Faq";
 import { CtaButton } from "@/components/CtaButton";
@@ -12,7 +13,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: { absolute: "Kontakt & Erstgespräch | Leibinn Consulting" },
   description:
-    "Kostenloses Erstgespräch buchen: 60 Minuten, online oder vor Ort in Böblingen, mit konkreter erster Einschätzung. Antwort innerhalb von 24 Stunden.",
+    "Kostenloses Erstgespräch buchen: 15 Minuten per Video oder Telefon, mit ehrlicher erster Einschätzung. Antwort innerhalb von 24 Stunden.",
   alternates: { canonical: "/kontakt" },
 };
 
@@ -46,9 +47,9 @@ export default function KontaktPage() {
                 Kontakt & Erstgespräch
               </p>
               <h1 className="mt-5 text-4xl leading-[1.08] font-bold tracking-tight md:text-5xl">
-                60 Minuten.
+                15 Minuten.
                 <br />
-                Eine konkrete
+                Eine ehrliche
                 <br />
                 Einschätzung.
               </h1>
@@ -100,8 +101,9 @@ export default function KontaktPage() {
                 </h2>
                 <p className="mt-3 text-sm leading-relaxed text-ink-soft">
                   Nach der Buchung erhalten Sie eine Bestätigung mit allen
-                  Details. Das Gespräch dauert 60 Minuten, online oder vor Ort
-                  in Böblingen. Besprochen werden Ihre Situation, Ihre Ziele
+                  Details. Das Gespräch dauert 15 Minuten, per Video oder
+                  Telefon. Passt es, folgt ein ausführlicher Analysetermin,
+                  online oder vor Ort in Böblingen. Besprochen werden Ihre Situation, Ihre Ziele
                   und der größte Hebel. Unterlagen brauchen Sie keine, Zahlen
                   aus dem Kopf reichen für den Anfang.
                 </p>
@@ -109,38 +111,16 @@ export default function KontaktPage() {
             </div>
           </div>
 
-          <div className="md:col-span-7">
+          <div className="space-y-6 md:col-span-7">
+            {/* Calendly erst nach Klick (Zwei-Klick-Lösung) */}
+            <BookingCard showAlternatives={false} />
             <div className="theme-light rounded-3xl bg-white p-7 shadow-2xl shadow-black/30 md:p-10">
-              {site.calendlyUrl && (
-                <div className="mb-10">
-                  <h2 className="font-heading text-xl font-bold">
-                    Direkt Termin buchen
-                  </h2>
-                  <p className="mt-2 text-sm text-ink-soft">
-                    Wählen Sie einen freien Slot – 60 Minuten, online oder vor
-                    Ort in Böblingen.
-                  </p>
-                  <iframe
-                    src={site.calendlyUrl}
-                    title="Termin online buchen (Calendly)"
-                    className="mt-5 h-[680px] w-full rounded-2xl border border-line"
-                  />
-                </div>
-              )}
-              <div
-                className={
-                  site.calendlyUrl ? "border-t border-line pt-10" : undefined
-                }
-              >
-                {site.calendlyUrl && (
-                  <h2 className="mb-6 font-heading text-xl font-bold">
-                    Oder senden Sie uns eine Nachricht
-                  </h2>
-                )}
-                <Suspense fallback={null}>
-                  <KontaktForm />
-                </Suspense>
-              </div>
+              <h2 className="mb-6 font-heading text-xl font-bold">
+                Oder senden Sie uns eine Nachricht
+              </h2>
+              <Suspense fallback={null}>
+                <KontaktForm />
+              </Suspense>
             </div>
           </div>
         </div>
@@ -163,7 +143,7 @@ export default function KontaktPage() {
         <div className="mx-auto max-w-4xl px-6 py-20 text-center md:py-24">
           <p className="font-heading text-2xl leading-snug font-medium text-balance md:text-4xl">
             Der schnellste Weg zu einem Gesamtbild Ihrer Finanzen sind
-            60 Minuten Gespräch.{" "}
+            15 Minuten Gespräch.{" "}
             <span className="text-azure-light">
               Der langsamste ist, es weiter aufzuschieben.
             </span>

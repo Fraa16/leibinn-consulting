@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Lora } from "next/font/google";
+import { Host_Grotesk, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -7,18 +7,24 @@ import { JsonLd } from "@/components/JsonLd";
 import { Analytics } from "@vercel/analytics/next";
 import { site } from "@/lib/site";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+// next/font lädt die Schriften beim Build und liefert sie selbst aus:
+// keine Anfrage an Google-Server im Browser (DSGVO).
+const hostGrotesk = Host_Grotesk({
+  variable: "--font-host",
   subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
-const lora = Lora({
-  variable: "--font-lora",
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
   subsets: ["latin"],
+  weight: ["400", "500"],
+  display: "swap",
 });
 
 export const viewport: Viewport = {
-  themeColor: "#01005d",
+  themeColor: "#0d1a2d",
 };
 
 export const metadata: Metadata = {
@@ -28,7 +34,7 @@ export const metadata: Metadata = {
     template: `%s | ${site.name}`,
   },
   description:
-    "Ganzheitliche Beratung für Vermögensaufbau: Investments, Off-Market-Immobilien, Holding-Strukturen, Absicherung und Finanzierung. Region Stuttgart.",
+    "Ganzheitliche Beratung für Vermögensaufbau: Investments, Off-Market-Immobilien, Holding-Strukturen, Finanzierung, bAV/bKV und Absicherung. Böblingen bei Stuttgart.",
   openGraph: {
     type: "website",
     locale: "de_DE",
@@ -75,7 +81,8 @@ export default function RootLayout({
   return (
     <html
       lang="de"
-      className={`${playfair.variable} ${lora.variable} h-full antialiased`}
+      data-scroll-behavior="smooth"
+      className={`${hostGrotesk.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         <SiteHeader />

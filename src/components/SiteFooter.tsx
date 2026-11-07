@@ -1,107 +1,125 @@
 import Link from "next/link";
-import { entitySentence, leistungenItems, legalNav, site } from "@/lib/site";
-import { LogoLockup } from "./Brand";
+import { entitySentence, legalNav, site, topics, worlds } from "@/lib/site";
+import { BrandLine, Logo } from "./Brand";
+import { IconCalendar } from "./icons";
 
 export function SiteFooter() {
+  const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-line bg-twilight-deep">
-      <div className="mx-auto max-w-6xl px-6 py-16">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
-          <div>
-            <LogoLockup className="h-28 w-auto" />
-            {/* Footer-Entity-Satz (GEO, sitewide) — Copy-Doc Startseite v3 */}
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-ink-faint">
+    <footer className="lc-page relative overflow-hidden pt-[clamp(72px,8vw,112px)]">
+      <BrandLine
+        shape="a"
+        color="var(--color-copper)"
+        opacity={0.12}
+        className="-top-10 -right-32 w-[min(720px,80vw)]"
+      />
+      <div className="lc-wrap relative">
+        <div className="grid gap-14 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
+          <div className="max-w-md">
+            <Logo variant="lockup" className="h-7 text-navy" />
+            {/* Footer-Entity-Satz (GEO, sitewide) */}
+            <p className="mt-6 text-[15px] leading-relaxed text-body">
               {entitySentence}
             </p>
+            <Link href="/#termin" className="btn btn-ink mt-8">
+              <IconCalendar className="h-4 w-4" />
+              Erstgespräch buchen
+            </Link>
           </div>
-          <nav aria-label="Leistungen">
-            <p className="text-xs font-semibold tracking-[0.2em] text-fawn uppercase">
-              Leistungen
-            </p>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li>
-                <Link
-                  href="/leistungen"
-                  className="text-ink-soft transition-colors hover:text-fawn"
-                >
-                  Alle Leistungen
-                </Link>
-              </li>
-              {leistungenItems.map((item) => (
-                <li key={item.href}>
+
+          <div className="grid gap-10 sm:grid-cols-[1.1fr_0.9fr_1.3fr]">
+            <nav aria-label="Leistungen">
+              <p className="mono text-subtle">Leistungen</p>
+              <ul className="mt-5 space-y-3 text-[15px]">
+                {topics.map((t) => (
+                  <li key={t.slug}>
+                    <Link
+                      href={t.href}
+                      className="group inline-flex items-center gap-2.5 text-navy/80 transition-colors hover:text-navy"
+                    >
+                      <span
+                        aria-hidden
+                        className={`h-1.5 w-1.5 rounded-full ${worlds[t.world].dot}`}
+                      />
+                      {t.label}
+                    </Link>
+                  </li>
+                ))}
+                <li>
                   <Link
-                    href={item.href}
-                    className="text-ink-soft transition-colors hover:text-fawn"
+                    href="/leistungen"
+                    className="font-medium text-copper-dark hover:text-navy"
                   >
-                    {item.label}
+                    Alle Leistungen →
                   </Link>
                 </li>
-              ))}
-            </ul>
-          </nav>
-          <nav aria-label="Unternehmen">
-            <p className="text-xs font-semibold tracking-[0.2em] text-fawn uppercase">
-              Unternehmen
-            </p>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li>
-                <Link
-                  href="/ueber-uns"
-                  className="text-ink-soft transition-colors hover:text-fawn"
-                >
-                  Über uns
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/kontakt"
-                  className="text-ink-soft transition-colors hover:text-fawn"
-                >
-                  Kontakt & Erstgespräch
-                </Link>
-              </li>
-            </ul>
-            <p className="mt-6 text-xs font-semibold tracking-[0.2em] text-fawn uppercase">
-              Kontakt
-            </p>
-            <ul className="mt-4 space-y-2 text-sm text-ink-soft">
-              <li>
-                <a
-                  href={`mailto:${site.email}`}
-                  className="transition-colors hover:text-fawn"
-                >
-                  {site.email}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={`tel:${site.phone.replace(/\s/g, "")}`}
-                  className="transition-colors hover:text-fawn"
-                >
-                  {site.phone}
-                </a>
-              </li>
-              <li>{site.region}</li>
-            </ul>
-          </nav>
+              </ul>
+            </nav>
+            <nav aria-label="Unternehmen">
+              <p className="mono text-subtle">Unternehmen</p>
+              <ul className="mt-5 space-y-3 text-[15px] text-navy/80">
+                <li>
+                  <Link href="/ueber-uns" className="hover:text-navy">
+                    Über uns
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#wegweiser" className="hover:text-navy">
+                    Wegweiser
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/kontakt" className="hover:text-navy">
+                    Kontakt & Erstgespräch
+                  </Link>
+                </li>
+              </ul>
+            </nav>
+            <div>
+              <p className="mono text-subtle">Kontakt</p>
+              <ul className="mt-5 space-y-3 text-[15px] text-navy/80">
+                <li>
+                  <a href={`mailto:${site.email}`} className="break-words hover:text-navy">
+                    {site.email}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href={`tel:${site.phone.replace(/\s/g, "")}`}
+                    className="hover:text-navy"
+                  >
+                    {site.phone}
+                  </a>
+                </li>
+                <li className="text-body">{site.region}</li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div className="mt-14 flex flex-col gap-4 border-t border-line pt-6 text-xs text-ink-faint md:flex-row md:items-center md:justify-between">
+
+        <div className="mt-16 flex flex-col gap-4 border-t border-navy/12 py-7 text-[13px] text-subtle md:flex-row md:items-center md:justify-between">
           <p>
-            © {new Date().getFullYear()} {site.name}. Alle Rechte vorbehalten.
+            © {year} {site.name} · Eingetragener Immobilienmakler und
+            zugelassener Versicherungsmakler
           </p>
           <ul className="flex gap-6">
             {legalNav.map((item) => (
               <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="transition-colors hover:text-fawn"
-                >
+                <Link href={item.href} className="hover:text-navy">
                   {item.label}
                 </Link>
               </li>
             ))}
           </ul>
         </div>
+      </div>
+
+      {/* Übergroße, angeschnittene Wortmarke als Abschluss */}
+      <div
+        aria-hidden
+        className="lc-wrap relative h-[clamp(44px,7.4vw,96px)] overflow-hidden"
+      >
+        <span className="logo-mask logo-wordmark w-full text-navy/[0.06]" />
       </div>
     </footer>
   );

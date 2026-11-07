@@ -22,7 +22,7 @@ const sections: Section[] = [
       "Hosting: Diese Website wird bei Vercel Inc. gehostet; dabei werden Server-Logfiles (u. a. IP-Adresse) auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO verarbeitet.",
       "Reichweitenmessung: Zur Analyse der Seitennutzung setzen wir Vercel Web Analytics (Vercel Inc.) ein. Die Erfassung erfolgt cookielos und ohne Bildung personenbezogener Nutzerprofile; ausgewertet werden aggregierte Nutzungsdaten (u. a. aufgerufene Seiten, ungefährer Standort, Gerätetyp) auf Grundlage berechtigter Interessen an einer bedarfsgerechten Gestaltung der Website (Art. 6 Abs. 1 lit. f DSGVO).",
       "Kontaktformular: Über das Formular übermittelte Angaben (Name, E-Mail, Telefon, Anliegen, Nachricht) werden zur Bearbeitung Ihrer Anfrage verarbeitet (Art. 6 Abs. 1 lit. b DSGVO). Der Versand erfolgt über einen E-Mail-Dienstleister als Auftragsverarbeiter.",
-      "Terminbuchung: Für die Buchung eines Erstgesprächs ist Calendly (Calendly LLC) eingebunden. Beim Öffnen der Buchung werden Daten an Calendly übertragen; es gelten zusätzlich die Datenschutzhinweise von Calendly.",
+      "Terminbuchung: Für die Buchung eines Erstgesprächs nutzen wir Calendly (Calendly LLC, USA). Der Buchungskalender wird erst geladen, wenn Sie auf „Kalender laden“ klicken (Einwilligung, Art. 6 Abs. 1 lit. a DSGVO). Erst dann werden Daten (u. a. Ihre IP-Adresse) an Calendly übertragen; es gelten zusätzlich die Datenschutzhinweise von Calendly. Ohne diesen Klick besteht keine Verbindung zu Calendly.",
       "Schriftarten werden lokal ausgeliefert (keine Verbindung zu Google Fonts).",
     ],
   },

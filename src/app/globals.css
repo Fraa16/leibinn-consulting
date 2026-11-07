@@ -1,117 +1,406 @@
 @import "tailwindcss";
 
 /*
- * Dunkles Markentheme (Kunden-Palette):
- *   Deep Twilight #01005D  — Grundfläche (~70 %)
- *   True Cobalt   #1E207F  — Karten & Flächen (~20 %)
- *   Royal Azure   #2452D8  — Interaktion & Akzente
- *   Soft Fawn     #E4BF70  — Conversion (CTAs, Sterne), sparsam
+ * Leibinn Design-System (Markenfamilie)
+ * ------------------------------------
+ * Gleiche DNA wie die Landingpages: Ivory-Grund, Ink-Panels als Inset,
+ * Host Grotesk + Geist Mono, Pill-Buttons, Brand-Lines als CSS-Masken.
  *
- * Die Legacy-Token (ink/paper/accent/line) sind Aliase auf das neue System,
- * damit alle bestehenden Utility-Klassen weiter funktionieren:
- *   ink*  = Textfarben (hell), paper* = Hintergründe (dunkelblau),
- *   accent* = Azure-Interaktion, accent-tint = Cobalt-Fläche.
+ * Akzente nach „Welten“ (jeweils von der zugehörigen Landingpage):
+ *   Hub / Immobilien  → Copper   (LP Immobilien & Steuern)
+ *   Privates Vermögen → Petrol   (LP Investment- & Finanzberatung)
+ *   Unternehmen       → Indigo   (Benefit-Website)
  */
 @theme {
-  --color-twilight: #01005d;
-  --color-twilight-deep: #02003c;
-  --color-twilight-soft: #0a0970;
-  --color-cobalt: #1e207f;
-  --color-cobalt-soft: #2b2d97;
-  --color-azure: #2452d8;
-  --color-azure-light: #7d97ee;
-  --color-fawn: #e4bf70;
-  --color-fawn-light: #eed295;
+  /* Grundpalette */
+  --color-navy: #0d1a2d;
+  --color-navy-950: #08111f;
+  --color-navy-900: #0e1a2c;
+  --color-navy-850: #14233a;
+  --color-navy-800: #1b2c45;
+  --color-ivory: #f5f3ee;
+  --color-ivory-deep: #ece8e1;
+  --color-sand: #e6e1d8;
+  --color-sand-deep: #ddd8ce;
 
-  --color-frost: #f4f5ff;
+  /* Text */
+  --color-body: #4a5261;
+  --color-subtle: #5f6571;
+  --color-mute: #8c919a;
+  --color-on-dark: #e2e7ee;
+  --color-on-dark-body: #a7b2c1;
+  --color-on-dark-subtle: #7f8a99;
 
-  /* Legacy-Aliase */
-  --color-ink: #f4f5ff;
-  --color-ink-soft: rgba(244, 245, 255, 0.7);
-  --color-ink-faint: rgba(244, 245, 255, 0.48);
-  --color-paper: #01005d;
-  --color-paper-warm: #060468;
-  --color-line: rgba(244, 245, 255, 0.14);
-  --color-line-strong: rgba(244, 245, 255, 0.26);
-  --color-accent: #7d97ee;
-  --color-accent-dark: #2452d8;
-  --color-accent-tint: rgba(36, 82, 216, 0.16);
+  /* Akzente */
+  --color-copper: #b8875a;
+  --color-copper-light: #d6ae84;
+  --color-copper-dark: #8a5e36;
+  --color-copper-tint: #f3eadf;
+  --color-petrol: #2f7a7e;
+  --color-petrol-light: #86bdbf;
+  --color-petrol-dark: #24575a;
+  --color-petrol-tint: #e0ecec;
+  --color-indigo: #4a4fb0;
+  --color-indigo-light: #9cc0e8;
+  --color-indigo-dark: #2e3190;
+  --color-indigo-tint: #e4e9f6;
 
-  /* Typography */
-  --font-heading: var(--font-playfair), Georgia, serif;
-  --font-body: var(--font-lora), Georgia, serif;
+  /*
+   * Legacy-Aliase: Die Fachseiten nutzen noch die alten Token-Namen
+   * (twilight/cobalt/azure/fawn, ink/paper/line). Sie zeigen jetzt auf die
+   * neue Palette, damit diese Seiten bis zu ihrem Redesign stimmig bleiben.
+   */
+  --color-twilight: #0d1a2d;
+  --color-twilight-deep: #08111f;
+  --color-twilight-soft: #14233a;
+  --color-cobalt: #14233a;
+  --color-cobalt-soft: #1b2c45;
+  --color-azure: #8a5e36;
+  --color-azure-light: #d6ae84;
+  --color-fawn: #b8875a;
+  --color-fawn-light: #d6ae84;
+  --color-frost: #f5f3ee;
+  --color-ink: #ffffff;
+  --color-ink-soft: #a7b2c1;
+  --color-ink-faint: #7f8a99;
+  --color-paper: #0d1a2d;
+  --color-paper-warm: #14233a;
+  --color-line: rgba(255, 255, 255, 0.1);
+  --color-line-strong: rgba(255, 255, 255, 0.2);
+  --color-accent: #d6ae84;
+  --color-accent-dark: #8a5e36;
+  --color-accent-tint: rgba(184, 135, 90, 0.14);
+
+  /* Typografie (lokal gehostet via next/font) */
+  --font-sans: var(--font-host), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, monospace;
+  --font-heading: var(--font-host), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-host), ui-sans-serif, system-ui, sans-serif;
 }
 
-/*
- * Weiße Breaker-Sektionen: .theme-light überschreibt die Token im Teilbaum,
- * dadurch flippen alle Utility-Klassen und gemeinsamen Komponenten
- * automatisch auf die helle Palette (ein Mechanismus, beide Welten).
- */
+:root {
+  --inset: clamp(8px, 1.2vw, 16px);
+  --panel-r: clamp(20px, 2.4vw, 32px);
+  --header-h: 76px;
+}
+@media (min-width: 1024px) {
+  :root {
+    --header-h: 92px;
+  }
+}
+
+/* Legacy: helle Breaker-Sektionen der Fachseiten (Token-Flip im Teilbaum) */
 .theme-light {
-  --color-ink: #191838;
-  --color-ink-soft: rgba(25, 24, 56, 0.74);
-  --color-ink-faint: rgba(25, 24, 56, 0.5);
-  --color-paper: #ffffff;
-  --color-paper-warm: #f5f6fb;
-  --color-line: rgba(25, 24, 56, 0.12);
-  --color-line-strong: rgba(25, 24, 56, 0.28);
-  --color-accent: #2452d8;
-  --color-accent-tint: rgba(36, 82, 216, 0.08);
-  --color-frost: #191838;
-  background: #ffffff;
+  --color-ink: #0d1a2d;
+  --color-ink-soft: #4a5261;
+  --color-ink-faint: #5f6571;
+  --color-paper: #f5f3ee;
+  --color-paper-warm: #ffffff;
+  --color-line: rgba(13, 26, 45, 0.12);
+  --color-line-strong: rgba(13, 26, 45, 0.2);
+  --color-accent: #8a5e36;
+  --color-accent-tint: rgba(184, 135, 90, 0.1);
+  --color-frost: #0d1a2d;
+  background: #f5f3ee;
   color: var(--color-ink);
 }
 
-/*
- * Immer-dunkle Flächen (Bento-Zellen cobalt/deep, Porträtkarte): stellt die
- * dunklen Token innerhalb von .theme-light wieder her, damit Textfarben
- * unabhängig von der umgebenden Sektion stimmen.
- */
+/* Legacy: immer-dunkle Flächen innerhalb von .theme-light */
 .surface-dark {
-  --color-ink: #f4f5ff;
-  --color-ink-soft: rgba(244, 245, 255, 0.7);
-  --color-ink-faint: rgba(244, 245, 255, 0.48);
-  --color-line: rgba(244, 245, 255, 0.14);
-  --color-line-strong: rgba(244, 245, 255, 0.26);
-  --color-accent: #7d97ee;
-  --color-accent-tint: rgba(36, 82, 216, 0.16);
-  --color-frost: #f4f5ff;
+  --color-ink: #ffffff;
+  --color-ink-soft: #a7b2c1;
+  --color-ink-faint: #7f8a99;
+  --color-line: rgba(255, 255, 255, 0.1);
+  --color-line-strong: rgba(255, 255, 255, 0.2);
+  --color-accent: #d6ae84;
+  --color-accent-tint: rgba(184, 135, 90, 0.14);
+  --color-frost: #f5f3ee;
   color: var(--color-ink);
 }
 
 html {
-  color-scheme: dark;
-  /* Kein globales smooth scrolling: Seitenwechsel sollen sofort oben starten.
-     Padding hält Anker-Ziele unter dem sticky Header sichtbar. */
-  scroll-padding-top: 5.5rem;
+  color-scheme: light;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+  -webkit-text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* data-scroll-behavior="smooth" auf <html>: Next.js schaltet es bei
+     Seitenwechseln ab, Anker-Sprünge bleiben weich. */
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
-  background: var(--color-twilight);
-  color: var(--color-frost);
-  font-family: var(--font-body);
-  text-rendering: optimizeLegibility;
+  background: var(--color-navy);
+  color: #ffffff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01" on;
 }
 
 h1,
 h2,
-h3 {
-  font-family: var(--font-heading);
+h3,
+h4 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
 }
 
 ::selection {
-  background: var(--color-fawn);
-  color: var(--color-twilight);
+  background: var(--color-copper);
+  color: var(--color-navy-950);
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-azure-light);
+  outline: 2px solid var(--color-copper);
   outline-offset: 3px;
 }
 
-/* Logo-Frames sind dunkel-auf-hell gezeichnet; auf Navy aufhellen */
-.frame-on-dark {
-  filter: brightness(3.4) saturate(0.6);
+@layer components {
+  /* ---------- Layout ---------- */
+  .lc-wrap {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: clamp(20px, 4vw, 56px);
+  }
+  .lc-section {
+    position: relative;
+    padding-block: clamp(80px, 9vw, 136px);
+  }
+  /* Dunkles Inset-Panel auf dem Ivory-Grund */
+  .lc-panel {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    margin-inline: var(--inset);
+    border-radius: var(--panel-r);
+    background: var(--color-navy);
+    color: #ffffff;
+    padding-block: clamp(72px, 9vw, 128px);
+  }
+  .lc-page {
+    background: var(--color-ivory);
+    color: var(--color-navy);
+  }
+
+  /* ---------- Typografie ---------- */
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-copper-dark);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 22px;
+    height: 1px;
+    flex: none;
+    background: currentColor;
+  }
+  .lc-panel .eyebrow,
+  .on-dark .eyebrow {
+    color: var(--color-copper-light);
+  }
+
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .display-1 {
+    font-weight: 400;
+    font-size: clamp(44px, 6vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+  }
+  .display-2 {
+    font-weight: 400;
+    font-size: clamp(36px, 4.4vw, 62px);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+  }
+  .display-3 {
+    font-weight: 400;
+    font-size: clamp(28px, 3vw, 42px);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+  .display-1 em,
+  .display-2 em,
+  .display-3 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--color-copper-dark);
+  }
+  .lc-panel :is(.display-1, .display-2, .display-3) em,
+  .on-dark :is(.display-1, .display-2, .display-3) em {
+    color: var(--color-copper-light);
+  }
+  .lead {
+    font-size: clamp(17px, 1.35vw, 19px);
+    line-height: 1.6;
+    color: var(--color-body);
+  }
+  .lc-panel .lead,
+  .on-dark .lead {
+    color: var(--color-on-dark-body);
+  }
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 52px;
+    padding-inline: 24px;
+    border-radius: 999px;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1;
+    white-space: nowrap;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s,
+      color 0.2s,
+      transform 0.2s,
+      box-shadow 0.2s;
+  }
+  .btn svg,
+  .icon-btn svg {
+    flex: none;
+  }
+  .btn-lg {
+    height: 58px;
+    padding-inline: 28px;
+    font-size: 16px;
+  }
+  .btn-copper {
+    background: var(--color-copper);
+    color: var(--color-navy-950);
+  }
+  .btn-copper:hover {
+    background: var(--color-copper-light);
+  }
+  .btn-ink {
+    background: var(--color-navy);
+    color: #ffffff;
+    box-shadow: 0 14px 40px rgba(13, 26, 45, 0.18);
+  }
+  .btn-ink:hover {
+    background: var(--color-copper);
+    color: var(--color-navy-950);
+  }
+  .btn-white {
+    background: #ffffff;
+    color: var(--color-navy);
+  }
+  .btn-white:hover {
+    background: var(--color-ivory);
+  }
+  .btn-outline {
+    border: 1px solid rgba(13, 26, 45, 0.18);
+    color: var(--color-navy);
+    font-weight: 500;
+  }
+  .btn-outline:hover {
+    background: rgba(13, 26, 45, 0.05);
+    border-color: rgba(13, 26, 45, 0.3);
+  }
+  .btn-outline-dark {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    font-weight: 500;
+  }
+  .btn-outline-dark:hover {
+    border-color: #ffffff;
+  }
+
+  /* Runder Icon-Button (Slider, Karten-Pfeile) */
+  .icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    border-radius: 999px;
+    transition:
+      background-color 0.2s,
+      border-color 0.2s,
+      color 0.2s,
+      transform 0.25s;
+  }
+
+  /* ---------- Marken-Linien (Logo-Spuren als tönbare Masken) ---------- */
+  .bl-a,
+  .bl-b {
+    position: absolute;
+    pointer-events: none;
+    z-index: 0;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+  }
+  .bl-a {
+    -webkit-mask-image: url(/brand/line-a.png);
+    mask-image: url(/brand/line-a.png);
+    aspect-ratio: 926 / 657;
+  }
+  .bl-b {
+    -webkit-mask-image: url(/brand/line-b.png);
+    mask-image: url(/brand/line-b.png);
+    aspect-ratio: 940 / 307;
+  }
+
+  /* Logo als Maske: Farbe über background-color */
+  .logo-mask {
+    display: block;
+    background-color: currentColor;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: left center;
+    mask-position: left center;
+  }
+  .logo-wordmark {
+    -webkit-mask-image: url(/brand/logo-wordmark.webp);
+    mask-image: url(/brand/logo-wordmark.webp);
+    aspect-ratio: 1200 / 123;
+  }
+  .logo-lockup {
+    -webkit-mask-image: url(/brand/logo-lockup-dark.webp);
+    mask-image: url(/brand/logo-lockup-dark.webp);
+    aspect-ratio: 1355 / 181;
+  }
+
+  /* ---------- FAQ (natives <details name>) ---------- */
+  .faq-item summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
 }
 
 /* Scroll-Reveal (JS setzt .is-visible; ohne JS/reduced-motion bleibt alles sichtbar) */
@@ -120,24 +409,38 @@ h3 {
     opacity: 0;
     transform: translateY(24px);
     transition:
-      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-      transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+      opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
+      transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
     transition-delay: var(--reveal-delay, 0ms);
   }
   .reveal.is-visible {
     opacity: 1;
     transform: none;
   }
-  @keyframes logo-drift {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
+}
+
+/* Legacy: Logo-Frames (dunkel gezeichnet) auf dunklen Flächen aufhellen */
+.frame-on-dark {
+  filter: brightness(3.4) saturate(0.4) sepia(0.3);
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
   }
-  .logo-drift {
-    animation: logo-drift 7s ease-in-out infinite;
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

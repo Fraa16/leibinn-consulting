@@ -1,7 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+
+const noopSubscribe = () => () => {};
+
+/** Nur Client: Video abspielen, wenn Bewegung erlaubt, WebM möglich und Viewport groß genug. */
+function canPlayVideo() {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const canWebm = !!document
+    .createElement("video")
+    .canPlayType('video/webm; codecs="vp9, vp8"');
+  return !reduced && canWebm && window.innerWidth >= 768;
+}
 
 /**
  * Hero-Hintergrundvideo (Frankfurter Skyline). Spielt genau EINMAL pro Laden
@@ -13,18 +24,7 @@ import { useEffect, useState } from "react";
  *   - kleine Viewports (spart die ~21 MB auf Mobilgeräten)
  */
 export function HeroVideo() {
-  const [play, setPlay] = useState(false);
-
-  useEffect(() => {
-    const reduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-    const canWebm = !!document
-      .createElement("video")
-      .canPlayType('video/webm; codecs="vp9, vp8"');
-    const bigEnough = window.innerWidth >= 768;
-    if (!reduced && canWebm && bigEnough) setPlay(true);
-  }, []);
+  const play = useSyncExternalStore(noopSubscribe, canPlayVideo, () => false);
 
   return (
     <div aria-hidden className="absolute inset-0 overflow-hidden">

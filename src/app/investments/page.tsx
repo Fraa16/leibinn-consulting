@@ -106,13 +106,13 @@ export default function InvestmentsPage() {
                 Strategie-Gespräch buchen
               </CtaButton>
               <p className="mt-4 text-sm text-ink-faint">
-                60 Minuten, kostenlos, mit erster Einschätzung Ihrer aktuellen
+                15 Minuten, kostenlos, mit erster Einschätzung Ihrer aktuellen
                 Aufstellung
               </p>
             </div>
           </div>
           <PullStat
-            value="60&thinsp;Min"
+            value="15&thinsp;Min"
             label="kostenloses Strategie-Gespräch mit erster Einschätzung"
             className="hidden md:col-span-3 md:col-start-10 md:block"
           />

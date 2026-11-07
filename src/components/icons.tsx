@@ -155,3 +155,72 @@ export const fachbereichIcons = {
 } as const;
 
 export type FachbereichSlug = keyof typeof fachbereichIcons;
+
+/* ---------- UI-Icons (Redesign) ---------- */
+
+export function IconCalendar({ className }: IconProps) {
+  return (
+    <svg {...base(className)} strokeWidth={1.8}>
+      <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" />
+      <path d="M3.5 10h17M8 3v4M16 3v4" />
+    </svg>
+  );
+}
+
+export function IconArrowUpRight({ className }: IconProps) {
+  return (
+    <svg {...base(className)} strokeWidth={1.8}>
+      <path d="M7 17L17 7M9 7h8v8" />
+    </svg>
+  );
+}
+
+export function IconArrowLeft({ className }: IconProps) {
+  return (
+    <svg {...base(className)} strokeWidth={1.8}>
+      <path d="M19 12H5M11 6l-6 6 6 6" />
+    </svg>
+  );
+}
+
+export function IconCheck({ className }: IconProps) {
+  return (
+    <svg {...base(className)} strokeWidth={2}>
+      <path d="M5 12.5l4.5 4.5L19 7.5" />
+    </svg>
+  );
+}
+
+export function IconPlus({ className }: IconProps) {
+  return (
+    <svg {...base(className)} strokeWidth={1.8}>
+      <path d="M12 5v14M5 12h14" />
+    </svg>
+  );
+}
+
+export function IconChevronDown({ className }: IconProps) {
+  return (
+    <svg {...base(className)} strokeWidth={1.8}>
+      <path d="M6 9l6 6 6-6" />
+    </svg>
+  );
+}
+
+export function IconShieldCheck({ className }: IconProps) {
+  return (
+    <svg {...base(className)}>
+      <path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.3-7.5 9.5-4.3-1.2-7.5-4.9-7.5-9.5V6L12 3z" />
+      <path d="M8.8 12.2l2.2 2.2 4.4-4.6" />
+    </svg>
+  );
+}
+
+export function IconVideo({ className }: IconProps) {
+  return (
+    <svg {...base(className)}>
+      <rect x="3" y="6" width="13" height="12" rx="2.5" />
+      <path d="M16 10.5l5-3v9l-5-3" />
+    </svg>
+  );
+}

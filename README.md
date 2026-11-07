@@ -2,11 +2,21 @@
 
 Marketing-Website für Leibinn Consulting: Vermögensaufbau, Off-Market-Immobilien, Holding-Strukturen, Absicherung und Finanzierung (Region Stuttgart).
 
-**Stack:** Next.js (App Router) · Tailwind CSS 4 · TypeScript · Fonts: Playfair Display + Lora (lokal via `next/font`, DSGVO-freundlich)
+**Stack:** Next.js (App Router) · Tailwind CSS 4 · TypeScript · Fonts: Host Grotesk + Geist Mono (lokal via `next/font`, keine Verbindung zu Google im Browser)
 
-**Design-System (dunkles Markentheme):** Deep Twilight `#01005D` (Grundfläche) · True Cobalt `#1E207F` (Karten) · Royal Azure `#2452D8` (Interaktion) · Soft Fawn `#E4BF70` (CTAs, sparsam). Token-Definitionen in `src/app/globals.css`.
+**Design-System (Markenfamilie, wie die Landingpages):** Ivory `#F5F3EE` als Grund, Ink `#0D1A2D` als abgerundete Inset-Panels, Copper `#B8875A` als Akzent der Hauptseite. Schwebende Pill-Navigation, Mono-Eyebrows, Pill-Buttons, Logo-Spuren als tönbare CSS-Masken (`.bl-a`, `.bl-b`). Token und Komponenten-Klassen (`.lc-panel`, `.display-1/2/3`, `.eyebrow`, `.btn-*`) in `src/app/globals.css`.
 
-**Marken-Assets** (`public/brand/`, aus den gelieferten Logo-Frames): `logo-mark-white.png` (Bildmarke, Header/Hero), `logo-lockup-white.png` (Wort-Bild-Marke, Footer), `frame-01/02.png` (Linien-Ornamente für Sektionshintergründe). Achtung: `frame-21.png` enthält Wortmarke + Platzhalter-URL als Wasserzeichen — nicht als Dekor verwenden.
+**Drei Welten, drei Akzente** (`worlds` in `src/lib/site.ts`): Jede Welt trägt die Farbe ihrer Landingpage, damit Hauptseite und Landingpages sichtbar zusammengehören.
+
+| Welt | Akzent | Fachbereiche |
+| --- | --- | --- |
+| Privates Vermögen | Petrol `#2F7A7E` (LP Investment- & Finanzberatung) | Investments, Absicherung |
+| Immobilien | Copper `#B8875A` (LP Immobilien & Steuern) | Off-Market-Immobilien, Finanzierung |
+| Unternehmen | Indigo `#4A4FB0` (Benefit-Website) | Holding-Strukturen, bAV / bKV |
+
+**Marken-Assets** (`public/brand/`): `logo-wordmark.webp` (Bildmarke + Schriftzug, Header), `logo-lockup-dark.webp` (mit „Investment Consulting“, Footer), beide als CSS-Maske einfärbbar; `line-a.png` / `line-b.png` (Logo-Spuren für Dekor). Ältere Dateien (`logo-mark-white.png`, `frame-*.png`) nutzen noch die Fachseiten. Achtung: `frame-21.png` enthält eine Platzhalter-URL als Wasserzeichen, nicht als Dekor verwenden.
+
+**Redesign-Status:** Startseite, Header und Footer sind neu. Die Fachseiten, Über uns, Kontakt und die Rechtsseiten folgen in Phase 2; bis dahin zeigen ihre alten Token-Namen (`twilight`, `fawn`, `azure` …) auf die neue Palette.
 
 ## Entwicklung
 
@@ -27,6 +37,8 @@ Repo bei [vercel.com/new](https://vercel.com/new) importieren – Next.js wird a
 1. Resend-Konto anlegen, Domain verifizieren
 2. `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` in Vercel setzen
 
+**Terminbuchung:** Erstgespräch 15 Min (Video oder Telefon). Calendly wird per Zwei-Klick geladen (`src/components/home/BookingCard.tsx`): erst nach Klick auf „Kalender laden“ geht eine Anfrage an Calendly. Das Event setzen Sie über `NEXT_PUBLIC_CALENDLY_URL` in Vercel; ohne Variable greift der Fallback in `src/lib/site.ts` (derzeit noch das 60-Minuten-Event).
+
 CTA-Buttons übergeben ihr Anliegen per Query-Parameter (z. B. `/kontakt?anliegen=struktur-check`) und wählen es im Formular vor. Optionen: `src/lib/site.ts`.
 
 ## Inhalte & Struktur
@@ -43,6 +55,8 @@ Copy stammt wortgetreu aus den Copy-Dokumenten (Startseite v3, übrige v1). Wied
 | `/impressum`, `/datenschutz` | Gerüst mit PLATZHALTERN, vor Go-live juristisch füllen |
 
 ## Bilder
+
+**Fotonachweis Skyline (Unsplash-Lizenz, Nennung freiwillig):** `city-night` Bharat Patil · `ffm-dom` Kilian Karger · `ffm-towers` Lana · `ffm-park` Leonhard Niederwimmer.
 
 **Hero-Video:** Frankfurter Skyline (`public/media/hero.webm`) — spielt einmal pro Laden und friert auf dem letzten Frame ein (`HeroVideo.tsx`); Standbild-Fallback für Mobil/iOS/reduced-motion via `hero-last.jpg`.
 

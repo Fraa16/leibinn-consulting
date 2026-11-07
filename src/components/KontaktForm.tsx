@@ -118,7 +118,7 @@ export function KontaktForm() {
       </fieldset>
       <fieldset>
         <legend className="mb-3 font-semibold">
-          3. Gespräch lieber online oder vor Ort in Böblingen?
+          3. Erstgespräch lieber per Video oder Telefon?
         </legend>
         <PillGroup
           name="gespraech"
