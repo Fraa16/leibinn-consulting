@@ -52,7 +52,7 @@ Next.js wird automatisch erkannt. Umgebungsvariablen im Vercel-Dashboard:
 
 | Variable | Zweck |
 | --- | --- |
-| `NEXT_PUBLIC_CALENDLY_URL` | Calendly-Event für das 15-Minuten-Erstgespräch (Fallback in `src/lib/site.ts`) |
+| `NEXT_PUBLIC_CALENDLY_URL` | Calendly-Event für das 60-Minuten-Erstgespräch (Fallback in `src/lib/site.ts`, gleicher Link auf allen Leibinn-Seiten) |
 | `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` | Kontaktformular über [Resend](https://resend.com); ohne Key verweist das Formular auf E-Mail/Telefon |
 
 **Terminbuchung:** Calendly wird per Zwei-Klick geladen (`BookingCard.tsx`). Erst nach Klick auf „Kalender laden“ geht eine Anfrage an Calendly.
@@ -71,7 +71,7 @@ Fotos (Shooting Cedrik Leibinn) und Skyline-Motive liegen optimiert als WebP in 
 
 ## Vor Go-live prüfen
 
-1. **Calendly:** 15-Minuten-Event anlegen und `NEXT_PUBLIC_CALENDLY_URL` setzen (Fallback ist noch das 60-Minuten-Event).
+1. **Calendly:** Das 60-Minuten-Event (`https://calendly.com/beratung-leibinn-consulting/60min`) ist die Quelle der Wahrheit für alle Leibinn-Seiten; Texte nennen 60 Minuten.
 2. **Datenschutz:** Absatz zur Zwei-Klick-Terminbuchung (Calendly, USA) juristisch prüfen lassen.
 3. **Partner-Leiste** auf der Startseite („Ausgezeichnet und vernetzt“) bestätigen.
 4. **Schufa-Aussage** auf `/finanzierung` prüfen, ob zusagbar.

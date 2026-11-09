@@ -338,7 +338,7 @@ export default function UeberUnsPage() {
             Lernen Sie den Menschen kennen, <em>nicht nur die Website.</em>
           </>
         }
-        lead="Das Erstgespräch dauert 15 Minuten, kostet nichts und findet per Video oder Telefon statt. Danach wissen Sie, ob die Zusammenarbeit passt. Wir übrigens auch."
+        lead="Das Erstgespräch dauert 60 Minuten, kostet nichts und findet per Video oder Telefon statt. Danach wissen Sie, ob die Zusammenarbeit passt. Wir übrigens auch."
       />
 
       <JsonLd data={breadcrumbJsonLd([{ name: "Über uns", path: "/ueber-uns" }])} />

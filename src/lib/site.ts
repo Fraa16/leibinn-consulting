@@ -7,15 +7,15 @@ export const site = {
   phone: "+49 176 34529336",
   address: "Konrad-Zuse-Straße 98, 71034 Böblingen",
   /**
-   * Calendly-Event für das 15-Minuten-Erstgespräch. In Vercel über
-   * NEXT_PUBLIC_CALENDLY_URL setzbar; Fallback ist das bisherige Event.
+   * Calendly-Event für das 60-Minuten-Erstgespräch (Quelle der Wahrheit für
+   * alle Leibinn-Seiten). In Vercel über NEXT_PUBLIC_CALENDLY_URL überschreibbar.
    */
   calendlyUrl:
     process.env.NEXT_PUBLIC_CALENDLY_URL ??
     "https://calendly.com/beratung-leibinn-consulting/60min",
   owner: "Cedrik Leibinn",
   clients: "55+",
-  callMinutes: 15,
+  callMinutes: 60,
 } as const;
 
 /** Footer-Entity-Satz (GEO, sitewide, identisch auf /ueber-uns) */

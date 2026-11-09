@@ -132,7 +132,7 @@ export default function InvestmentsPage() {
         lead="Leibinn Consulting entwickelt Investmentstrategien für Privatpersonen und Unternehmer: breite Streuung, klare Risikoverteilung, transparente Kosten. Die Strategie kommt von uns, die Anlageberatung führen lizenzierte Partner durch, und Sie behalten einen Ansprechpartner für das Gesamtbild."
         primary={{ label: "Strategie-Gespräch buchen", href: "#termin" }}
         secondary={{ label: "Die vier Prinzipien", href: "#methodik" }}
-        micro="15 Minuten, kostenlos, mit erster Einschätzung Ihrer aktuellen Aufstellung."
+        micro="60 Minuten, kostenlos, mit erster Einschätzung Ihrer aktuellen Aufstellung."
         image={{
           src: "/images/cedrik-kundengespraech.webp",
           alt: "Cedrik Leibinn im Beratungsgespräch mit einer Mandantin",
@@ -142,7 +142,7 @@ export default function InvestmentsPage() {
         facts={[
           { value: "4", label: "Prinzipien jeder Strategie" },
           { value: "Schriftlich", label: "Ihre Strategie auf Papier" },
-          { value: "15 Min", label: "Kostenloses Erstgespräch" },
+          { value: "60 Min", label: "Kostenloses Erstgespräch" },
         ]}
       />
 

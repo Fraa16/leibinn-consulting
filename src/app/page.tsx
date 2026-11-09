@@ -157,7 +157,7 @@ const faqItems: FaqEntry[] = [
   },
   {
     q: "Wie läuft das kostenlose Erstgespräch ab?",
-    a: "Das Erstgespräch dauert 15 Minuten und findet per Video oder Telefon statt. Sie schildern kurz Ihre Situation und Ihre Ziele, wir geben eine ehrliche erste Einschätzung, wo der größte Hebel liegt. Passt es, vereinbaren wir einen ausführlichen Analysetermin, online oder vor Ort in Böblingen. Kosten oder Verpflichtungen entstehen nicht.",
+    a: "Das Erstgespräch dauert 60 Minuten und findet per Video oder Telefon statt. Sie schildern kurz Ihre Situation und Ihre Ziele, wir geben eine ehrliche erste Einschätzung, wo der größte Hebel liegt. Passt es, vereinbaren wir einen ausführlichen Analysetermin, online oder vor Ort in Böblingen. Kosten oder Verpflichtungen entstehen nicht.",
   },
   {
     q: "Für wen ist Leibinn Consulting geeignet?",

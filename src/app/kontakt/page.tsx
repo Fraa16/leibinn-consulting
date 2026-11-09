@@ -16,7 +16,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: { absolute: "Kontakt & Erstgespräch | Leibinn Consulting" },
   description:
-    "Kostenloses Erstgespräch buchen: 15 Minuten per Video oder Telefon, mit ehrlicher erster Einschätzung. Antwort innerhalb von 24 Stunden.",
+    "Kostenloses Erstgespräch buchen: 60 Minuten per Video oder Telefon, mit ehrlicher erster Einschätzung. Antwort innerhalb von 24 Stunden.",
   alternates: { canonical: "/kontakt" },
 };
 
@@ -31,7 +31,7 @@ const faqItems: FaqEntry[] = [
   },
   {
     q: "Was passiert nach der Buchung?",
-    a: "Sie erhalten eine Bestätigung mit allen Details. Das Gespräch dauert 15 Minuten, per Video oder Telefon. Passt es, folgt ein ausführlicher Analysetermin, online oder vor Ort in Böblingen. Unterlagen brauchen Sie keine, Zahlen aus dem Kopf reichen für den Anfang.",
+    a: "Sie erhalten eine Bestätigung mit allen Details. Das Gespräch dauert 60 Minuten, per Video oder Telefon. Passt es, folgt ein ausführlicher Analysetermin, online oder vor Ort in Böblingen. Unterlagen brauchen Sie keine, Zahlen aus dem Kopf reichen für den Anfang.",
   },
 ];
 
@@ -72,14 +72,14 @@ export default function KontaktPage() {
         eyebrow="Kontakt & Erstgespräch"
         title={
           <>
-            15 Minuten. <em>Eine ehrliche Einschätzung.</em>
+            60 Minuten. <em>Eine ehrliche Einschätzung.</em>
           </>
         }
         lead="Das Erstgespräch ist kostenlos und unverbindlich: Ihre Situation, Ihre Ziele, eine erste Einschätzung, wo der größte Hebel liegt. Sie gehen mit einem Ergebnis raus, auch wenn Sie sich gegen eine Zusammenarbeit entscheiden."
         extra={<ContactWays />}
         aside={<BookingCard showAlternatives={false} />}
         facts={[
-          { value: "15 Min", label: "Per Video oder Telefon" },
+          { value: "60 Min", label: "Per Video oder Telefon" },
           { value: "24 h", label: "Antwort auf Anfragen" },
           { value: "0 €", label: "Kostenlos und unverbindlich" },
         ]}
@@ -131,7 +131,7 @@ export default function KontaktPage() {
         <BrandLine shape="b" color="var(--acc-light)" opacity={0.14} className="-bottom-16 -left-36 w-[min(960px,100vw)]" />
         <Reveal className="lc-wrap relative flex flex-col items-start gap-10 md:flex-row md:items-end md:justify-between">
           <p className="display-3 max-w-[22em]">
-            Der schnellste Weg zu einem Gesamtbild Ihrer Finanzen sind 15
+            Der schnellste Weg zu einem Gesamtbild Ihrer Finanzen sind 60
             Minuten Gespräch. <em>Der langsamste ist, es weiter aufzuschieben.</em>
           </p>
           <a href="#termin" className="btn btn-lg btn-copper shrink-0">
