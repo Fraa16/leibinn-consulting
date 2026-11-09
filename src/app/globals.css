@@ -453,3 +453,39 @@ p {
   text-underline-offset: 2px;
   overflow-wrap: anywhere;
 }
+
+/* Cookie-Banner (vanilla-cookieconsent) in den Token der Hauptseite. */
+#cc-main {
+  --cc-font-family: var(--font-sans);
+  --cc-bg: #ffffff;
+  --cc-primary-color: var(--color-navy);
+  --cc-secondary-color: var(--color-body);
+  --cc-btn-primary-bg: var(--color-copper);
+  --cc-btn-primary-color: var(--color-navy-950);
+  --cc-btn-primary-border-color: var(--color-copper);
+  --cc-btn-primary-hover-bg: var(--color-copper-light);
+  --cc-btn-primary-hover-color: var(--color-navy-950);
+  --cc-btn-primary-hover-border-color: var(--color-copper-light);
+  --cc-btn-secondary-bg: var(--color-ivory);
+  --cc-btn-secondary-color: var(--color-navy);
+  --cc-btn-secondary-border-color: var(--color-sand-deep);
+  --cc-btn-secondary-hover-bg: var(--color-ivory-deep);
+  --cc-btn-secondary-hover-color: var(--color-navy);
+  --cc-btn-secondary-hover-border-color: var(--color-sand-deep);
+  --cc-btn-border-radius: 999px;
+  --cc-modal-border-radius: 20px;
+  --cc-separator-border-color: var(--color-sand);
+  --cc-toggle-on-bg: var(--color-copper-dark);
+  --cc-toggle-off-bg: var(--color-mute);
+  --cc-toggle-readonly-bg: var(--color-sand-deep);
+  --cc-cookie-category-block-bg: var(--color-ivory);
+  --cc-cookie-category-block-border: var(--color-sand);
+  --cc-cookie-category-block-hover-bg: var(--color-ivory-deep);
+  --cc-cookie-category-block-hover-border: var(--color-sand-deep);
+  --cc-cookie-category-expanded-block-bg: #ffffff;
+  --cc-footer-bg: var(--color-ivory);
+  --cc-footer-color: var(--color-body);
+  --cc-footer-border-color: var(--color-sand);
+  --cc-link-color: var(--color-copper-dark);
+  --cc-overlay-bg: rgba(13, 26, 45, 0.55);
+}

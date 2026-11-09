@@ -54,6 +54,8 @@ Next.js wird automatisch erkannt. Umgebungsvariablen im Vercel-Dashboard:
 | --- | --- |
 | `NEXT_PUBLIC_CALENDLY_URL` | Calendly-Event für das 60-Minuten-Erstgespräch (Fallback in `src/lib/site.ts`, gleicher Link auf allen Leibinn-Seiten) |
 | `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` | Kontaktformular über [Resend](https://resend.com); ohne Key verweist das Formular auf E-Mail/Telefon |
+| `NEXT_PUBLIC_LEADS_API_URL` | Zentraler Lead-Service ([Fraa16/leibinn-leads](https://github.com/Fraa16/leibinn-leads)): gemeinsame Datenbank aller Leibinn-Seiten + E-Mail. Gesetzt, geht das Kontaktformular dorthin; sonst bleibt `/api/contact` (Resend) aktiv |
+| `NEXT_PUBLIC_META_PIXEL_ID`, `NEXT_PUBLIC_LINKEDIN_PARTNER_ID`, `NEXT_PUBLIC_LINKEDIN_CONVERSION_LEAD`, `NEXT_PUBLIC_LINKEDIN_CONVERSION_BOOKING` | Anzeigen-Tracking, lädt erst nach Einwilligung im Cookie-Banner (`src/lib/consent.ts`, auf allen Leibinn-Seiten gleich). Ohne IDs wird nichts geladen |
 
 **Terminbuchung:** Calendly wird per Zwei-Klick geladen (`BookingCard.tsx`). Erst nach Klick auf „Kalender laden“ geht eine Anfrage an Calendly.
 

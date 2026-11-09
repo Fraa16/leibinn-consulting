@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { JsonLd } from "@/components/JsonLd";
 import { Analytics } from "@vercel/analytics/next";
+import { ConsentManager } from "@/components/ConsentManager";
 import { site } from "@/lib/site";
 
 // next/font lädt die Schriften beim Build und liefert sie selbst aus:
@@ -90,6 +91,7 @@ export default function RootLayout({
         <SiteFooter />
         <JsonLd data={organizationJsonLd} />
         <Analytics />
+        <ConsentManager />
       </body>
     </html>
   );

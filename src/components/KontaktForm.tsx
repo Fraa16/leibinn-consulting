@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { submitLead, trackConversion } from "@/lib/consent";
 import { useSearchParams } from "next/navigation";
 import {
   anliegenOptions,
@@ -61,6 +62,32 @@ export function KontaktForm() {
     setStatus("sending");
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
+    // Mit NEXT_PUBLIC_LEADS_API_URL geht die Anfrage an den zentralen Lead-Service
+    // (gemeinsame Datenbank aller Leibinn-Seiten + E-Mail). Ohne die Variable
+    // bleibt es beim bisherigen Weg über /api/contact (E-Mail via Resend).
+    if (process.env.NEXT_PUBLIC_LEADS_API_URL) {
+      const text = (k: string) => String(data[k] ?? "").trim() || undefined;
+      try {
+        await submitLead({
+          form: "kontakt",
+          name: text("name"),
+          email: text("email"),
+          telefon: text("phone"),
+          anliegen: anliegenOptions.find((o) => o.key === text("anliegen"))?.label ?? text("anliegen"),
+          nachricht: text("message"),
+          fields: {
+            ...(text("status") ? { status: text("status")! } : {}),
+            ...(text("gespraech") ? { gespraech: text("gespraech")! } : {}),
+          },
+          website: text("website"),
+        });
+        setStatus("sent");
+        form.reset();
+      } catch {
+        setStatus("error");
+      }
+      return;
+    }
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -68,6 +95,7 @@ export function KontaktForm() {
         body: JSON.stringify(data),
       });
       if (res.ok) {
+        trackConversion("lead");
         setStatus("sent");
         form.reset();
       } else {

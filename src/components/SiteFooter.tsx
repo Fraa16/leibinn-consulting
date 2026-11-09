@@ -110,6 +110,11 @@ export function SiteFooter() {
                 </Link>
               </li>
             ))}
+            <li>
+              <button type="button" data-cookie-settings className="text-left hover:text-navy">
+                Cookie-Einstellungen
+              </button>
+            </li>
           </ul>
         </div>
       </div>
