@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { calendlyUrl } from "@/lib/consent";
 import { site } from "@/lib/site";
 import { IconCalendar, IconMail, IconPhone } from "../icons";
 import { FOCUS_EVENT, type FocusDetail } from "./Wegweiser";
@@ -42,7 +43,8 @@ export function BookingCard({
 
   useEffect(() => {
     if (!consent || !widgetRef.current) return;
-    const url = new URL(site.calendlyUrl);
+    // Kampagne (utm_*) und Herkunfts-Tag, damit die Buchung ihre Quelle zeigt.
+    const url = new URL(calendlyUrl(site.calendlyUrl));
     url.searchParams.set("hide_event_type_details", "1");
     url.searchParams.set("hide_gdpr_banner", "1");
     url.searchParams.set("primary_color", "8a5e36");
