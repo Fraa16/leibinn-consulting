@@ -129,12 +129,12 @@ export function MiniFrame({
 }) {
   return (
     <div className="h-full rounded-2xl border border-white/6 bg-navy-950/60 p-4">
-      <div className="flex items-center justify-between gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
         <span className="text-[13px] font-medium text-on-dark">{title}</span>
         {chip}
       </div>
       <div className="mt-4">{children}</div>
-      {note && <p className="mono mt-4 text-[9.5px] text-on-dark-subtle">{note}</p>}
+      {note && <p className="mono mt-4 text-[11px] text-on-dark-subtle">{note}</p>}
     </div>
   );
 }
@@ -147,7 +147,7 @@ function Chip({
   className: string;
 }) {
   return (
-    <span className={`mono rounded-full px-2.5 py-1 text-[9.5px] ${className}`}>
+    <span className={`mono whitespace-nowrap rounded-full px-2.5 py-1 text-[11px] ${className}`}>
       {children}
     </span>
   );
@@ -199,7 +199,7 @@ export function MiniGrowth() {
         />
         <circle cx="320" cy="10" r="4" fill="#86BDBF" />
       </svg>
-      <div className="mono mt-2 flex justify-between text-[9.5px] text-on-dark-subtle">
+      <div className="mono mt-2 flex justify-between text-[11px] text-on-dark-subtle">
         <span>Heute</span>
         <span>10 Jahre</span>
         <span>20 Jahre</span>
@@ -223,7 +223,7 @@ export function MiniObjektCheck() {
         {rows.map(([label, v, accent]) => (
           <div key={label} className="grid grid-cols-[1fr_auto] items-center gap-x-3 gap-y-1.5">
             <span className="text-[12px] text-on-dark-body">{label}</span>
-            <span className="mono text-[10px] text-on-dark tnum">
+            <span className="mono text-[11px] text-on-dark tnum">
               {(v / 10).toFixed(1).replace(".", ",")}
             </span>
             <span className="col-span-2 h-1 rounded-full bg-white/8">
@@ -245,7 +245,7 @@ export function MiniStructure() {
   return (
     <MiniFrame title="Ihre Struktur" note="Schematische Darstellung">
       <div className="flex flex-col items-center">
-        <span className="mono rounded-full bg-white/8 px-2.5 py-1 text-[9.5px] text-on-dark-body">
+        <span className="mono rounded-full bg-white/8 px-2.5 py-1 text-[11px] text-on-dark-body">
           Sie
         </span>
         <span className="h-3 w-px bg-white/20" />
@@ -281,12 +281,12 @@ export function MiniBanks() {
             key={label}
             className={`rounded-lg px-3 py-2 ${best ? "bg-copper/15 ring-1 ring-copper/50" : "bg-white/4"}`}
           >
-            <div className="flex items-center justify-between">
-              <span className={`text-[12px] ${best ? "text-white" : "text-on-dark-body"}`}>
+            <div className="flex flex-wrap items-center justify-between gap-x-3">
+              <span className={`whitespace-nowrap text-[12px] ${best ? "text-white" : "text-on-dark-body"}`}>
                 {label}
               </span>
               {best && (
-                <span className="mono text-[9.5px] text-copper-light">Bestes Angebot</span>
+                <span className="mono whitespace-nowrap text-[11px] text-copper-light">Bestes Angebot</span>
               )}
             </div>
             <span className="mt-1.5 block h-1 rounded-full bg-white/8">
@@ -323,7 +323,7 @@ export function MiniBenefits() {
           {["AK", "MS", "JT", "LB", "+8"].map((i, n) => (
             <span
               key={i}
-              className={`mono flex h-7 w-7 items-center justify-center rounded-full border-2 border-navy-950 text-[8.5px] ${
+              className={`mono flex h-7 w-7 items-center justify-center rounded-full border-2 border-navy-950 text-[11px] ${
                 n === 4 ? "bg-indigo-light text-navy-950" : "bg-navy-800 text-on-dark"
               } ${n ? "-ml-2" : ""}`}
             >

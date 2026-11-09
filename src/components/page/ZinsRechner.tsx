@@ -101,8 +101,11 @@ export function ZinsRechner() {
             ["Rate teurer", eur(r.b.annuity)],
           ].map(([k, v]) => (
             <div key={k} className="rounded-[14px] bg-navy-850 p-4">
-              <p className="mono text-[10px] text-on-dark-subtle">{k} / Monat</p>
-              <p className="mt-2 text-[20px] font-medium tracking-[-0.02em] tnum">{v}</p>
+              <p className="mono text-[11px] text-on-dark-subtle">{k} / Monat</p>
+              {/* The global p rule (text-wrap: pretty) would override nowrap on the p itself. */}
+              <p className="mt-2 text-[20px] font-medium tracking-[-0.02em] tnum">
+                <span className="whitespace-nowrap">{v}</span>
+              </p>
             </div>
           ))}
         </div>

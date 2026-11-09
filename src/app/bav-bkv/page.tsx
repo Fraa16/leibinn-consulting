@@ -91,7 +91,7 @@ function WirkungDiagram() {
         ))}
         {circles.map((c, i) => (
           <g key={`t${i}`} fontFamily="var(--font-host)" textAnchor="middle" fill={c.dark ? "#08111F" : "#FFFFFF"}>
-            <text x={c.lx} y={c.ly - 22} fontFamily="var(--font-geist-mono)" fontSize="10" letterSpacing="1.2" opacity="0.7">
+            <text x={c.lx} y={c.ly - 22} fontFamily="var(--font-geist-mono)" fontSize="12" letterSpacing="1.2" opacity="0.7">
               0{i + 1}
             </text>
             {c.label.map((l, n) => (

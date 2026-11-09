@@ -659,7 +659,7 @@ function Ueber() {
             <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-3 rounded-[20px] bg-white/80 p-4 pl-5 text-navy backdrop-blur-xl">
               <div className="leading-tight">
                 <p className="text-[16px] font-semibold">Cedrik Leibinn</p>
-                <p className="mono mt-1.5 text-[10px] text-subtle">
+                <p className="mono mt-1.5 text-[11px] text-subtle">
                   Gründer · Ihr Ansprechpartner
                 </p>
               </div>

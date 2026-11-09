@@ -127,7 +127,7 @@ export function SiteHeader() {
                             <span className="block text-[15px] font-semibold">
                               {t.label}
                             </span>
-                            <span className="mono mt-1.5 block text-[10px] text-subtle">
+                            <span className="mono mt-1.5 block text-[11px] text-subtle">
                               {worlds[t.world].label}
                             </span>
                           </span>

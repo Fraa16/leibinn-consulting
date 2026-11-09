@@ -181,7 +181,7 @@ export default function UeberUnsPage() {
                 />
                 <span className="leading-tight">
                   <span className="block text-[15px] font-semibold text-navy">Cedrik Leibinn</span>
-                  <span className="mono mt-1 block text-[10px] text-subtle">Gründer und Inhaber</span>
+                  <span className="mono mt-1 block text-[11px] text-subtle">Gründer und Inhaber</span>
                 </span>
               </div>
             </Reveal>

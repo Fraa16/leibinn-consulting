@@ -110,27 +110,28 @@ function StructureDiagram() {
         <span aria-hidden className="h-6 w-px bg-navy/20" />
         <div className={`${node} w-full max-w-[340px] border-navy bg-navy text-white`}>
           <p className="text-[17px] font-semibold">Holding GmbH</p>
-          <p className="mono mt-1.5 text-[10px] text-acc-light">Sammelt Vermögen</p>
+          <p className="mono mt-1.5 text-[11px] text-acc-light">Sammelt Vermögen</p>
         </div>
         <span aria-hidden className="h-6 w-px bg-navy/20" />
-        <span aria-hidden className="h-px w-[68%] bg-navy/20" />
-        <div className="grid w-full grid-cols-3 gap-2 sm:gap-3">
+        {/* Phones: the three companies stack under the holding; from sm up they branch side by side. */}
+        <span aria-hidden className="hidden h-px w-[68%] bg-navy/20 sm:block" />
+        <div className="grid w-full max-w-[340px] grid-cols-1 gap-2 sm:max-w-none sm:grid-cols-3 sm:gap-3">
           {[
             { t: "Operative GmbH", s: "Trägt das Tagesrisiko", strong: true },
             { t: "Immobilien", s: "Getrennt vom Betrieb", strong: false },
             { t: "Investments", s: "Reinvestierte Gewinne", strong: false },
           ].map((n) => (
             <div key={n.t} className="flex flex-col items-center">
-              <span aria-hidden className="h-6 w-px bg-navy/20" />
+              <span aria-hidden className="hidden h-6 w-px bg-navy/20 sm:block" />
               <div className={`${node} w-full ${n.strong ? "border-acc bg-acc-tint" : "border-sand-deep bg-ivory/60"}`}>
                 <p className="text-[14px] font-semibold text-navy sm:text-[15px]">{n.t}</p>
-                <p className="mono mt-1.5 text-[9.5px] text-subtle">{n.s}</p>
+                <p className="mono mt-1.5 text-[11px] text-subtle">{n.s}</p>
               </div>
             </div>
           ))}
         </div>
       </div>
-      <figcaption className="mono mt-7 border-t border-ivory-deep pt-4 text-[10px] text-subtle">
+      <figcaption className="mono mt-7 border-t border-ivory-deep pt-4 text-[11px] text-subtle">
         Schematische Darstellung · 95 % des Gewinns aus einem Anteilsverkauf bleiben in der Holding körperschaftsteuerfrei
       </figcaption>
     </figure>
