@@ -1,5 +1,7 @@
+import { Fragment } from "react";
 import type { Metadata } from "next";
 import { LegalPage } from "@/components/page/LegalPage";
+import { inlineParts, privacyPolicy } from "@/lib/privacy";
 
 export const metadata: Metadata = {
   title: "Datenschutzerklärung",
@@ -7,119 +9,83 @@ export const metadata: Metadata = {
   alternates: { canonical: "/datenschutz" },
 };
 
-type Section = { h: string; p?: string[]; ul?: string[] };
+// Der Text ist auf allen Leibinn-Seiten gleich: src/lib/privacy.ts (identische Datei).
+// Hier steht nur, welche Funktionen diese Website hat. Google Analytics 4 und
+// Google Ads erscheinen, sobald ihre IDs gesetzt sind, wie im Cookie-Banner.
+const has = (v?: string) => Boolean(v?.trim());
 
-const sections: Section[] = [
-  {
-    h: "Verantwortlicher",
-    p: [
-      "Verantwortlich für die Datenverarbeitung auf dieser Website ist:",
-      "Leibinn Consulting / Cedrik Leibinn, Konrad-Zuse-Straße 98, 71034 Böblingen. Telefon: +49 176 34529336. E-Mail: beratung@leibinn-consulting.de.",
-    ],
-  },
-  {
-    h: "Eingesetzte Dienste",
-    p: [
-      "Hosting: Diese Website wird bei Vercel Inc. gehostet; dabei werden Server-Logfiles (u. a. IP-Adresse) auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO verarbeitet.",
-      "Reichweitenmessung: Zur Analyse der Seitennutzung setzen wir Vercel Web Analytics (Vercel Inc.) ein. Die Erfassung erfolgt cookielos und ohne Bildung personenbezogener Nutzerprofile; ausgewertet werden aggregierte Nutzungsdaten (u. a. aufgerufene Seiten, ungefährer Standort, Gerätetyp) auf Grundlage berechtigter Interessen an einer bedarfsgerechten Gestaltung der Website (Art. 6 Abs. 1 lit. f DSGVO).",
-      "Kontaktformular: Über das Formular übermittelte Angaben (Name, E-Mail, Telefon, Anliegen, Nachricht) werden zur Bearbeitung Ihrer Anfrage verarbeitet (Art. 6 Abs. 1 lit. b DSGVO). Der Versand erfolgt über einen E-Mail-Dienstleister als Auftragsverarbeiter.",
-      "Terminbuchung: Für die Buchung eines Erstgesprächs nutzen wir Calendly (Calendly LLC, USA). Der Buchungskalender wird erst geladen, wenn Sie auf „Kalender laden“ klicken (Einwilligung, Art. 6 Abs. 1 lit. a DSGVO). Erst dann werden Daten (u. a. Ihre IP-Adresse) an Calendly übertragen; es gelten zusätzlich die Datenschutzhinweise von Calendly. Ohne diesen Klick besteht keine Verbindung zu Calendly.",
-      "Schriftarten werden lokal ausgeliefert (keine Verbindung zu Google Fonts).",
-    ],
-  },
-  {
-    h: "Art der von uns erhobenen Daten",
-    p: [
-      "Vollständige Details zu jeder Art von verarbeiteten personenbezogenen Daten werden in den dafür vorgesehenen Abschnitten dieser Datenschutzerklärung oder punktuell durch Erklärungstexte bereitgestellt, die vor der Datenerhebung angezeigt werden.",
-      "Personenbezogene Daten können vom Nutzer freiwillig angegeben oder, im Falle von Nutzungsdaten, automatisch erhoben werden, wenn diese Anwendung genutzt wird.",
-      "Sofern nicht anders angegeben, ist die Angabe aller angeforderten Daten obligatorisch. Weigert sich der Nutzer, die Daten anzugeben, kann dies dazu führen, dass die Dienste nicht zur Verfügung gestellt werden können. Die Nutzer sind für alle personenbezogenen Daten Dritter verantwortlich, die über diese Anwendung beschafft, veröffentlicht oder weitergegeben werden.",
-    ],
-  },
-  {
-    h: "Art und Ort der Datenverarbeitung",
-    p: [
-      "Verarbeitungsmethoden: Der Anbieter verarbeitet die personenbezogenen Daten der Nutzer auf ordnungsgemäße Weise und ergreift angemessene Sicherheitsmaßnahmen, um den unbefugten Zugriff und die unbefugte Weiterleitung, Veränderung oder Vernichtung von Daten zu vermeiden. Zusätzlich zum Verantwortlichen können auch andere Personen intern oder, als Auftragsverarbeiter benannt, extern (z. B. technische Dienstleister, Hosting-Anbieter, IT-Unternehmen) Zugriff auf die Daten haben.",
-      "Ort: Die Daten werden in der Niederlassung des Anbieters und an allen anderen Orten verarbeitet, an denen sich die beteiligten Stellen befinden. Je nach Standort der Nutzer können Datenübertragungen die Übertragung in ein anderes Land beinhalten.",
-      "Speicherdauer: Sofern nicht anders festgelegt, werden personenbezogene Daten so lange verarbeitet und gespeichert, wie es der Zweck erfordert, zu dem sie erhoben wurden, und ggf. aufgrund einer rechtlichen Verpflichtung oder Einwilligung länger aufbewahrt.",
-    ],
-  },
-  {
-    h: "Rechtsgrundlagen der Verarbeitung",
-    p: [
-      "Der Anbieter darf personenbezogene Daten nur verarbeiten, wenn einer der folgenden Punkte zutrifft:",
-    ],
-    ul: [
-      "Die Nutzer haben ihre Einwilligung für einen oder mehrere bestimmte Zwecke erteilt.",
-      "Die Datenerhebung ist für die Erfüllung eines Vertrages und/oder für vorvertragliche Maßnahmen erforderlich.",
-      "Die Verarbeitung ist zur Erfüllung einer rechtlichen Verpflichtung erforderlich.",
-      "Die Verarbeitung ist zur Wahrung berechtigter Interessen des Anbieters oder eines Dritten erforderlich.",
-    ],
-  },
-  {
-    h: "Ihre Rechte nach der DSGVO",
-    p: ["Die Nutzer haben im gesetzlich zulässigen Umfang insbesondere das Recht:"],
-    ul: [
-      "erteilte Einwilligungen jederzeit zu widerrufen,",
-      "der Verarbeitung ihrer Daten zu widersprechen,",
-      "Auskunft über ihre Daten zu erhalten,",
-      "Daten überprüfen und berichtigen zu lassen,",
-      "die Einschränkung der Verarbeitung zu verlangen,",
-      "die Löschung ihrer Daten zu verlangen,",
-      "ihre Daten zu erhalten und übertragen zu lassen (Datenübertragbarkeit),",
-      "Beschwerde bei der zuständigen Aufsichtsbehörde einzureichen.",
-    ],
-  },
-  {
-    h: "Widerspruchsrecht",
-    p: [
-      "Werden personenbezogene Daten im öffentlichen Interesse oder zur Wahrung berechtigter Interessen des Anbieters verarbeitet, kann der Nutzer dieser Verarbeitung aus Gründen seiner besonderen Situation widersprechen.",
-      "Der Verarbeitung für Zwecke der Direktwerbung können Nutzer jederzeit unentgeltlich und ohne Angabe von Gründen widersprechen.",
-    ],
-  },
-  {
-    h: "Wie die Rechte ausgeübt werden können",
-    p: [
-      "Alle Anfragen zur Ausübung der Nutzerrechte können über die oben angegebenen Kontaktdaten gestellt werden. Diese Anfragen sind kostenlos und werden so früh wie möglich, spätestens innerhalb eines Monats, beantwortet.",
-    ],
-  },
-  {
-    h: "Systemprotokolle und Wartung",
-    p: [
-      "Diese Anwendung und Dienste von Dritten können zu Betriebs- und Wartungszwecken Dateien erfassen, die die stattfindende Interaktion aufzeichnen (Systemprotokolle), oder andere personenbezogene Daten (z. B. IP-Adresse) zu diesem Zweck verwenden.",
-    ],
-  },
-  {
-    h: "Änderungen dieser Datenschutzerklärung",
-    p: [
-      "Der Anbieter behält sich vor, jederzeit Änderungen an dieser Datenschutzerklärung vorzunehmen. Nutzern wird nahegelegt, diese Seite regelmäßig aufzurufen. Soweit Änderungen eine auf Einwilligung basierte Datennutzung betreffen, wird, soweit erforderlich, eine neue Einwilligung eingeholt.",
-    ],
-  },
-];
+function Inline({ text }: { text: string }) {
+  return (
+    <>
+      {inlineParts(text).map((part, i) => {
+        if (part.type === "br") return <br key={i} />;
+        if (part.type === "link") {
+          return part.external ? (
+            <a key={i} href={part.href} target="_blank" rel="noopener noreferrer">
+              {part.text}
+            </a>
+          ) : (
+            <a key={i} href={part.href}>
+              {part.text}
+            </a>
+          );
+        }
+        if (part.type === "settings") {
+          // consent.ts öffnet die Einstellungen für jedes Element mit data-cookie-settings.
+          return (
+            <button
+              key={i}
+              type="button"
+              data-cookie-settings
+              className="font-medium text-navy underline underline-offset-2"
+            >
+              {part.text}
+            </button>
+          );
+        }
+        return <Fragment key={i}>{part.text}</Fragment>;
+      })}
+    </>
+  );
+}
 
 export default function DatenschutzPage() {
+  const sections = privacyPolicy({
+    form: "contact",
+    calendly: true,
+    ga4: has(process.env.NEXT_PUBLIC_GA4_ID),
+    googleAds: has(process.env.NEXT_PUBLIC_GOOGLE_ADS_ID),
+  });
   return (
     <LegalPage
       title="Datenschutzerklärung"
       current="/datenschutz"
       lead="Welche Daten wir verarbeiten, welche Dienste wir einsetzen, auf welcher Grundlage und welche Rechte Sie haben."
     >
-        {sections.map((s) => (
-          <div key={s.h}>
-            <h2>{s.h}</h2>
-            {s.p?.map((para, i) => (
-              <p key={i}>
-                {para}
-              </p>
-            ))}
-            {s.ul && (
-              <ul>
-                {s.ul.map((li, i) => (
-                  <li key={i}>{li}</li>
+      {sections.map((s) => (
+        <div key={s.id} id={s.id} className="scroll-mt-[calc(var(--header-h)+24px)]">
+          <h2>{s.title}</h2>
+          {s.blocks.map((b, i) =>
+            "h3" in b ? (
+              <h3 key={i} className="mt-5 text-[16px] font-semibold text-navy">
+                {b.h3}
+              </h3>
+            ) : "ul" in b ? (
+              <ul key={i}>
+                {b.ul.map((li, j) => (
+                  <li key={j}>
+                    <Inline text={li} />
+                  </li>
                 ))}
               </ul>
-            )}
-          </div>
-        ))}
+            ) : (
+              <p key={i}>
+                <Inline text={b.p} />
+              </p>
+            ),
+          )}
+        </div>
+      ))}
     </LegalPage>
   );
 }

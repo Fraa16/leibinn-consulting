@@ -56,6 +56,7 @@ Next.js wird automatisch erkannt. Umgebungsvariablen im Vercel-Dashboard:
 | `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL` | Kontaktformular über [Resend](https://resend.com); ohne Key verweist das Formular auf E-Mail/Telefon |
 | `NEXT_PUBLIC_LEADS_API_URL` | Zentraler Lead-Service ([Fraa16/leibinn-leads](https://github.com/Fraa16/leibinn-leads)): gemeinsame Datenbank aller Leibinn-Seiten + E-Mail. Gesetzt, geht das Kontaktformular dorthin; sonst bleibt `/api/contact` (Resend) aktiv |
 | `NEXT_PUBLIC_META_PIXEL_ID`, `NEXT_PUBLIC_LINKEDIN_PARTNER_ID`, `NEXT_PUBLIC_LINKEDIN_CONVERSION_LEAD`, `NEXT_PUBLIC_LINKEDIN_CONVERSION_BOOKING` | Anzeigen-Tracking, lädt erst nach Einwilligung im Cookie-Banner (`src/lib/consent.ts`, auf allen Leibinn-Seiten gleich). Ohne IDs wird nichts geladen |
+| `NEXT_PUBLIC_GA4_ID`, `NEXT_PUBLIC_GOOGLE_ADS_ID`, `NEXT_PUBLIC_GOOGLE_ADS_LABEL_LEAD`, `NEXT_PUBLIC_GOOGLE_ADS_LABEL_BOOKING` | Optional: Google Analytics 4 und Google Ads. Erscheinen im Cookie-Banner und in der Datenschutzerklärung erst, wenn gesetzt; laden nur nach Einwilligung (Consent Mode v2). In GA4 die Datenaufbewahrung auf 2 Monate stellen und Google Signals ausschalten, wie in der Datenschutzerklärung beschrieben |
 
 **Terminbuchung:** Calendly wird per Zwei-Klick geladen (`BookingCard.tsx`). Erst nach Klick auf „Kalender laden“ geht eine Anfrage an Calendly. Der Link trägt die Kampagne des Besuchers (`utm_*`) und ein Herkunfts-Tag; eine abgeschlossene Buchung wird an den Lead-Service gemeldet und erscheint in der Lead-Übersicht mit „Hauptseite“ und Kampagne.
 
@@ -74,7 +75,7 @@ Fotos (Shooting Cedrik Leibinn) und Skyline-Motive liegen optimiert als WebP in 
 ## Vor Go-live prüfen
 
 1. **Calendly:** Das 60-Minuten-Event (`https://calendly.com/beratung-leibinn-consulting/60min`) ist die Quelle der Wahrheit für alle Leibinn-Seiten; Texte nennen 60 Minuten.
-2. **Datenschutz:** Absatz zur Zwei-Klick-Terminbuchung (Calendly, USA) juristisch prüfen lassen.
+2. **Datenschutz:** `/datenschutz` zeigt die gemeinsame Datenschutzerklärung aller Leibinn-Seiten (`src/lib/privacy.ts`, überall dieselbe Datei; Änderungen in einem Repo machen und in die anderen kopieren). Abschnitte zu Google Analytics 4 und Google Ads erscheinen erst, wenn deren IDs gesetzt sind. Vor dem Start der Anzeigen juristisch prüfen lassen.
 3. **Partner-Leiste** auf der Startseite („Ausgezeichnet und vernetzt“) bestätigen.
 4. **Schufa-Aussage** auf `/finanzierung` prüfen, ob zusagbar.
 5. **Zins-Rechner:** Annahmen (Basiszins, Tilgung) mit dem Finanzierungspartner abstimmen.
